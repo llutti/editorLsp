@@ -1,0 +1,198 @@
+object FCaracteresEspeciais: TFCaracteresEspeciais
+  Left = 572
+  Height = 305
+  Top = 280
+  Width = 665
+  BorderStyle = bsToolWindow
+  Caption = 'Caracteres Especiais'
+  ClientHeight = 305
+  ClientWidth = 665
+  OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
+  LCLVersion = '1.7'
+  object StringGrid1: TStringGrid
+    Left = 0
+    Height = 255
+    Top = 0
+    Width = 665
+    Align = alClient
+    AlternateColor = 15790320
+    AutoEdit = False
+    ColCount = 22
+    Columns = <    
+      item
+        Alignment = taCenter
+        Title.Caption = 'Title'
+      end    
+      item
+        Alignment = taCenter
+        Title.Caption = 'Title'
+      end    
+      item
+        Alignment = taCenter
+        Title.Caption = 'Title'
+      end    
+      item
+        Alignment = taCenter
+        Title.Caption = 'Title'
+      end    
+      item
+        Alignment = taCenter
+        Title.Caption = 'Title'
+      end    
+      item
+        Alignment = taCenter
+        Title.Caption = 'Title'
+      end    
+      item
+        Alignment = taCenter
+        Title.Caption = 'Title'
+      end    
+      item
+        Alignment = taCenter
+        Title.Caption = 'Title'
+      end    
+      item
+        Alignment = taCenter
+        Title.Caption = 'Title'
+      end    
+      item
+        Alignment = taCenter
+        Title.Caption = 'Title'
+      end    
+      item
+        Alignment = taCenter
+        Title.Caption = 'Title'
+      end    
+      item
+        Alignment = taCenter
+        Title.Caption = 'Title'
+      end    
+      item
+        Alignment = taCenter
+        Title.Caption = 'Title'
+      end    
+      item
+        Alignment = taCenter
+        Title.Caption = 'Title'
+      end    
+      item
+        Alignment = taCenter
+        Title.Caption = 'Title'
+      end    
+      item
+        Alignment = taCenter
+        Title.Caption = 'Title'
+      end    
+      item
+        Alignment = taCenter
+        Title.Caption = 'Title'
+      end    
+      item
+        Alignment = taCenter
+        Title.Caption = 'Title'
+      end    
+      item
+        Alignment = taCenter
+        Title.Caption = 'Title'
+      end    
+      item
+        Alignment = taCenter
+        Title.Caption = 'Title'
+      end    
+      item
+        Alignment = taCenter
+        Title.Caption = 'Title'
+      end    
+      item
+        Alignment = taCenter
+        Title.Caption = 'Title'
+      end>
+    DefaultColWidth = 30
+    DefaultRowHeight = 25
+    FixedCols = 0
+    FixedRows = 0
+    Flat = True
+    Font.Name = 'Courier New'
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goDrawFocusSelected, goSmoothScroll]
+    ParentFont = False
+    RowCount = 10
+    ScrollBars = ssNone
+    TabOrder = 0
+    TitleFont.Name = 'Courier New'
+    OnDblClick = bbInsertClick
+    OnKeyDown = StringGrid1KeyDown
+    OnKeyUp = StringGrid1KeyUp
+    OnSelectCell = StringGrid1SelectCell
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 50
+    Top = 255
+    Width = 665
+    Align = alBottom
+    ClientHeight = 50
+    ClientWidth = 665
+    TabOrder = 1
+    object Label1: TLabel
+      Left = 17
+      Height = 20
+      Top = 14
+      Width = 90
+      Caption = 'Valor ASCII : '
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object ValASCII_lb: TLabel
+      Left = 108
+      Height = 20
+      Top = 14
+      Width = 60
+      AutoSize = False
+      Caption = 'ValASCII_lb'
+      ParentColor = False
+      ShowAccelChar = False
+    end
+    object Label2: TLabel
+      Left = 234
+      Height = 20
+      Top = 14
+      Width = 94
+      Caption = 'Valor HTML : '
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object ValHTML_lb: TLabel
+      Left = 327
+      Height = 20
+      Top = 14
+      Width = 60
+      AutoSize = False
+      Caption = 'ValHTML_lb'
+      ParentColor = False
+      ShowAccelChar = False
+    end
+    object bbInsert: TBitBtn
+      Left = 449
+      Height = 30
+      Top = 9
+      Width = 92
+      Caption = 'Inserir'
+      Kind = bkRetry
+      OnClick = bbInsertClick
+      TabOrder = 0
+    end
+    object bbClose: TBitBtn
+      Left = 553
+      Height = 30
+      Top = 9
+      Width = 92
+      DefaultCaption = True
+      Kind = bkClose
+      ModalResult = 11
+      TabOrder = 1
+    end
+  end
+end

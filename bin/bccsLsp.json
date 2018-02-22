@@ -1,0 +1,580 @@
+{
+  "AskBeforeExit" : false,
+  "CreateEmptyFile" : true,
+  "Editor" : {
+    "ActiveLine" : {
+      "BackAlpha" : 0,
+      "BackPriority" : 0,
+      "Background" : 16775142,
+      "BoldPriority" : 0,
+      "ForeAlpha" : 0,
+      "ForePriority" : 0,
+      "Foreground" : 536870911,
+      "FrameAlpha" : 0,
+      "FrameColor" : 16767889,
+      "FrameEdges" : "sfeAround",
+      "FramePriority" : 0,
+      "FrameStyle" : "slsDashed",
+      "ItalicPriority" : 0,
+      "StrikeOutPriority" : 0,
+      "Style" : [
+      ],
+      "StyleMask" : [
+      ],
+      "UnderlinePriority" : 0
+    },
+    "BracketHighlightStyle" : "sbhsBoth",
+    "BracketMatchColor" : {
+      "BackAlpha" : 0,
+      "BackPriority" : 0,
+      "Background" : 255,
+      "BoldPriority" : 0,
+      "ForeAlpha" : 0,
+      "ForePriority" : 0,
+      "Foreground" : 16777215,
+      "FrameAlpha" : 0,
+      "FrameColor" : 536870911,
+      "FrameEdges" : "sfeAround",
+      "FramePriority" : 0,
+      "FrameStyle" : "slsSolid",
+      "ItalicPriority" : 0,
+      "StrikeOutPriority" : 0,
+      "Style" : [
+        "fsBold"
+      ],
+      "StyleMask" : [
+      ],
+      "UnderlinePriority" : 0
+    },
+    "ElementosSintaxe" : [
+      {
+        "Atributos" : {
+          "Background" : 536870911,
+          "Foreground" : 32896,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeNone",
+          "FrameStyle" : "slsSolid",
+          "Style" : [
+            "fsBold"
+          ],
+          "StyleMask" : [
+          ]
+        },
+        "DefaultValues" : true,
+        "Description" : "Atributos",
+        "Kind" : "tLCAttributeName"
+      },
+      {
+        "Atributos" : {
+          "Background" : 536870911,
+          "Foreground" : 8421376,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeNone",
+          "FrameStyle" : "slsSolid",
+          "Style" : [
+            "fsBold"
+          ],
+          "StyleMask" : [
+          ]
+        },
+        "DefaultValues" : true,
+        "Description" : "Comentários",
+        "Kind" : "tLCComment"
+      },
+      {
+        "Atributos" : {
+          "Background" : 536870911,
+          "Foreground" : 8388736,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeNone",
+          "FrameStyle" : "slsSolid",
+          "Style" : [
+            "fsBold"
+          ],
+          "StyleMask" : [
+          ]
+        },
+        "DefaultValues" : true,
+        "Description" : "Tipo Dados",
+        "Kind" : "tLCDataType"
+      },
+      {
+        "Atributos" : {
+          "Background" : 536870911,
+          "Foreground" : 8388608,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeNone",
+          "FrameStyle" : "slsSolid",
+          "Style" : [
+          ],
+          "StyleMask" : [
+          ]
+        },
+        "DefaultValues" : true,
+        "Description" : "Identificador",
+        "Kind" : "tLCIdentifier"
+      },
+      {
+        "Atributos" : {
+          "Background" : 536870911,
+          "Foreground" : 0,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeNone",
+          "FrameStyle" : "slsSolid",
+          "Style" : [
+            "fsBold"
+          ],
+          "StyleMask" : [
+          ]
+        },
+        "DefaultValues" : true,
+        "Description" : "Comandos",
+        "Kind" : "tLCKey"
+      },
+      {
+        "Atributos" : {
+          "Background" : 536870911,
+          "Foreground" : 32768,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeNone",
+          "FrameStyle" : "slsSolid",
+          "Style" : [
+          ],
+          "StyleMask" : [
+          ]
+        },
+        "DefaultValues" : true,
+        "Description" : "Números",
+        "Kind" : "tLCNumber"
+      },
+      {
+        "Atributos" : {
+          "Background" : 536870911,
+          "Foreground" : 8388608,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeNone",
+          "FrameStyle" : "slsSolid",
+          "Style" : [
+            "fsBold"
+          ],
+          "StyleMask" : [
+          ]
+        },
+        "DefaultValues" : true,
+        "Description" : "Funções Programador",
+        "Kind" : "tLCReservedWord"
+      },
+      {
+        "Atributos" : {
+          "Background" : 536870911,
+          "Foreground" : 536870911,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeNone",
+          "FrameStyle" : "slsSolid",
+          "Style" : [
+          ],
+          "StyleMask" : [
+          ]
+        },
+        "DefaultValues" : true,
+        "Description" : "Espaço",
+        "Kind" : "tLCSpace"
+      },
+      {
+        "Atributos" : {
+          "Background" : 536870911,
+          "Foreground" : 16711680,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeNone",
+          "FrameStyle" : "slsSolid",
+          "Style" : [
+          ],
+          "StyleMask" : [
+          ]
+        },
+        "DefaultValues" : true,
+        "Description" : "Texto",
+        "Kind" : "tLCString"
+      },
+      {
+        "Atributos" : {
+          "Background" : 536870911,
+          "Foreground" : 128,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeNone",
+          "FrameStyle" : "slsSolid",
+          "Style" : [
+          ],
+          "StyleMask" : [
+          ]
+        },
+        "DefaultValues" : true,
+        "Description" : "Símbolos",
+        "Kind" : "tLCSymbol"
+      },
+      {
+        "Atributos" : {
+          "Background" : 536870911,
+          "Foreground" : 255,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeNone",
+          "FrameStyle" : "slsSolid",
+          "Style" : [
+          ],
+          "StyleMask" : [
+          ]
+        },
+        "DefaultValues" : true,
+        "Description" : "Variáveis",
+        "Kind" : "tLCVariable"
+      },
+      {
+        "Atributos" : {
+          "Background" : 536870911,
+          "Foreground" : 16744448,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeNone",
+          "FrameStyle" : "slsSolid",
+          "Style" : [
+            "fsBold"
+          ],
+          "StyleMask" : [
+          ]
+        },
+        "DefaultValues" : true,
+        "Description" : "Funções Customizadas",
+        "Kind" : "tLCCustomFunction"
+      }
+    ],
+    "FontName" : "Courier New",
+    "FontQuality" : "fqCleartype",
+    "FontSize" : 9,
+    "Gutter" : {
+      "AutoSize" : true,
+      "ChangesPart" : {
+        "AutoSize" : false,
+        "MarkupInfo" : {
+          "BackAlpha" : 0,
+          "BackPriority" : 0,
+          "Background" : -2147483635,
+          "BoldPriority" : 0,
+          "ForeAlpha" : 0,
+          "ForePriority" : 0,
+          "Foreground" : -2147483634,
+          "FrameAlpha" : 0,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeAround",
+          "FramePriority" : 0,
+          "FrameStyle" : "slsSolid",
+          "ItalicPriority" : 0,
+          "StrikeOutPriority" : 0,
+          "Style" : [
+          ],
+          "StyleMask" : [
+          ],
+          "UnderlinePriority" : 0
+        },
+        "ModifiedColor" : 59900,
+        "SavedColor" : 65280,
+        "Visible" : true,
+        "Width" : 2
+      },
+      "CodeFoldPart" : {
+        "AutoSize" : true,
+        "MarkupInfo" : {
+          "BackAlpha" : 0,
+          "BackPriority" : 0,
+          "Background" : -2147483633,
+          "BoldPriority" : 0,
+          "ForeAlpha" : 0,
+          "ForePriority" : 0,
+          "Foreground" : 8421504,
+          "FrameAlpha" : 0,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeAround",
+          "FramePriority" : 0,
+          "FrameStyle" : "slsSolid",
+          "ItalicPriority" : 0,
+          "StrikeOutPriority" : 0,
+          "Style" : [
+          ],
+          "StyleMask" : [
+          ],
+          "UnderlinePriority" : 0
+        },
+        "Visible" : true,
+        "Width" : 30
+      },
+      "Color" : 12615680,
+      "LineNumberPart" : {
+        "AutoSize" : true,
+        "DigitCount" : 3,
+        "LeadingZeros" : true,
+        "MarkupInfo" : {
+          "BackAlpha" : 0,
+          "BackPriority" : 0,
+          "Background" : 12615680,
+          "BoldPriority" : 0,
+          "ForeAlpha" : 0,
+          "ForePriority" : 0,
+          "Foreground" : 12632256,
+          "FrameAlpha" : 0,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeAround",
+          "FramePriority" : 0,
+          "FrameStyle" : "slsSolid",
+          "ItalicPriority" : 0,
+          "StrikeOutPriority" : 0,
+          "Style" : [
+          ],
+          "StyleMask" : [
+          ],
+          "UnderlinePriority" : 0
+        },
+        "ShowOnlyLineNumbersMultiplesOf" : 1,
+        "Visible" : true,
+        "Width" : 30,
+        "ZeroStart" : false
+      },
+      "SeparatorPart" : {
+        "AutoSize" : false,
+        "MarkupInfo" : {
+          "BackAlpha" : 0,
+          "BackPriority" : 0,
+          "Background" : 12615680,
+          "BoldPriority" : 0,
+          "ForeAlpha" : 0,
+          "ForePriority" : 0,
+          "Foreground" : 8421504,
+          "FrameAlpha" : 0,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeAround",
+          "FramePriority" : 0,
+          "FrameStyle" : "slsSolid",
+          "ItalicPriority" : 0,
+          "StrikeOutPriority" : 0,
+          "Style" : [
+          ],
+          "StyleMask" : [
+          ],
+          "UnderlinePriority" : 0
+        },
+        "Visible" : true,
+        "Width" : 2
+      },
+      "Visible" : true,
+      "Width" : 58
+    },
+    "LineErrorColor" : {
+      "BackAlpha" : 0,
+      "BackPriority" : 0,
+      "Background" : 15066597,
+      "BoldPriority" : 0,
+      "ForeAlpha" : 0,
+      "ForePriority" : 0,
+      "Foreground" : 536870911,
+      "FrameAlpha" : 0,
+      "FrameColor" : 255,
+      "FrameEdges" : "sfeAround",
+      "FramePriority" : 0,
+      "FrameStyle" : "slsDashed",
+      "ItalicPriority" : 0,
+      "StrikeOutPriority" : 0,
+      "Style" : [
+      ],
+      "StyleMask" : [
+      ],
+      "UnderlinePriority" : 0
+    },
+    "MarkupHighlightAllCaret" : {
+      "FullWord" : true,
+      "FullWordMaxLen" : 0,
+      "MarkupInfo" : {
+        "BackAlpha" : 0,
+        "BackPriority" : 0,
+        "Background" : 15658734,
+        "BoldPriority" : 0,
+        "ForeAlpha" : 0,
+        "ForePriority" : 0,
+        "Foreground" : 536870911,
+        "FrameAlpha" : 0,
+        "FrameColor" : 8421504,
+        "FrameEdges" : "sfeAround",
+        "FramePriority" : 0,
+        "FrameStyle" : "slsDashed",
+        "ItalicPriority" : 0,
+        "StrikeOutPriority" : 0,
+        "Style" : [
+        ],
+        "StyleMask" : [
+        ],
+        "UnderlinePriority" : 0
+      },
+      "Trim" : true,
+      "WaitTime" : 2000
+    },
+    "MaxUndo" : 1024,
+    "Options" : [
+      "eoAutoIndent",
+      "eoBracketHighlight",
+      "eoEnhanceHomeKey",
+      "eoGroupUndo",
+      "eoPersistentCaret",
+      "eoScrollPastEol",
+      "eoSmartTabs",
+      "eoTabIndent",
+      "eoTabsToSpaces",
+      "eoTrimTrailingSpaces",
+      "eoAltSetsColumnMode",
+      "eoDragDropEditing"
+    ],
+    "Options2" : [
+      "eoFoldedCopyPaste",
+      "eoOverwriteBlock"
+    ],
+    "RightEdge" : 120,
+    "RightEdgeColor" : 12632256,
+    "TabWidth" : 10,
+    "WantTabs" : true
+  },
+  "EnabledAutoSaveFile" : true,
+  "ExplorerWidth" : 239,
+  "Filters" : [
+    "*.txt",
+    "*.sql",
+    "*.log",
+    "*.bat"
+  ],
+  "Height" : 624,
+  "Idioma" : "pt_BR",
+  "IntervalAutoSaveFile" : 1,
+  "Left" : 175,
+  "ListOfCommandsIndex" : 1,
+  "ListOfCommandsWidth" : 2,
+  "MakeBackupFiles" : true,
+  "MaxMruFilesStored" : 7,
+  "Maximized" : true,
+  "ModulosVetorh" : [
+    {
+      "ArquivosExcluidos" : [
+      ],
+      "PastaBase" : "",
+      "Sigla" : "smvBS"
+    },
+    {
+      "ArquivosExcluidos" : [
+      ],
+      "PastaBase" : "",
+      "Sigla" : "smvCS"
+    },
+    {
+      "ArquivosExcluidos" : [
+      ],
+      "PastaBase" : "",
+      "Sigla" : "smvFP"
+    },
+    {
+      "ArquivosExcluidos" : [
+      ],
+      "PastaBase" : "",
+      "Sigla" : "smvHR"
+    },
+    {
+      "ArquivosExcluidos" : [
+      ],
+      "PastaBase" : "",
+      "Sigla" : "smvRS"
+    },
+    {
+      "ArquivosExcluidos" : [
+      ],
+      "PastaBase" : "",
+      "Sigla" : "smvSM"
+    },
+    {
+      "ArquivosExcluidos" : [
+      ],
+      "PastaBase" : "",
+      "Sigla" : "smvSP"
+    },
+    {
+      "ArquivosExcluidos" : [
+      ],
+      "PastaBase" : "",
+      "Sigla" : "smvTR"
+    }
+  ],
+  "MruFiles" : [
+    {
+      "Bookmarks" : [
+      ],
+      "CaretX" : 7,
+      "CaretY" : 107,
+      "Fixed" : false,
+      "LastTimeOpened" : 4.3149907498715278E+004,
+      "Left" : 1,
+      "Name" : "Regra SP - PROCESSO - Bloquear Acesso SUSE.txt",
+      "Path" : "C:\\Micro - 2017-11-29\\Clientes\\Galvani\\Regras\\",
+      "Top" : 50
+    },
+    {
+      "Bookmarks" : [
+      ],
+      "CaretX" : 60,
+      "CaretY" : 41,
+      "Fixed" : false,
+      "LastTimeOpened" : 4.3149907498715278E+004,
+      "Left" : 1,
+      "Name" : "Regra FP - 025 - Processo 25 - Inserir Registro Ficha Basica.txt",
+      "Path" : "C:\\Micro - 2017-11-29\\Clientes\\Galvani\\Regras\\",
+      "Top" : 3
+    },
+    {
+      "Bookmarks" : [
+      ],
+      "CaretX" : 58,
+      "CaretY" : 691,
+      "Fixed" : false,
+      "LastTimeOpened" : 4.3149907498715278E+004,
+      "Left" : 1,
+      "Name" : "Regra SP - WS - cadastroTerceiros.txt",
+      "Path" : "C:\\Micro - 2017-11-29\\Clientes\\Galvani\\Regras\\",
+      "Top" : 670
+    },
+    {
+      "Bookmarks" : [
+      ],
+      "CaretX" : 6,
+      "CaretY" : 28,
+      "Fixed" : false,
+      "LastTimeOpened" : 4.3148993781064812E+004,
+      "Left" : 1,
+      "Name" : "CompletionProposal.txt",
+      "Path" : "D:\\Projetos\\EditorLSP\\",
+      "Top" : 1
+    }
+  ],
+  "NumberOfBackupFilesToPreserve" : 8,
+  "PathBase" : "c:\\",
+  "PathToBackupFiles" : "c:\\Users\\llutt\\Documents\\lazarus\\EditorLSP\\bkp\\",
+  "SaveBookmarksWhenCloseFile" : true,
+  "SaveSession" : true,
+  "SessionFiles" : [
+    {
+      "Active" : true,
+      "FileName" : "C:\\Micro - 2017-11-29\\Clientes\\Galvani\\Regras\\Regra SP - PROCESSO - Bloquear Acesso SUSE.txt"
+    },
+    {
+      "Active" : true,
+      "FileName" : "C:\\Micro - 2017-11-29\\Clientes\\Galvani\\Regras\\Regra FP - 025 - Processo 25 - Inserir Registro Ficha Basica.txt"
+    },
+    {
+      "Active" : true,
+      "FileName" : "C:\\Micro - 2017-11-29\\Clientes\\Galvani\\Regras\\Regra SP - WS - cadastroTerceiros.txt"
+    }
+  ],
+  "ShowExplorer" : true,
+  "ShowListOfCommands" : false,
+  "Top" : 75,
+  "Width" : 957
+}

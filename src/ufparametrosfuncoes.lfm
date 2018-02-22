@@ -1,0 +1,30 @@
+object FParametrosFuncoes: TFParametrosFuncoes
+  Left = 557
+  Height = 683
+  Top = 152
+  Width = 1059
+  BorderStyle = bsSizeToolWin
+  Caption = 'Parâmetro das Funções'
+  ClientHeight = 683
+  ClientWidth = 1059
+  OnCreate = FormCreate
+  Position = poMainFormCenter
+  LCLVersion = '1.7'
+  object ButtonPanel1: TButtonPanel
+    Left = 6
+    Height = 38
+    Top = 639
+    Width = 1047
+    OKButton.Name = 'OKButton'
+    OKButton.DefaultCaption = True
+    OKButton.OnClick = OKButtonClick
+    HelpButton.Name = 'HelpButton'
+    HelpButton.DefaultCaption = True
+    CloseButton.Name = 'CloseButton'
+    CloseButton.DefaultCaption = True
+    CancelButton.Name = 'CancelButton'
+    CancelButton.DefaultCaption = True
+    TabOrder = 0
+    ShowButtons = [pbOK, pbCancel]
+  end
+end
