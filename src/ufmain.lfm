@@ -1,13 +1,12 @@
 object FrmMain: TFrmMain
   Left = 404
-  Height = 719
+  Height = 575
   Top = 190
-  Width = 1292
+  Width = 1034
   AllowDropFiles = True
   Caption = 'BCCS :: Editor'
-  ClientHeight = 694
-  ClientWidth = 1292
-  DesignTimePPI = 120
+  ClientHeight = 555
+  ClientWidth = 1034
   Menu = MainMenu1
   OnActivate = FormActivate
   OnCloseQuery = FormCloseQuery
@@ -16,9 +15,9 @@ object FrmMain: TFrmMain
   LCLVersion = '1.8.0.6'
   object ToolBar1: TToolBar
     Left = 0
-    Height = 30
+    Height = 24
     Top = 0
-    Width = 1292
+    Width = 1034
     AutoSize = True
     Caption = 'ToolBar1'
     Images = ImageListActions
@@ -26,32 +25,32 @@ object FrmMain: TFrmMain
     ShowHint = True
     TabOrder = 0
     object ToolButton1: TToolButton
-      Left = 30
+      Left = 24
       Top = 2
       Action = actAbrir
       DropdownMenu = PopupMRU
       Style = tbsDropDown
     end
     object ToolButton3: TToolButton
-      Left = 74
-      Height = 28
+      Left = 59
+      Height = 22
       Top = 2
       Caption = 'ToolButton3'
       Style = tbsSeparator
     end
     object ToolButton4: TToolButton
-      Left = 242
+      Left = 197
       Top = 2
       Action = EditCopy1
       MenuItem = MenuItem17
     end
     object ToolButton2: TToolButton
-      Left = 271
+      Left = 220
       Top = 2
       Action = EditCut1
     end
     object ToolButton5: TToolButton
-      Left = 300
+      Left = 243
       Top = 2
       Action = EditPaste1
     end
@@ -61,247 +60,247 @@ object FrmMain: TFrmMain
       Action = actNovo
     end
     object ToolButton7: TToolButton
-      Left = 116
+      Left = 95
       Top = 2
       Action = actSalvar
     end
     object ToolButton8: TToolButton
-      Left = 174
-      Height = 28
+      Left = 141
+      Height = 22
       Top = 2
       Caption = 'ToolButton8'
       Style = tbsDivider
     end
     object ToolButton9: TToolButton
-      Left = 145
+      Left = 118
       Top = 2
       Action = actSalvarTodos
     end
     object ToolButton10: TToolButton
-      Left = 329
-      Height = 28
+      Left = 266
+      Height = 22
       Top = 2
       Caption = 'ToolButton10'
       Style = tbsSeparator
     end
     object ToolButton11: TToolButton
-      Left = 337
+      Left = 274
       Top = 2
       Action = actCopiarTudo
     end
     object ToolButton12: TToolButton
-      Left = 366
-      Height = 28
+      Left = 297
+      Height = 22
       Top = 2
       Caption = 'ToolButton12'
       Style = tbsSeparator
     end
     object ToolButton13: TToolButton
-      Left = 179
+      Left = 146
       Top = 2
       Action = EditUndo1
     end
     object ToolButton14: TToolButton
-      Left = 208
+      Left = 169
       Top = 2
       Action = actEditRedo
     end
     object ToolButton16: TToolButton
-      Left = 237
-      Height = 28
+      Left = 192
+      Height = 22
       Top = 2
       Caption = 'ToolButton16'
       Style = tbsDivider
     end
     object ToolButton15: TToolButton
-      Left = 374
+      Left = 305
       Top = 2
       Action = actLocalizar
     end
     object ToolButton17: TToolButton
-      Left = 403
+      Left = 328
       Top = 2
       Action = actLocalizarProximo
     end
     object ToolButton18: TToolButton
-      Left = 432
+      Left = 351
       Top = 2
       Action = actSubstituir
     end
     object ToolButton19: TToolButton
-      Left = 461
-      Height = 28
+      Left = 374
+      Height = 22
       Top = 2
       Caption = 'ToolButton19'
       Style = tbsSeparator
     end
     object ToolButton20: TToolButton
-      Left = 469
+      Left = 382
       Top = 2
       Action = actIrParaLinha
     end
     object ToolButton21: TToolButton
-      Left = 82
+      Left = 67
       Top = 2
       Action = actFecharAtual
     end
     object ToolButton22: TToolButton
-      Left = 111
-      Height = 28
+      Left = 90
+      Height = 22
       Top = 2
       Caption = 'ToolButton22'
       Style = tbsDivider
     end
     object ToolButton23: TToolButton
-      Left = 506
+      Left = 413
       Top = 2
       Action = actIdentarAumentar
       Style = tbsCheck
     end
     object ToolButton24: TToolButton
-      Left = 498
-      Height = 28
+      Left = 405
+      Height = 22
       Top = 2
       Caption = 'ToolButton24'
       Style = tbsSeparator
     end
     object ToolButton25: TToolButton
-      Left = 535
+      Left = 436
       Top = 2
       Action = actIdentarDiminuir
     end
     object ToolButton26: TToolButton
-      Left = 564
-      Height = 28
+      Left = 459
+      Height = 22
       Top = 2
       Caption = 'ToolButton26'
       Style = tbsSeparator
     end
     object ToolButton27: TToolButton
-      Left = 572
+      Left = 467
       Top = 2
       Action = actMostrarCaractEspeciais
     end
     object ToolButton28: TToolButton
-      Left = 601
-      Height = 28
+      Left = 490
+      Height = 22
       Top = 2
       Caption = 'ToolButton28'
       Style = tbsSeparator
     end
     object ToolButton29: TToolButton
-      Left = 609
+      Left = 498
       Top = 2
       Action = actPreferencias
     end
     object ToolButton30: TToolButton
-      Left = 712
+      Left = 583
       Top = 2
       Action = actMostrarExplorer
     end
     object ToolButton31: TToolButton
-      Left = 638
-      Height = 28
+      Left = 521
+      Height = 22
       Top = 2
       Caption = 'ToolButton31'
       Style = tbsSeparator
     end
     object ToolButton32: TToolButton
-      Left = 704
-      Height = 28
+      Left = 575
+      Height = 22
       Top = 2
       Caption = 'ToolButton32'
       Style = tbsSeparator
     end
     object ToolButton33: TToolButton
-      Left = 675
+      Left = 552
       Top = 2
       Action = actShowMsg
     end
     object ToolButton34: TToolButton
-      Left = 646
+      Left = 529
       Top = 2
       Action = actChecarSintaxe
     end
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Height = 29
-    Top = 665
-    Width = 1292
+    Height = 23
+    Top = 532
+    Width = 1034
     AutoHint = True
     Panels = <    
       item
         Alignment = taCenter
         Text = 'Lin 99999 Col 99999'
-        Width = 181
+        Width = 145
       end    
       item
         Alignment = taCenter
         Text = 'Inserir'
-        Width = 125
+        Width = 100
       end    
       item
         Alignment = taCenter
         Text = 'Não Alterado'
-        Width = 138
+        Width = 110
       end    
       item
         Alignment = taCenter
         Text = 'NUM'
-        Width = 56
+        Width = 45
       end    
       item
         Alignment = taCenter
         Text = 'CAPS'
-        Width = 56
+        Width = 45
       end    
       item
         Alignment = taCenter
         Text = 'SCRL'
-        Width = 56
+        Width = 45
       end    
       item
         Alignment = taCenter
         Text = '236,89 kb'
-        Width = 100
+        Width = 80
       end    
       item
         Style = psOwnerDraw
-        Width = 38
+        Width = 30
       end    
       item
         Style = psOwnerDraw
-        Width = 38
+        Width = 30
       end    
       item
         Alignment = taCenter
-        Width = 62
+        Width = 50
       end    
       item
         Text = 'Texto de Ajuda : Hint'
-        Width = 62
+        Width = 50
       end>
     SimplePanel = False
     OnDrawPanel = StatusBar1DrawPanel
     OnHint = StatusBar1Hint
   end
   object Panel1: TPanel
-    Left = 218
-    Height = 635
-    Top = 30
-    Width = 751
+    Left = 175
+    Height = 508
+    Top = 24
+    Width = 601
     Align = alClient
     BevelOuter = bvNone
     Caption = 'Panel1'
-    ClientHeight = 635
-    ClientWidth = 751
+    ClientHeight = 508
+    ClientWidth = 601
     TabOrder = 2
     object ECTabCtrl1: TECTabCtrl
       Left = 0
       Height = 27
       Top = 0
-      Width = 751
+      Width = 601
       Align = alTop
       ColorActiveTab = clBtnHighlight
       ColorHighlighted = clGradientActiveCaption
@@ -321,31 +320,31 @@ object FrmMain: TFrmMain
     end
     object pnlEditor: TPanel
       Left = 0
-      Height = 608
+      Height = 481
       Top = 27
-      Width = 751
+      Width = 601
       Align = alClient
       BevelOuter = bvNone
-      ClientHeight = 608
-      ClientWidth = 751
+      ClientHeight = 481
+      ClientWidth = 601
       TabOrder = 1
       object Panel4: TPanel
         Left = 0
-        Height = 140
-        Top = 468
-        Width = 751
+        Height = 112
+        Top = 369
+        Width = 601
         Align = alBottom
         BevelOuter = bvNone
         Caption = 'Panel4'
-        ClientHeight = 140
-        ClientWidth = 751
+        ClientHeight = 112
+        ClientWidth = 601
         TabOrder = 0
         Visible = False
         object vstMessages: TVirtualStringTree
           Left = 0
-          Height = 140
+          Height = 112
           Top = 0
-          Width = 751
+          Width = 601
           Align = alClient
           DefaultNodeHeight = 20
           DefaultText = 'Node'
@@ -368,9 +367,9 @@ object FrmMain: TFrmMain
       object Splitter4: TSplitter
         Cursor = crVSplit
         Left = 0
-        Height = 6
-        Top = 462
-        Width = 751
+        Height = 5
+        Top = 364
+        Width = 601
         Align = alBottom
         ResizeAnchor = akBottom
         Visible = False
@@ -378,35 +377,35 @@ object FrmMain: TFrmMain
     end
   end
   object pnlComandos: TPanel
-    Left = 977
-    Height = 635
-    Top = 30
-    Width = 315
+    Left = 782
+    Height = 508
+    Top = 24
+    Width = 252
     Align = alRight
-    ClientHeight = 635
-    ClientWidth = 315
+    ClientHeight = 508
+    ClientWidth = 252
     TabOrder = 3
     object Panel3: TPanel
       Left = 1
-      Height = 94
-      Top = 540
-      Width = 313
+      Height = 75
+      Top = 432
+      Width = 250
       Align = alBottom
-      ClientHeight = 94
-      ClientWidth = 313
+      ClientHeight = 75
+      ClientWidth = 250
       Color = clCream
       ParentColor = False
       TabOrder = 0
       object lbDescricao: TLabel
         Left = 1
-        Height = 45
-        Top = 48
-        Width = 311
+        Height = 35
+        Top = 39
+        Width = 248
         Align = alClient
         AutoSize = False
         Caption = 'lbDescricao'
         Font.CharSet = ANSI_CHARSET
-        Font.Height = -16
+        Font.Height = -13
         Font.Name = 'Arial'
         Font.Pitch = fpVariable
         Font.Quality = fqDraft
@@ -419,16 +418,16 @@ object FrmMain: TFrmMain
       end
       object lbSintaxe: TLabel
         Left = 1
-        Height = 45
+        Height = 36
         Top = 3
-        Width = 311
+        Width = 248
         Align = alTop
         Alignment = taCenter
         AutoSize = False
         BorderSpacing.Top = 2
         Caption = 'lbSintaxe'
         Font.CharSet = ANSI_CHARSET
-        Font.Height = -16
+        Font.Height = -13
         Font.Name = 'Courier New'
         Font.Pitch = fpFixed
         Font.Quality = fqDraft
@@ -443,17 +442,17 @@ object FrmMain: TFrmMain
     object Splitter1: TSplitter
       Cursor = crVSplit
       Left = 1
-      Height = 8
-      Top = 532
-      Width = 313
+      Height = 6
+      Top = 426
+      Width = 250
       Align = alBottom
       ResizeAnchor = akBottom
     end
     object ecaLista: TECAccordion
       Left = 1
-      Height = 531
+      Height = 425
       Top = 1
-      Width = 313
+      Width = 250
       Align = alClient
       Alignment = taCenter
       FullExpand = True
@@ -473,23 +472,23 @@ object FrmMain: TFrmMain
         AnchorSideBottom.Control = ecaLista
         AnchorSideBottom.Side = asrBottom
         Left = 0
-        Height = 411
+        Height = 305
         Top = 80
-        Width = 313
+        Width = 250
         Caption = 'Funções'
         Order = 1
         object lbxFuncoes: TListBox
           Left = 0
-          Height = 411
+          Height = 305
           Top = 0
-          Width = 313
+          Width = 250
           Align = alClient
           BorderStyle = bsNone
           Items.Strings = (
             'ConverteMascara'
             'IntParaAlfa'
           )
-          ItemHeight = 20
+          ItemHeight = 15
           OnDblClick = lbxFuncoesDblClick
           OnSelectionChange = lbxFuncoesSelectionChange
           Sorted = True
@@ -506,21 +505,21 @@ object FrmMain: TFrmMain
         Left = 0
         Height = 0
         Top = 0
-        Width = 313
+        Width = 250
         Caption = 'Comandos'
         Order = 0
         object lbxComandos: TListBox
           Left = 0
           Height = 0
           Top = 0
-          Width = 313
+          Width = 250
           Align = alClient
           Items.Strings = (
             'Enquanto'
             'Para'
             'VaPara'
           )
-          ItemHeight = 20
+          ItemHeight = 15
           OnDblClick = lbxFuncoesDblClick
           OnSelectionChange = lbxFuncoesSelectionChange
           Sorted = True
@@ -537,20 +536,20 @@ object FrmMain: TFrmMain
         Left = 0
         Height = 0
         Top = 0
-        Width = 313
+        Width = 250
         Caption = 'Variáveis'
         Order = 2
         object lbxVariaveis: TListBox
           Left = 0
           Height = 0
           Top = 0
-          Width = 313
+          Width = 250
           Align = alClient
           Items.Strings = (
             'CodCal'
             'EmpAti'
           )
-          ItemHeight = 20
+          ItemHeight = 15
           OnDblClick = lbxFuncoesDblClick
           OnSelectionChange = lbxFuncoesSelectionChange
           Sorted = True
@@ -560,35 +559,35 @@ object FrmMain: TFrmMain
     end
   end
   object Splitter2: TSplitter
-    Left = 969
-    Height = 635
-    Top = 30
-    Width = 8
+    Left = 776
+    Height = 508
+    Top = 24
+    Width = 6
     Align = alRight
     MinSize = 100
     ResizeAnchor = akRight
   end
   object Splitter3: TSplitter
-    Left = 212
-    Height = 635
-    Top = 30
-    Width = 6
+    Left = 170
+    Height = 508
+    Top = 24
+    Width = 5
   end
   object pnlExplorer: TPanel
     Left = 0
-    Height = 635
-    Top = 30
-    Width = 212
+    Height = 508
+    Top = 24
+    Width = 170
     Align = alLeft
     BevelOuter = bvNone
-    ClientHeight = 635
-    ClientWidth = 212
+    ClientHeight = 508
+    ClientWidth = 170
     TabOrder = 6
     object vstExplorer: TVirtualStringTree
       Left = 0
-      Height = 599
-      Top = 36
-      Width = 212
+      Height = 479
+      Top = 29
+      Width = 170
       Align = alClient
       DefaultNodeHeight = 20
       DefaultText = 'Node'
@@ -615,24 +614,24 @@ object FrmMain: TFrmMain
     end
     object Panel2: TPanel
       Left = 0
-      Height = 36
+      Height = 29
       Top = 0
-      Width = 212
+      Width = 170
       Align = alTop
       AutoSize = True
       BevelOuter = bvNone
-      ClientHeight = 36
-      ClientWidth = 212
+      ClientHeight = 29
+      ClientWidth = 170
       TabOrder = 1
       object SpeedButton1: TSpeedButton
-        Left = 180
-        Height = 28
+        Left = 144
+        Height = 23
         Hint = 'Recarregar Lista Arquivos'
-        Top = 4
-        Width = 32
+        Top = 3
+        Width = 26
         Align = alRight
-        BorderSpacing.Top = 4
-        BorderSpacing.Bottom = 4
+        BorderSpacing.Top = 3
+        BorderSpacing.Bottom = 3
         Flat = True
         Glyph.Data = {
           36040000424D3604000000000000360000002800000010000000100000000100
@@ -675,20 +674,20 @@ object FrmMain: TFrmMain
         ParentShowHint = False
       end
       object DirectoryEdit1: TDirectoryEdit
-        Left = 4
-        Height = 28
-        Top = 4
-        Width = 172
+        Left = 3
+        Height = 23
+        Top = 3
+        Width = 138
         Directory = 'DirectoryEdit1'
         OnAcceptDirectory = DirectoryEdit1AcceptDirectory
         DialogOptions = [ofPathMustExist, ofEnableSizing, ofDontAddToRecent, ofViewDetail]
         ShowHidden = False
-        ButtonWidth = 29
+        ButtonWidth = 23
         NumGlyphs = 1
         Flat = True
         FocusOnButtonClick = True
         Align = alClient
-        BorderSpacing.Around = 4
+        BorderSpacing.Around = 3
         MaxLength = 0
         TabOrder = 0
         OnEditingDone = DirectoryEdit1EditingDone
@@ -697,8 +696,8 @@ object FrmMain: TFrmMain
     end
   end
   object ImageListStatusBar: TImageList
-    left = 310
-    top = 280
+    left = 248
+    top = 224
     Bitmap = {
       4C690500000010000000100000000080800000808000008080000000FFFF0080
       800000808000000000FF000000FF000000FF000000FF000000FF008080000080
@@ -864,8 +863,8 @@ object FrmMain: TFrmMain
     }
   end
   object ImageListActions: TImageList
-    left = 590
-    top = 280
+    left = 472
+    top = 224
     Bitmap = {
       4C69590000001000000010000000FF00FF00FF00FF00FF00FF00FF00FF00FF00
       FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
@@ -3719,8 +3718,8 @@ object FrmMain: TFrmMain
     }
   end
   object ImageListBookmark: TImageList
-    left = 750
-    top = 280
+    left = 600
+    top = 224
     Bitmap = {
       4C690A0000001000000010000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
@@ -4048,8 +4047,8 @@ object FrmMain: TFrmMain
   object ActionList1: TActionList
     Images = ImageListActions
     OnUpdate = ActionList1Update
-    left = 530
-    top = 370
+    left = 424
+    top = 296
     object actSair: TFileExit
       Category = 'Arquivo'
       Caption = 'S&air'
@@ -4593,36 +4592,37 @@ object FrmMain: TFrmMain
     object actShowMsg: TAction
       Category = 'Sintaxe'
       Caption = 'Mostrar Mensagens'
-      Hint = 'Mostrar Mensagem da Compilação'
+      Hint = 'Mostrar/Ocultar Mensagem da Compilação'
       ImageIndex = 87
       OnExecute = actShowMsgExecute
+      ShortCut = 32888
     end
   end
   object SaveDialog1: TSaveDialog
     DefaultExt = '.txt'
     Filter = 'Arquivo Texto|*.txt|Todos os Arquivos|*.*'
     Options = [ofExtensionDifferent, ofPathMustExist, ofCreatePrompt, ofEnableSizing, ofDontAddToRecent, ofViewDetail]
-    left = 880
-    top = 90
+    left = 704
+    top = 72
   end
   object FindDialog1: TFindDialog
     OnFind = FindDialog1Find
-    left = 770
-    top = 90
+    left = 616
+    top = 72
   end
   object ReplaceDialog1: TReplaceDialog
     Options = [frDown, frReplace, frReplaceAll, frHidePromptOnReplace]
     OnFind = FindDialog1Find
     OnReplace = ReplaceDialog1Replace
-    left = 630
-    top = 90
+    left = 504
+    top = 72
   end
   object SynAutoComplete1: TSynAutoComplete
     EndOfTokenChr = '()[].'
     ShortCut = 8224
     ExecCommandID = ecSynAutoCompletionExecute
-    left = 410
-    top = 90
+    left = 328
+    top = 72
   end
   object SynCompletion1: TSynCompletion
     ItemList.Strings = (
@@ -4639,17 +4639,17 @@ object FrmMain: TFrmMain
     EndOfTokenChr = '()[].'
     ExecCommandID = ecSynCompletionExecute
     ToggleReplaceWhole = False
-    left = 270
-    top = 90
+    left = 216
+    top = 72
   end
   object PopupMRU: TPopupMenu
-    left = 390
-    top = 183
+    left = 312
+    top = 146
   end
   object PopupTabs: TPopupMenu
     Images = ImageListActions
-    left = 540
-    top = 183
+    left = 432
+    top = 146
     object MenuItem75: TMenuItem
       Action = actSalvar
     end
@@ -4686,8 +4686,8 @@ object FrmMain: TFrmMain
   end
   object PopupEditor: TPopupMenu
     Images = ImageListActions
-    left = 684
-    top = 183
+    left = 547
+    top = 146
     object MenuItem115: TMenuItem
       Action = EditUndo1
     end
@@ -4738,8 +4738,8 @@ object FrmMain: TFrmMain
   end
   object MainMenu1: TMainMenu
     Images = ImageListActions
-    left = 831
-    top = 183
+    left = 665
+    top = 146
     object MenuItem1: TMenuItem
       Caption = 'Arquivo'
       object MenuItem5: TMenuItem
@@ -5120,8 +5120,8 @@ object FrmMain: TFrmMain
     end
   end
   object ImageTabs: TImageList
-    left = 880
-    top = 280
+    left = 704
+    top = 224
     Bitmap = {
       4C69030000001000000010000000C6A58CFFC6947B00BD7B52FFBD7342FFBD6B
       39FFBD6B39FFBD6B39FFBD6B39FFBD6B39FFBD6B39FFBD6B39FFBD6B39FFBD73
@@ -5224,12 +5224,12 @@ object FrmMain: TFrmMain
   end
   object IdleTimer1: TIdleTimer
     OnTimer = IdleTimer1Timer
-    left = 270
-    top = 183
+    left = 216
+    top = 146
   end
   object ImageListExplorer: TImageList
-    left = 450
-    top = 280
+    left = 360
+    top = 224
     Bitmap = {
       4C690E0000001000000010000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -5683,8 +5683,8 @@ object FrmMain: TFrmMain
     }
   end
   object ImageMessages: TImageList
-    left = 770
-    top = 360
+    left = 616
+    top = 288
     Bitmap = {
       4C69040000001000000010000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF

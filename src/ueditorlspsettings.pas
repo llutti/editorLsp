@@ -424,6 +424,7 @@ begin
   fMarkupInfo := TSynSelectedColor.Create;
   fMarkupInfo.Background := $00EEEEEE;
   fMarkupInfo.FrameColor:= clNone;
+  fMarkupInfo.Foreground := clNone;
 
   FFullWord := true;
   FWaitTime := 2000;
@@ -588,6 +589,7 @@ begin
 
   // Linha Ativa
   fActiveLine.Background := $00FFF7E6;
+  fActiveLine.Foreground := clNone;
   fActiveLine.FrameColor := $00FFC753;
   fActiveLine.FrameStyle := slsDashed;
   fActiveLine.FrameEdges := sfeAround;
@@ -772,16 +774,19 @@ var
   kind: TLCTokenKind;
   elemento: TLCElementoSintaxe;
 begin
-  arq := TStringList.Create;
-  DeStreamer := TJSONDeStreamer.Create(nil);
+  if FileExistsUTF8(fileName) then
+  begin
+    arq := TStringList.Create;
+    DeStreamer := TJSONDeStreamer.Create(nil);
 
-  try
-    arq.LoadFromFile(fileName);
+    try
+      arq.LoadFromFile(fileName);
 
-    DeStreamer.JSONToObject(arq.Text, self);
-  finally
-    arq.Destroy;
-    DeStreamer.Destroy;
+      DeStreamer.JSONToObject(arq.Text, self);
+    finally
+      arq.Destroy;
+      DeStreamer.Destroy;
+    end;
   end;
 
   if fFiltros.Count = 0 then
@@ -950,6 +955,11 @@ var
   i : Integer;
   Mru: TMRUFile;
 begin
+  if FileExistsUTF8(fileName) = false then
+  begin
+    exit;
+  end;
+
   // Verificar se o arquivo já faz parte da lista
   for i := 0 to Pred(MruFiles.Count) do
   begin

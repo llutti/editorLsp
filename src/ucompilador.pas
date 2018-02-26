@@ -136,6 +136,7 @@ end;
       procedure ApostrofoProc;
       procedure LFProc;
       procedure NullProc;
+      procedure MinusProc;
       procedure NumberProc;
       procedure PointProc;
       procedure SpaceProc;
@@ -182,7 +183,7 @@ end;
       function SintaxeEnquanto:Boolean;
       function SintaxeParenteses:Boolean;
       function SintaxePara:Boolean;
-      function SintaxeFuncao:Boolean;
+      function SintaxeFuncao(pTypeOfToken: TLCTokenKind):Boolean;
 
       function ChecarSintaxe:Boolean;
 
@@ -389,16 +390,18 @@ begin
     #1..#9, #11, #12, #14..#32: SpaceProc;
     '0'..'9': NumberProc;
     'A'..'Z', 'a'..'z', '_': IdentProc;
+    '-': MinusProc;
     '>': SymbolProc;
     '<': SymbolProc;
     '(': SymbolProc;
     ')': SymbolProc;
     ';': SymbolProc;
+    ':': SymbolProc;
     '.': PointProc;
     #92: StringProc; // \
     ']': SymbolProc;
     '[': SymbolProc;
-    ',','+','-','*','|','=': SymbolProc;
+    ',','+','*','|','=': SymbolProc;
     #34: StringProc; // "
     #39: ApostrofoProc; // '
     else
@@ -506,6 +509,7 @@ end;
 
 function TLCCompilador.ChecarSintaxe : Boolean;
 var
+  oTypeOfToken: TLCTokenKind;
   Token: String;
   iIndex,
   iPosIniToken,
@@ -530,6 +534,16 @@ begin
             SkipSpaces(True, False);
 
             if SintaxeDefinir = false then
+            begin
+              Result := false;
+              exit;
+            end;
+          end;
+        'FUNCAO':
+          begin
+            SkipSpaces(True, False);
+
+            if SintaxeDefinirFuncao = false then
             begin
               Result := false;
               exit;
@@ -681,31 +695,421 @@ begin
               Result := False;
               iLinhaErro := fIndexCurLine + 1;
               iPosIniToken := fPosIniTok + 1;
-              AdicionarMensagem(lcTMError, Format('Símbolo "%s" é Inválido neste local. Era esperado um ";".', [Token]), iPosIniToken, iLinhaErro);
+              AdicionarMensagem(lcTMError, Format('Símbolo "%s" é Inválido neste local. Era esperado um ";".', [GetToken]), iPosIniToken, iLinhaErro);
 
               exit;
             end;
           end;
         else
         begin
+          Token := AnsiUpperCase(GetToken);
           if fTypeOfToken in [tLCReservedWord, tLCCustomFunction] then
           begin
-            SkipSpaces(True, False);
-
-            if SintaxeFuncao = false then
+            if Token = 'EXECSQL' then
             begin
-              Result := false;
-              exit;
+              SkipSpaces(True, False);
+              if not (fTypeOfToken in [tLCIdentifier, tLCString]) then
+              begin
+                Result := False;
+                iLinhaErro := fIndexCurLine + 1;
+                iPosIniToken := fPosIniTok + 1;
+                AdicionarMensagem(lcTMError, 'Parâmetro inválido.', iPosIniToken, iLinhaErro);
+
+                exit;
+              end;
+
+              SkipSpaces(True, fTypeOfToken = tLCString);
+            end
+            else
+            begin
+              oTypeOfToken := fTypeOfToken;
+              SkipSpaces(True, False);
+
+              if SintaxeFuncao(oTypeOfToken) = false then
+              begin
+                Result := false;
+                exit;
+              end;
+
+              SkipSpaces(True, False);
             end;
 
-            SkipSpaces(True, False);
             Token := GetToken;
             if Token <> ';' then
             begin
               Result := False;
               iLinhaErro := fIndexCurLine + 1;
               iPosIniToken := fPosIniTok + 1;
-              AdicionarMensagem(lcTMError, Format('Símbolo "%s" é Inválido neste local. Era esperado um ";".', [Token]), iPosIniToken, iLinhaErro);
+              AdicionarMensagem(lcTMError, Format('Símbolo "%s" é Inválido neste local. Era esperado um ";".', [GetToken]), iPosIniToken, iLinhaErro);
+
+              exit;
+            end;
+          end
+          else
+          if fTypeOfToken in [tLCIdentifier, tLCVariable] then
+          begin
+            SkipSpaces(True, False);
+            Token := GetToken;
+
+            if (Token = '+')
+            or (Token = '-') then
+            begin
+              NextToken;
+
+              if Token <> GetToken then
+              begin
+                Result := False;
+                iLinhaErro := fIndexCurLine + 1;
+                iPosIniToken := fPosIniTok + 1;
+                AdicionarMensagem(lcTMError, Format('Era esperado um símbolo "%s" mas foi identificado "%s".',[Token, GetToken]), iPosIniToken, iLinhaErro);
+
+                exit;
+              end;
+
+              SkipSpaces(True, False);
+              Token := GetToken;
+              if Token <> ';' then
+              begin
+                Result := False;
+                iLinhaErro := fIndexCurLine + 1;
+                iPosIniToken := fPosIniTok + 1;
+                AdicionarMensagem(lcTMError, Format('Símbolo "%s" é Inválido neste local. Era esperado um ";".', [GetToken]), iPosIniToken, iLinhaErro);
+
+                exit;
+              end;
+
+              SkipSpaces(True, False);
+              Continue;
+            end;
+
+            if Token = '[' then
+            begin
+              SkipSpaces(True, False);
+              if not (fTypeOfToken in [tLCNumber, tLCIdentifier]) then
+              begin
+                Result := False;
+                iLinhaErro := fIndexCurLine + 1;
+                iPosIniToken := fPosIniTok + 1;
+                AdicionarMensagem(lcTMError, Format('Era aguardado um "Número" ou "Variável" mas foi informado "%s".',[GetToken]), iPosIniToken, iLinhaErro);
+                exit;
+              end;
+              SkipSpaces(True, False);
+              Token := GetToken;
+
+              if Token = ']' then
+              begin
+                SkipSpaces(True, False);
+                Token := GetToken;
+              end;
+            end;
+
+            if Token = '=' then
+            begin
+              SkipSpaces(True, False);
+
+              if  (fTypeOfToken = tLCSymbol)
+              and (GetToken <> '(')
+              and (GetToken <> '-') then
+              begin
+                Result := False;
+                iLinhaErro := fIndexCurLine + 1;
+                iPosIniToken := fPosIniTok + 1;
+                AdicionarMensagem(lcTMError, Format('Símbolo "%s" é inválido.',[GetToken]), iPosIniToken, iLinhaErro);
+                exit;
+              end;
+
+              if fTypeOfToken = tLCReservedWord then
+              begin
+                oTypeOfToken := fTypeOfToken;
+                SkipSpaces(True, False);
+
+                if SintaxeFuncao(oTypeOfToken) = false then
+                begin
+                  Result := false;
+                  exit;
+                end;
+
+                SkipSpaces(True, False);
+                if GetToken <> ';' then
+                begin
+                  Result := False;
+                  iLinhaErro := fIndexCurLine + 1;
+                  iPosIniToken := fPosIniTok + 1;
+                  AdicionarMensagem(lcTMError, Format('Símbolo "%s" é Inválido neste local. Era esperado um ";".', [GetToken]), iPosIniToken, iLinhaErro);
+
+                  exit;
+                end;
+              end
+              else
+              begin
+                while (IsEndOfLine = false) do
+                begin
+                  Token := UpperCase(GetToken);
+
+                  if fTypeOfToken = tLCSymbol then
+                  begin
+                    if Token = ';' then
+                    begin
+                      break;
+                    end;
+
+                    if Token = '(' then
+                    begin
+                      if SintaxeParenteses = false then
+                      begin
+                        Result := false;
+                        exit;
+                      end;
+                    end
+                    else
+                    if Token = '[' then
+                    begin
+                      SkipSpaces(True, False);
+                      if not (fTypeOfToken in [tLCNumber, tLCIdentifier]) then
+                      begin
+                        Result := False;
+                        iLinhaErro := fIndexCurLine + 1;
+                        iPosIniToken := fPosIniTok + 1;
+                        AdicionarMensagem(lcTMError, Format('Era aguardado um "Número" ou "Variável" mas foi informado "%s".',[GetToken]), iPosIniToken, iLinhaErro);
+                        exit;
+                      end;
+                      SkipSpaces(True, False);
+                      Token := GetToken;
+
+                      if Token = ']' then
+                      begin
+                        SkipSpaces(True, False);
+                        Continue;
+                      end;
+                    end
+                    else
+                    if Token = '+' then
+                    begin
+                      SkipSpaces(True, False);
+                      Token := UpperCase(GetToken);
+
+                      if Token = '(' then
+                      begin
+                        Continue;
+                      end;
+
+                      if not (fTypeOfToken in [tLCNumber, tLCIdentifier, tLCString, tLCVariable]) then
+                      begin
+                        Result := False;
+                        iLinhaErro := fIndexCurLine + 1;
+                        iPosIniToken := fPosIniTok + 1;
+                        AdicionarMensagem(lcTMError, Format('Era aguardado um "Número" ou um "Texto" ou "Variável de Ambiente" para foi informado "%s".',[GetToken]), iPosIniToken, iLinhaErro);
+                        exit;
+                      end;
+                    end
+                    else
+                    if Token = '.' then
+                    begin
+                      SkipSpaces(True, False);
+
+                      if not (fTypeOfToken in [tLCNumber, tLCIdentifier, tLCAttributeName]) then
+                      begin
+                        Result := False;
+                        iLinhaErro := fIndexCurLine + 1;
+                        iPosIniToken := fPosIniTok + 1;
+                        AdicionarMensagem(lcTMError, 'Sintaxe Inválida.', iPosIniToken, iLinhaErro);
+                        exit;
+                      end;
+                    end
+                    else
+                    begin
+                      SkipSpaces(True, False);
+                      Token := UpperCase(GetToken);
+
+                      if Token = '(' then
+                      begin
+                        Continue;
+                      end;
+
+                      if not (fTypeOfToken in [tLCNumber, tLCIdentifier, tLCVariable]) then
+                      begin
+                        Result := False;
+                        iLinhaErro := fIndexCurLine + 1;
+                        iPosIniToken := fPosIniTok + 1;
+                        AdicionarMensagem(lcTMError, Format('Era aguardado um número para foi informado "%s".',[GetToken]), iPosIniToken, iLinhaErro);
+                        exit;
+                      end;
+
+                      SkipSpaces(True, False);
+                      if fTypeOfToken <> tLCSymbol then
+                      begin
+                        Result := False;
+                        iLinhaErro := fIndexCurLine + 1;
+                        iPosIniToken := fPosIniTok + 1;
+                        AdicionarMensagem(lcTMError, Format('Era aguardado "Operador", mas foi informado "%s".',[GetToken]), iPosIniToken, iLinhaErro);
+                        exit;
+                      end;
+                      Continue;
+                    end;
+                  end
+                  else
+                  if fTypeOfToken in [tLCNumber, tLCString, tLCIdentifier, tLCVariable] then
+                  begin
+                    SkipSpaces(True, fTypeOfToken = tLCString);
+
+                    if fTypeOfToken <> tLCSymbol then
+                    begin
+                      Result := False;
+                      iLinhaErro := fIndexCurLine + 1;
+                      iPosIniToken := fPosIniTok + 1;
+                      AdicionarMensagem(lcTMError, Format('Era aguardado "Operador", mas foi informado "%s".',[GetToken]), iPosIniToken, iLinhaErro);
+                      exit;
+                    end;
+                    Continue;
+                  end
+                  else
+                  if fTypeOfToken in [tLCKey] then
+                  begin
+                    SkipSpaces(True, False);
+
+                    if SintaxeFuncao(tLCKey) = false then
+                    begin
+                      Result := false;
+                      exit;
+                    end;
+
+                    SkipSpaces(True, False);
+                    if GetToken <> ';' then
+                    begin
+                      Result := False;
+                      iLinhaErro := fIndexCurLine + 1;
+                      iPosIniToken := fPosIniTok + 1;
+                      AdicionarMensagem(lcTMError, Format('Símbolo "%s" é Inválido neste local. Era esperado um ";".', [GetToken]), iPosIniToken, iLinhaErro);
+
+                      exit;
+                    end;
+
+                    Continue;
+                  end
+                  else
+                  begin
+                    Result := False;
+                    iLinhaErro := fIndexCurLine + 1;
+                    iPosIniToken := fPosIniTok + 1;
+                    AdicionarMensagem(lcTMError, 'Sintaxe inválida.', iPosIniToken, iLinhaErro);
+                    exit;
+                  end;
+
+                  SkipSpaces(True, fTypeOfToken = tLCString);
+                end;
+              end;
+            end
+            else
+            if Token = '.' then
+            begin
+              NextToken;
+
+              if fTypeOfToken = tLCAttributeName then
+              begin
+                Token := UpperCase(GetToken);
+
+                if Token = 'SQL' then
+                begin
+                  SkipSpaces(True, False);
+                  if not (fTypeOfToken in [tLCIdentifier, tLCString]) then
+                  begin
+                    Result := False;
+                    iLinhaErro := fIndexCurLine + 1;
+                    iPosIniToken := fPosIniTok + 1;
+                    AdicionarMensagem(lcTMError, 'Parâmetro inválido.', iPosIniToken, iLinhaErro);
+
+                    exit;
+                  end;
+                end
+                else
+                begin
+                  SkipSpaces(True, False);
+
+                  if SintaxeFuncao(tLCAttributeName) = false then
+                  begin
+                    Result := false;
+                    exit;
+                  end;
+                end;
+
+                SkipSpaces(True, (fTypeOfToken = tLCString));
+                if GetToken <> ';' then
+                begin
+                  Result := False;
+                  iLinhaErro := fIndexCurLine + 1;
+                  iPosIniToken := fPosIniTok + 1;
+                  AdicionarMensagem(lcTMError, Format('Símbolo "%s" é Inválido neste local. Era esperado um ";".', [GetToken]), iPosIniToken, iLinhaErro);
+
+                  exit;
+                end;
+
+                SkipSpaces(True, False);
+                Continue;
+              end;
+
+              while (IsEndOfLine = false) do
+              begin
+                Token := UpperCase(GetToken);
+
+                if Token = '(' then
+                begin
+                  if SintaxeParenteses = false then
+                  begin
+                    Result := false;
+                    exit;
+                  end;
+                  SkipSpaces(True, False);
+                end;
+
+                if Token = ';' then
+                begin
+                  break;
+                end;
+                SkipSpaces(True, False);
+              end;
+            end
+            else
+            if Token = '(' then
+            begin
+              if SintaxeFuncao(tLCIdentifier) = false then
+              begin
+                Result := false;
+                exit;
+              end;
+
+              SkipSpaces(True, False);
+              if GetToken <> ';' then
+              begin
+                Result := False;
+                iLinhaErro := fIndexCurLine + 1;
+                iPosIniToken := fPosIniTok + 1;
+                AdicionarMensagem(lcTMError, Format('Símbolo "%s" é Inválido neste local. Era esperado um ";".', [GetToken]), iPosIniToken, iLinhaErro);
+
+                exit;
+              end;
+            end
+            else
+            if Token = ':' then
+            begin
+              SkipSpaces(True, False);
+              Token := GetToken;
+              if Token <> ';' then
+              begin
+                Result := False;
+                iLinhaErro := fIndexCurLine + 1;
+                iPosIniToken := fPosIniTok + 1;
+                AdicionarMensagem(lcTMError, Format('Símbolo "%s" é Inválido neste local. Era esperado um ";".', [GetToken]), iPosIniToken, iLinhaErro);
+
+                exit;
+              end;
+            end
+            else
+            if Token <> ';' then
+            begin
+              Result := False;
+              iLinhaErro := fIndexCurLine + 1;
+              iPosIniToken := fPosIniTok + 1;
+              AdicionarMensagem(lcTMError, Format('Comando Desconhecido "%s".', [GetToken]), iPosIniToken, iLinhaErro);
 
               exit;
             end;
@@ -960,6 +1364,18 @@ begin
   if fCurPosInLine < fSizeLine  then
   begin
     inc(fCurPosInLine);
+  end;
+end;
+
+procedure TLCCompilador.MinusProc;
+begin
+  fTypeOfToken := tLCSymbol;
+
+  inc(fCurPosInLine);
+  if fNumberChar[fLine[fCurPosInLine]] = true then
+  begin
+    dec(fCurPosInLine);
+    NumberProc;
   end;
 end;
 
@@ -1617,16 +2033,19 @@ begin
   end;
 end;
 
-function TLCCompilador.SintaxeFuncao: Boolean;
+function TLCCompilador.SintaxeFuncao(pTypeOfToken : TLCTokenKind) : Boolean;
 Var
   Token:String;
+  iExpressao,
   iIndex,
   iPosIniToken,
   iLinhaErro:Integer;
   bFoiVirgula:Boolean;
 begin
   Result := True;
-  bFoiVirgula := false;
+  bFoiVirgula := False;
+  iExpressao := 0;
+
   if fTypeOfToken = tLCSymbol then
   begin
     Token := GetToken;
@@ -1648,9 +2067,14 @@ begin
   begin
     Token := UpperCase(GetToken);
     Case Token of
+      ',':
+      begin
+        bFoiVirgula := true;
+      end;
       '(':
       begin
         AdicionarBloco(lcTBParenteses, fIndexCurLine + 1, fPosIniTok + 1);
+        inc(iExpressao);
       end;
       ')':
       begin
@@ -1680,18 +2104,24 @@ begin
         begin
           break;
         end;
+        dec(iExpressao);
       end;
       else
       begin
         bFoiVirgula := False;
-        if not (fTypeOfToken in [tLCKey, tLCString, tLCNumber, tLCIdentifier]) then
+        if ((pTypeOfToken in [tLCKey,tLCReservedWord]) and not (fTypeOfToken in [tLCKey, tLCString, tLCNumber, tLCIdentifier, tLCVariable]))
+        or ((pTypeOfToken = tLCAttributeName) and not (fTypeOfToken in [tLCDataType, tLCString, tLCNumber, tLCIdentifier, tLCVariable]))
+        or ((pTypeOfToken in [tLCCustomFunction, tLCIdentifier]) and not (fTypeOfToken in [tLCKey, tLCNumber, tLCIdentifier, tLCVariable])) then
         begin
-          Result := False;
-          iLinhaErro := fIndexCurLine + 1;
-          iPosIniToken := fPosIniTok + 1;
-          AdicionarMensagem(lcTMError, 'Parâmetro inválido.', iPosIniToken, iLinhaErro);
+          if ((pTypeOfToken = tLCKey) and (AnsiUpperCase(GetToken) <> 'GRAVAR')) then
+          begin
+            Result := False;
+            iLinhaErro := fIndexCurLine + 1;
+            iPosIniToken := fPosIniTok + 1;
+            AdicionarMensagem(lcTMError, 'Parâmetro inválido.', iPosIniToken, iLinhaErro);
 
-          exit;
+            exit;
+          end;
         end;
 
         SkipSpaces(True, (fTypeOfToken = tLCString));
@@ -1721,12 +2151,42 @@ begin
           end;
         end;
 
-        if Token <> ',' then
+        if iExpressao = 0 then
         begin
-          continue;
-        end;
+          if (Token = '+')
+          or (Token = '-')
+          or (Token = '/')
+          or (Token = '*') then
+          begin
+            SkipSpaces(True, False);
 
-        bFoiVirgula := true;
+            if not (fTypeOfToken in [tLCIdentifier,tLCNumber]) then
+            begin
+              Result := False;
+              iLinhaErro := fIndexCurLine + 1;
+              iPosIniToken := fPosIniTok + 1;
+              AdicionarMensagem(lcTMError, Format('Identificador ou número "%s" inválido.',[GetToken]), iPosIniToken, iLinhaErro);
+
+              exit;
+            end;
+
+            continue;
+          end;
+
+          if Token <> ',' then
+          begin
+            continue;
+          end;
+
+          bFoiVirgula := true;
+        end
+        else
+        begin
+          if  Token = ')' then
+          begin
+            continue;
+          end;
+        end;
       end;
     end;
 

@@ -555,7 +555,7 @@ msgid "Mostrar Mensagens"
 msgstr ""
 
 #: tfrmmain.actshowmsg.hint
-msgid "Mostrar Mensagem da Compilação"
+msgid "Mostrar/Ocultar Mensagem da Compilação"
 msgstr ""
 
 #: tfrmmain.actsomenteleitura.caption

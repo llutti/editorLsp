@@ -142,6 +142,8 @@ var
   uh: HDC;
   Mon: TMonitor;
 begin
+  Result := inherited;
+
   Mon := Screen.MonitorFromPoint(Point(Left, Top)); // don't use Monitor property - it returns wrong monitor for invisible windows.
 
   if Mon=nil then
@@ -192,6 +194,7 @@ procedure TLCEditorHintWindow.Paint;
 const
   HintBorderWidth = 2;
 var
+  iLeft,
   i: Integer;
   List: TStrings;
   tmpRect,
@@ -233,6 +236,7 @@ begin
     List := TStringList.Create;
     try
       List.CommaText := Caption;
+      iLeft := aRect.Left;
       for i := 0 to List.Count - 1 do
       begin
         texto := List[i];
@@ -258,6 +262,13 @@ begin
         begin
           aRect.left := aRect.right;
           aRect.right += tmpRect.right;
+        end;
+
+        if aRect.right > width then
+        begin
+          aRect.Top += Canvas.GetTextHeight('W');
+          aRect.left := iLeft;
+          aRect.right := iLeft + tmpRect.right;
         end;
 
         if ThemeFG then
@@ -295,10 +306,17 @@ begin
   end;
   pnt := ClientToScreen(point(CaretXPix, CaretYPix));
 
-  fCallTipWin.CurrentIndex := CurrentIndex;
-  fCallTipWin.HintRect := fCallTipWin.CalcHintRect(0, tips, nil);
+  fCallTipWin.HintRect := fCallTipWin.CalcHintRect(Round(width * 0.5), tips, nil);
   fCallTipWin.OffsetHintRect(pnt, fCallTipWin.Font.Size * 2);
-  fCallTipWin.ActivateHint(tips);
+  fCallTipWin.Hint := tips;
+
+  if (fCallTipWin.Hint <> tips)
+  or (fCallTipWin.CurrentIndex <> CurrentIndex)
+  or (fCallTipWin.Showing = false) then
+  begin
+    fCallTipWin.CurrentIndex := CurrentIndex;
+    fCallTipWin.ActivateHint(tips);
+  end;
 end;
 
 procedure TLCSynEdit.DoExit;
@@ -614,96 +632,86 @@ var
   sLetra,
   sTexto,
   sFuncao:String;
-
-  posAtu:TPoint;
 begin
   IncPaintLock;
   try
-    try
-      bAchou := False;
-      posAtu := CaretXY;
-      fCurrentTipTopRow := CaretXY.Y;
-      fCurrentTipBottomRow := CaretXY.Y;
+    bAchou := False;
+    fCurrentTipTopRow := CaretXY.Y;
+    fCurrentTipBottomRow := CaretXY.Y;
 
-      sFuncao := '';
-      sTexto := InverterTexto(LineText, CaretXY.X);
-      CurP := PChar(sTexto);
-      EndP := CurP + Length(sTexto);
+    sFuncao := '';
+    sTexto := InverterTexto(LineText, CaretXY.X);
+    CurP := PChar(sTexto);
+    EndP := CurP + Length(sTexto);
 
-      iVirgulas:=0;
-      Len := 0;
-      while CurP < EndP do
+    iVirgulas:=0;
+    Len := 0;
+    while CurP < EndP do
+    begin
+      ProximaLetra(CurP, Len, sLetra);
+
+      if (sLetra = ';')
+      or (sLetra = ')') then
+      begin
+        break;
+      end;
+
+      if sLetra = ',' then
+      begin
+        Inc(iVirgulas);
+      end
+      else
+      if sLetra = '(' then
       begin
         ProximaLetra(CurP, Len, sLetra);
+        while (CurP < EndP) and ((sLetra = #9) or (sLetra = ' ') or (sLetra = ''))  do
+        begin
+          ProximaLetra(CurP, Len, sLetra);
+        end;
 
-        if (sLetra = ';')
-        or (sLetra = ')') then
+        sFuncao := '';
+        while (CurP <= EndP) and (sLetra <> #9) and (sLetra <> ' ') and (sLetra <> '')  do
+        begin
+          sFuncao := sLetra + sFuncao;
+          ProximaLetra(CurP, Len, sLetra);
+        end;
+        bAchou := true;
+        Break;
+      end;
+
+      if CurP = EndP then
+      begin
+        if CaretY = 0 then
         begin
           break;
         end;
 
-        if sLetra = ',' then
-        begin
-          Inc(iVirgulas);
-        end
-        else
-        if sLetra = '(' then
-        begin
-          ProximaLetra(CurP, Len, sLetra);
-          while (CurP < EndP) and ((sLetra = #9) or (sLetra = ' ') or (sLetra = ''))  do
-          begin
-            ProximaLetra(CurP, Len, sLetra);
-          end;
+        fCurrentTipTopRow := fCurrentTipTopRow - 1;
 
-          sFuncao := '';
-          while (CurP <= EndP) and (sLetra <> #9) and (sLetra <> ' ') and (sLetra <> '')  do
-          begin
-            sFuncao := sLetra + sFuncao;
-            ProximaLetra(CurP, Len, sLetra);
-          end;
-          bAchou := true;
-          Break;
-        end;
-
-        if CurP = EndP then
-        begin
-          if CaretY = 0 then
-          begin
-            break;
-          end;
-
-          CaretY := CaretY - 1;
-          fCurrentTipTopRow := CaretY;
-
-          sTexto := InverterTexto(LineText, -1);
-          CurP := PChar(sTexto);
-          EndP := CurP + Length(sTexto);
-        end;
+        sTexto := InverterTexto(Self.Lines.Strings[fCurrentTipTopRow-1], -1);
+        CurP := PChar(sTexto);
+        EndP := CurP + Length(sTexto);
       end;
-
-      if bAchou = false then
-      begin
-        hideCallTips;
-        exit;
-      end;
-
-      if aInternal = false then
-      begin
-        fLastTipText := GetTipToWord(sFuncao, fCurrentTipTopRow);
-      end;
-      sTexto := fLastTipText;
-
-      if sTexto.isEmpty then
-      begin
-        exit;
-      end;
-
-      CaretXY := posAtu;
-
-      showCallTips(sTexto, iVirgulas);
-    finally
-      CaretXY := posAtu;
     end;
+
+    if bAchou = false then
+    begin
+      hideCallTips;
+      exit;
+    end;
+
+    if aInternal = false then
+    begin
+      fLastTipText := GetTipToWord(sFuncao, fCurrentTipTopRow);
+    end;
+    sTexto := fLastTipText;
+
+    if sTexto.isEmpty then
+    begin
+      exit;
+    end;
+
+    showCallTips(sTexto, iVirgulas);
   finally
     DecPaintLock;
   end;

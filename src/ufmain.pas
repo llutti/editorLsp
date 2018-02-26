@@ -1041,8 +1041,12 @@ begin
   if (ECTabCtrl1.UpdateCount = 0) then
   begin
     CanClose := true;
-    if (AIndex >= 0) then
+    if AIndex >= 0 then
     begin
+      if (ECTabCtrl1.TabIndex = AIndex) then
+      begin
+        ECTabCtrl1.SelectPrevious;
+      end;
       CanClose := FecharDocumento((ECTabCtrl1.Tabs[AIndex].Control as TLCSynEdit));
     end;
   end;
@@ -1889,7 +1893,7 @@ begin
   actChecarSintaxe.Enabled := (ECTabCtrl1.Tabs.Count > 0);
   actShowMsg.Enabled := (ECTabCtrl1.Tabs.Count > 0);
 
-  if (ECTabCtrl1.Tabs.Count > 0) then
+  if ECTabCtrl1.Tabs.Count > 0 then
   begin
     editor := GetEditorAtivo;
     actModoColuna.Checked := (editor.SelectionMode = smColumn);
@@ -2041,7 +2045,7 @@ end;
 procedure TFrmMain.FormCreate(Sender: TObject);
 Var
   Path: String;
-  //nTabIndex,
+  bAchouAtivo:Boolean;
   i : Integer;
   oSessionFile: TSessionFile;
   oMruFile: TMRUFile;
@@ -2104,11 +2108,16 @@ begin
   begin
     ECTabCtrl1.BeginUpdate;
     try
+      bAchouAtivo := false;
       For i:= 0 to fSettings.SessionFiles.Count - 1 do
       begin
         oSessionFile:= TSessionFile(fSettings.SessionFiles.Items[i]);
         if (FileExistsUTF8(oSessionFile.FileName) = true) then
         begin
+          if oSessionFile.Active = true then
+          begin
+            bAchouAtivo := true;
+          end;
           NovoDocumento(oSessionFile.FileName, oSessionFile.Active);
           oMruFile := fSettings.getMruFile(oSessionFile.FileName);
           if (oMruFile <> nil) then
@@ -2116,6 +2125,10 @@ begin
             oMruFile.SetToSynEdit(ECTabCtrl1.Tabs[ECTabCtrl1.Tabs.Count -1 ].Control as TLCSynEdit);
           end;
         end;
+      end;
+      if bAchouAtivo = false then
+      begin
+        ECTabCtrl1.MakeTabAvailable(0, true);
       end;
     finally
       ECTabCtrl1.EndUpdate;
@@ -3323,7 +3336,7 @@ end;
 function TFrmMain.GetEditorAtivo: TLCSynEdit;
 begin
   result := nil;
-  if (ECTabCtrl1.Tabs.Count > 0) then
+  if  (ECTabCtrl1.Tabs.Count > 0) then
   begin
     if Assigned(ECTabCtrl1.Tabs[ECTabCtrl1.TabIndex].Control) then
     begin
@@ -3486,10 +3499,7 @@ var
 begin
   if (EhChamadaInterna = false) then
   begin
-    if FileExistsUTF8(configFileName) then
-    begin
-      fSettings.LoadFromFile(configFileName);
-    end;
+    fSettings.LoadFromFile(configFileName);
 
     SetBounds(fSettings.Left, fSettings.Top, fSettings.Width, fSettings.Height);
 
@@ -3540,6 +3550,7 @@ end;
 function TFrmMain.FecharTodasAbas(ExcetoAtiva : Boolean; SaveSession : Boolean) : Boolean;
 var
   start,
+  iActive,
   i:integer;
   aFileName: String;
   oSessionFile: TSessionFile;
@@ -3555,7 +3566,8 @@ begin
         start := 1;
       end;
 
-      for i:= ECTabCtrl1.Tabs.Count -1 downto start do
+      iActive := ECTabCtrl1.TabIndex;
+      for i:= ECTabCtrl1.Tabs.Count - 1 downto start do
       begin
         aFileName := (ECTabCtrl1.Tabs[i].Control as TLCSynEdit).FileName;
 
@@ -3566,16 +3578,16 @@ begin
         end;
 
         // Gravar informacoes da Sessao (arquivos abertos)
-        if (SaveSession = true) then
+        if  (SaveSession = true)
+        and (FileExistsUTF8(aFileName) = true) then
         begin
           oSessionFile := TSessionFile(fSettings.SessionFiles.Insert(0));
-          oSessionFile.FileName :=aFileName;
-          oSessionFile.Active := (ECTabCtrl1.TabIndex = i);
+          oSessionFile.FileName := aFileName;
+          oSessionFile.Active := (iActive = i);
         end;
 
         ECTabCtrl1.DeleteTab(i);
       end;
-
     finally
       ECTabCtrl1.EndUpdate;
     end;
@@ -4063,7 +4075,6 @@ begin
       and (Editor.ModuloVetorh = smvNone) then
       begin
         Editor.PosicaoRegra := AdicionarRegraAoModulo(Modulos[Editor.ModuloVetorh], Editor.FileName);
-
       end;
 
       if Modulos[Editor.ModuloVetorh].Carregado = false then
@@ -4078,8 +4089,9 @@ begin
 
   if (Ativar = true) then
   begin
-    ECTabCtrl1.ActivateTab(0); // Necessário para que o foco no synedit seja executado
-    ECTabCtrl1.ActivateTab(tab.Index);
+    ECTabCtrl1.MakeTabAvailable(tab.Index, Ativar);
+    //ECTabCtrl1.ActivateTab(0); // Necessário para que o foco no synedit seja executado
+    //ECTabCtrl1.ActivateTab(tab.Index);
   end;
 
 end;
@@ -4208,5 +4220,3 @@ begin
 end;
 
 end.
-
-
