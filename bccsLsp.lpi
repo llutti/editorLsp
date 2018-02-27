@@ -24,8 +24,8 @@
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="2"/>
       <MinorVersionNr Value="1"/>
-      <RevisionNr Value="9"/>
-      <BuildNr Value="71"/>
+      <RevisionNr Value="10"/>
+      <BuildNr Value="72"/>
       <Language Value="0416"/>
       <StringTable CompanyName="BCCS" FileDescription="BCCS :: Editor de Regra - LSP" InternalName="bccsLSP" OriginalFilename="bccsLSP" ProductName="BCCS :: Editor de Regras - LSP" ProductVersion="2.0"/>
     </VersionInfo>
@@ -148,6 +148,7 @@
       <Unit3>
         <Filename Value="src\ueditorlspsettings.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="uEditorLspSettings"/>
       </Unit3>
       <Unit4>
         <Filename Value="src\ufirparalinha.pas"/>
@@ -190,6 +191,7 @@
         <ComponentName Value="FSettingsEditor"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="uFSettingsEditor"/>
       </Unit9>
       <Unit10>
         <Filename Value="src\synlccompletion.pas"/>
