@@ -4098,14 +4098,14 @@ end;
 
 procedure TFrmMain.AtualizarPreferencias(editor: TSynEdit);
 var
-  fSynMarkHAllCaret:TSynEditMarkupHighlightAllCaret;
+  oMarkupFoldColors: TSynEditMarkupFoldColors;
+  oSynMarkHAllCaret: TSynEditMarkupHighlightAllCaret;
   i:integer;
   Elemento: TLCElementoSintaxe;
   oPadrao: TSynLCHighlighterSettings;
 begin
   editor.BeginUpdate(false);
   try
-
     // Editor
     editor.WantTabs := fSettings.Editor.WantTabs;
     editor.MaxUndo := fSettings.Editor.MaxUndo;
@@ -4135,8 +4135,6 @@ begin
     //
     editor.BracketHighlightStyle := FrmMain.fSettings.Editor.BracketHighlightStyle;
     editor.BracketMatchColor.Assign(FrmMain.fSettings.Editor.BracketMatchColor);
-    //editor.BracketMatchColor.Background := FrmMain.fSettings.Editor.BracketMatchColor.Background;
-    //editor.BracketMatchColor.Foreground := FrmMain.fSettings.Editor.BracketMatchColor.Foreground;
 
     // Linha ativa
     editor.LineHighlightColor.Assign(FrmMain.fSettings.Editor.ActiveLine);
@@ -4174,14 +4172,23 @@ begin
 
     editor.Gutter.CodeFoldPart(0).MarkupInfo.Background:=FrmMain.fSettings.Editor.Gutter.CodeFoldPart.MarkupInfo.Background;
 
-    fSynMarkHAllCaret := TSynEditMarkupHighlightAllCaret(editor.MarkupByClass[TSynEditMarkupHighlightAllCaret]);
-    if assigned(fSynMarkHAllCaret) then
+    oSynMarkHAllCaret := TSynEditMarkupHighlightAllCaret(editor.MarkupByClass[TSynEditMarkupHighlightAllCaret]);
+    if assigned(oSynMarkHAllCaret) then
     begin
-      fSynMarkHAllCaret.MarkupInfo.Assign(fSettings.Editor.MarkupHighlightAllCaret.MarkupInfo);
-      fSynMarkHAllCaret.Trim := fSettings.Editor.MarkupHighlightAllCaret.Trim;
-      fSynMarkHAllCaret.FullWord := fSettings.Editor.MarkupHighlightAllCaret.FullWord;
-      fSynMarkHAllCaret.WaitTime := fSettings.Editor.MarkupHighlightAllCaret.WaitTime;
-      fSynMarkHAllCaret.FullWordMaxLen := fSettings.Editor.MarkupHighlightAllCaret.FullWordMaxLen;
+      oSynMarkHAllCaret.MarkupInfo.Assign(fSettings.Editor.MarkupHighlightAllCaret.MarkupInfo);
+      oSynMarkHAllCaret.Trim := fSettings.Editor.MarkupHighlightAllCaret.Trim;
+      oSynMarkHAllCaret.FullWord := fSettings.Editor.MarkupHighlightAllCaret.FullWord;
+      oSynMarkHAllCaret.WaitTime := fSettings.Editor.MarkupHighlightAllCaret.WaitTime;
+      oSynMarkHAllCaret.FullWordMaxLen := fSettings.Editor.MarkupHighlightAllCaret.FullWordMaxLen;
+    end;
+
+    oMarkupFoldColors := TSynEditMarkupFoldColors(editor.MarkupByClass[TSynEditMarkupFoldColors]);
+    if assigned(oMarkupFoldColors) then
+    begin
+      for i:= 0 to MAX_NIVEL_IDENTACAO-1 do
+      begin
+        oMarkupFoldColors.Color[i].Foreground := TLCNiveisIdentacaoConfig(fSettings.Editor.NiveisIdentacao.Items[i]).Atributos.Foreground;
+      end;
     end;
 
     oPadrao:= TSynLCHighlighterSettings.Create;

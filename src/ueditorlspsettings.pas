@@ -6,11 +6,36 @@ interface
 
 uses
   Classes, Graphics, SysUtils, Forms,
-  SynEdit, SynEditMiscClasses, SynEditMarkupBracket, SynEditMarks
-  ,LCSynEdit, SynLCHighlighter;
+  SynEdit, SynEditMiscClasses, SynEditMarkupBracket, SynEditMarks,
+  LCSynEdit, SynLCHighlighter;
+
+const
+  MAX_NIVEL_IDENTACAO = 10;
+
+resourcestring
+  DescNivelIdentacao = 'Nível %s';
 
 type
 
+  { TLCNiveisIdentacaoConfig }
+
+  TLCNiveisIdentacaoConfig = class(TCollectionItem)
+  private
+    fAtributos : TSynSelectedColor;
+    fDefaultValues : Boolean;
+    function GetDescription: String;
+    function GetNivel : Integer;
+  protected
+    function GetDisplayName: string; override;
+  public
+    constructor Create(ACollection: TCollection); override;
+    destructor Destroy; override;
+    property Description:String read GetDescription;
+  published
+    property Atributos:TSynSelectedColor read fAtributos write fAtributos;
+    property DefaultValues:Boolean read fDefaultValues write fDefaultValues;
+    property Nivel:Integer read GetNivel;
+  end;
   { TLCElementoSintaxe }
 
   TLCElementoSintaxe = class(TCollectionItem)
@@ -213,16 +238,17 @@ type
     destructor Destroy; override;
   published
     property MarkupInfo: TSynSelectedColor read fMarkupInfo write fMarkupInfo;
-    property  WaitTime: Integer read FWaitTime write FWaitTime;
-    property  Trim: Boolean read FTrim write FTrim;
-    property  FullWord: Boolean read FFullWord write FFullWord;
-    property  FullWordMaxLen: Integer read FFullWordMaxLen write FFullWordMaxLen;
+    property WaitTime: Integer read FWaitTime write FWaitTime;
+    property Trim: Boolean read FTrim write FTrim;
+    property FullWord: Boolean read FFullWord write FFullWord;
+    property FullWordMaxLen: Integer read FFullWordMaxLen write FFullWordMaxLen;
   end;
 
   { TEditorSettings }
 
   TEditorSettings = class(TPersistent)
     private
+      fCoresPadraoNivelIdentacao: array of TColor;
       fActiveLine: TSynSelectedColor;
       fBracketHighlightStyle: TSynEditBracketHighlightStyle;
       fBracketMatchColor: TSynSelectedColor;
@@ -234,6 +260,7 @@ type
       fLineErrorColor : TSynSelectedColor;
       fMarkupHighlightAllCaret : TMarkupHighlightAllCaretSettings;
       fMaxUndo: Integer;
+      fNiveisIdentacao: TCollection;
       FOptions: TSynEditorOptions;
       FOptions2: TSynEditorOptions2;
       fRightEdge: Integer;
@@ -244,6 +271,7 @@ type
     public
       constructor Create;
       destructor Destroy; override;
+      function GetCorPadraoNivelIdentacao(pNivel:Integer):TColor;
     published
       property ActiveLine: TSynSelectedColor read fActiveLine write fActiveLine;
       property BracketHighlightStyle: TSynEditBracketHighlightStyle read fBracketHighlightStyle write fBracketHighlightStyle;
@@ -265,6 +293,7 @@ type
       property MarkupHighlightAllCaret:TMarkupHighlightAllCaretSettings read fMarkupHighlightAllCaret write fMarkupHighlightAllCaret;
 
       property ElementosSintaxe:TCollection read fElementosSintaxe;
+      property NiveisIdentacao:TCollection read fNiveisIdentacao;
   end;
 
   { TEditorLspSettings }
@@ -369,6 +398,36 @@ implementation
 uses
   fpjsonrtti, fpjson, jsonparser,
   SynEditTypes, SynEditMarkupHighAll, LazFileUtils;
+
+{ TLCNiveisIdentacaoConfig }
+
+function TLCNiveisIdentacaoConfig.GetDescription: String;
+begin
+  Result := Format(DescNivelIdentacao, [FormatFloat('#,#00', Nivel+1)]);
+end;
+
+function TLCNiveisIdentacaoConfig.GetNivel : Integer;
+begin
+  Result := Index;
+end;
+
+function TLCNiveisIdentacaoConfig.GetDisplayName: string;
+begin
+  Result:= Description;
+end;
+
+constructor TLCNiveisIdentacaoConfig.Create(ACollection: TCollection);
+begin
+  inherited Create(ACollection);
+  fAtributos := TSynSelectedColor.Create;
+end;
+
+destructor TLCNiveisIdentacaoConfig.Destroy;
+begin
+  FreeAndNil(fAtributos);
+
+  inherited Destroy;
+end;
 
 { TLCElementoSintaxe }
 
@@ -557,12 +616,26 @@ end;
 
 constructor TEditorSettings.Create;
 begin
+  SetLength(fCoresPadraoNivelIdentacao, MAX_NIVEL_IDENTACAO);
+  fCoresPadraoNivelIdentacao[0] := clRed;
+  fCoresPadraoNivelIdentacao[1] := $0098F7; //orange
+  fCoresPadraoNivelIdentacao[2] := $22CC40; //green
+  fCoresPadraoNivelIdentacao[3] := $CCCC00; //cyan
+  fCoresPadraoNivelIdentacao[4] := $FF682A; //blue
+  fCoresPadraoNivelIdentacao[5] := $CF00C4; //purple
+  fCoresPadraoNivelIdentacao[6] := $C08000;
+  fCoresPadraoNivelIdentacao[7] := $408080;
+  fCoresPadraoNivelIdentacao[8] := $400080;
+  fCoresPadraoNivelIdentacao[9] := $808040;
+
   inherited Create;
+
   fGutter:= TGutterSettings.create;
   fActiveLine := TSynSelectedColor.Create;
   fMarkupHighlightAllCaret := TMarkupHighlightAllCaretSettings.Create;
   fElementosSintaxe := TCollection.Create(TLCElementoSintaxe);
   fLineErrorColor := TSynSelectedColor.Create;
+  fNiveisIdentacao := TCollection.Create(TLCNiveisIdentacaoConfig);
 
   fOptions := [eoAltSetsColumnMode
               ,eoAutoIndent
@@ -621,8 +694,19 @@ begin
   FreeAndNil(fMarkupHighlightAllCaret);
   FreeAndNil(fElementosSintaxe);
   FreeAndNil(fLineErrorColor);
+  FreeAndNil(fNiveisIdentacao);
 
   inherited Destroy;
+end;
+
+function TEditorSettings.GetCorPadraoNivelIdentacao(pNivel : Integer) : TColor;
+begin
+  Result := clNone;
+  if  (pNivel >= 0)
+  and (pNivel <= High(fCoresPadraoNivelIdentacao)) then
+  begin
+    Result := fCoresPadraoNivelIdentacao[pNivel];
+  end;
 end;
 
 { TEditorLspSettings }
@@ -773,6 +857,7 @@ var
   Sigla: TLCSiglaModuloVetorh;
   kind: TLCTokenKind;
   elemento: TLCElementoSintaxe;
+  nivel: TLCNiveisIdentacaoConfig;
 begin
   if FileExistsUTF8(fileName) then
   begin
@@ -863,6 +948,19 @@ begin
         elemento := TLCElementoSintaxe.Create(fEditor.ElementosSintaxe);
         elemento.Kind := kind;
         elemento.Description := DescricaoTiposToken[Kind];
+      end;
+    end;
+  end;
+
+  if MAX_NIVEL_IDENTACAO > Editor.NiveisIdentacao.Count then
+  begin
+    for i:= 0 to MAX_NIVEL_IDENTACAO-1 do
+    begin
+      if i >= Editor.NiveisIdentacao.Count then
+      begin
+        Nivel := TLCNiveisIdentacaoConfig.Create(Editor.NiveisIdentacao);
+        Nivel.DefaultValues := true;
+        Nivel.Atributos.Foreground := Editor.GetCorPadraoNivelIdentacao(i);
       end;
     end;
   end;

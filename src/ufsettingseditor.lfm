@@ -32,17 +32,19 @@ object FSettingsEditor: TFSettingsEditor
     Height = 490
     Top = 0
     Width = 985
-    ActivePage = TabSheet3
+    ActivePage = TabSheet4
     Align = alClient
-    TabIndex = 2
+    ParentFont = False
+    TabIndex = 3
     TabOrder = 1
     object TabSheet2: TTabSheet
       Caption = 'Editor'
-      ClientHeight = 462
-      ClientWidth = 977
+      ClientHeight = 583
+      ClientWidth = 1223
+      ParentFont = False
       object TIPropertyGrid1: TTIPropertyGrid
         Left = 0
-        Height = 462
+        Height = 583
         Top = 0
         Width = 482
         Align = alLeft
@@ -56,10 +58,10 @@ object FSettingsEditor: TFSettingsEditor
         ValueFont.Color = clMaroon
       end
       inline SynEdit1: TSynEdit
-        Left = 487
-        Height = 462
+        Left = 608
+        Height = 583
         Top = 0
-        Width = 490
+        Width = 615
         Align = alClient
         Font.Height = -13
         Font.Name = 'Courier New'
@@ -546,6 +548,7 @@ object FSettingsEditor: TFSettingsEditor
             MarkupInfo.Foreground = clGray
           end
           object SynGutterCodeFolding1: TSynGutterCodeFolding
+            AutoSize = False
             MouseActions = <>
             MarkupInfo.Background = clNone
             MarkupInfo.Foreground = clGray
@@ -555,16 +558,17 @@ object FSettingsEditor: TFSettingsEditor
         end
       end
       object Splitter1: TSplitter
-        Left = 482
-        Height = 462
+        Left = 602
+        Height = 583
         Top = 0
         Width = 5
       end
     end
     object TabSheet1: TTabSheet
       Caption = 'Módulos Vetorh'
-      ClientHeight = 462
-      ClientWidth = 977
+      ClientHeight = 583
+      ClientWidth = 1223
+      ParentFont = False
       object lbModulos: TListBox
         Left = 8
         Height = 142
@@ -572,12 +576,13 @@ object FSettingsEditor: TFSettingsEditor
         Width = 152
         ItemHeight = 0
         OnSelectionChange = lbModulosSelectionChange
+        ParentFont = False
         Sorted = True
         TabOrder = 0
       end
       object dePastaRootModulo: TDirectoryEdit
         Left = 176
-        Height = 23
+        Height = 28
         Top = 24
         Width = 400
         ShowHidden = False
@@ -585,14 +590,15 @@ object FSettingsEditor: TFSettingsEditor
         NumGlyphs = 1
         Flat = True
         MaxLength = 0
+        ParentFont = False
         TabOrder = 1
         OnChange = dePastaRootModuloChange
       end
       object Label1: TLabel
         Left = 8
-        Height = 15
+        Height = 20
         Top = 6
-        Width = 84
+        Width = 105
         Caption = 'Módulo Vetorh'
         Font.Style = [fsBold]
         ParentColor = False
@@ -600,9 +606,9 @@ object FSettingsEditor: TFSettingsEditor
       end
       object Label2: TLabel
         Left = 176
-        Height = 15
+        Height = 20
         Top = 6
-        Width = 58
+        Width = 75
         Caption = 'Pasta Base'
         Font.Style = [fsBold]
         ParentColor = False
@@ -610,9 +616,9 @@ object FSettingsEditor: TFSettingsEditor
       end
       object Label3: TLabel
         Left = 176
-        Height = 15
+        Height = 20
         Top = 56
-        Width = 98
+        Width = 125
         Caption = 'Arquivo Excluídos'
         Font.Style = [fsBold]
         ParentColor = False
@@ -625,6 +631,7 @@ object FSettingsEditor: TFSettingsEditor
         Width = 400
         ItemHeight = 0
         OnClick = lbArqExcClick
+        ParentFont = False
         Sorted = True
         TabOrder = 2
       end
@@ -636,6 +643,7 @@ object FSettingsEditor: TFSettingsEditor
         Caption = 'Adicionar Arquivo'
         Kind = bkOK
         OnClick = bbAddArqExcClick
+        ParentFont = False
         TabOrder = 3
       end
       object bbRemoverArqExc: TBitBtn
@@ -646,11 +654,12 @@ object FSettingsEditor: TFSettingsEditor
         Caption = 'Remover Arquivo'
         Kind = bkCancel
         OnClick = bbRemoverArqExcClick
+        ParentFont = False
         TabOrder = 4
       end
       object fnArqExc: TFileNameEdit
         Left = 176
-        Height = 23
+        Height = 28
         Top = 186
         Width = 400
         DialogOptions = [ofNoChangeDir, ofExtensionDifferent, ofPathMustExist, ofFileMustExist, ofNoNetworkButton, ofEnableSizing, ofViewDetail]
@@ -662,6 +671,7 @@ object FSettingsEditor: TFSettingsEditor
         NumGlyphs = 1
         Flat = True
         MaxLength = 0
+        ParentFont = False
         TabOrder = 5
       end
     end
@@ -669,6 +679,7 @@ object FSettingsEditor: TFSettingsEditor
       Caption = 'Elementos Sintaxe'
       ClientHeight = 462
       ClientWidth = 977
+      ParentFont = False
       object Label4: TLabel
         Left = 8
         Height = 15
@@ -686,6 +697,7 @@ object FSettingsEditor: TFSettingsEditor
         Width = 176
         ItemHeight = 0
         OnSelectionChange = lbElementosSintaxeSelectionChange
+        ParentFont = False
         Sorted = True
         TabOrder = 0
       end
@@ -698,6 +710,7 @@ object FSettingsEditor: TFSettingsEditor
         ButtonColorSize = 16
         ButtonColor = clBlack
         ShowHint = True
+        ParentFont = False
         ParentShowHint = False
       end
       object Label5: TLabel
@@ -707,6 +720,7 @@ object FSettingsEditor: TFSettingsEditor
         Width = 71
         Caption = 'Cor do Texto:'
         ParentColor = False
+        ParentFont = False
       end
       object Label6: TLabel
         Left = 216
@@ -715,6 +729,7 @@ object FSettingsEditor: TFSettingsEditor
         Width = 76
         Caption = 'Cor do Fundo:'
         ParentColor = False
+        ParentFont = False
       end
       object colBackCol: TColorButton
         Left = 216
@@ -724,6 +739,7 @@ object FSettingsEditor: TFSettingsEditor
         BorderWidth = 2
         ButtonColorSize = 16
         ButtonColor = clBlack
+        ParentFont = False
       end
       object chkBold: TCheckBox
         Left = 311
@@ -731,6 +747,7 @@ object FSettingsEditor: TFSettingsEditor
         Top = 64
         Width = 60
         Caption = 'Negrito'
+        ParentFont = False
         TabOrder = 1
       end
       object chkItalic: TCheckBox
@@ -739,6 +756,7 @@ object FSettingsEditor: TFSettingsEditor
         Top = 100
         Width = 52
         Caption = 'Itálico'
+        ParentFont = False
         TabOrder = 2
       end
       object chkUnder: TCheckBox
@@ -747,6 +765,7 @@ object FSettingsEditor: TFSettingsEditor
         Top = 136
         Width = 80
         Caption = 'Sublinhado'
+        ParentFont = False
         TabOrder = 3
       end
       object chkDefault: TCheckBox
@@ -756,7 +775,65 @@ object FSettingsEditor: TFSettingsEditor
         Width = 137
         Caption = 'Utilizar Valores Padrão'
         OnChange = chkDefaultChange
+        ParentFont = False
         TabOrder = 4
+      end
+    end
+    object TabSheet4: TTabSheet
+      Caption = 'Linhas Identação'
+      ClientHeight = 462
+      ClientWidth = 977
+      object CorLinhaNivel: TColorButton
+        Left = 216
+        Height = 25
+        Top = 80
+        Width = 75
+        BorderWidth = 2
+        ButtonColorSize = 16
+        ButtonColor = clBlack
+        ShowHint = True
+        ParentFont = False
+        ParentShowHint = False
+      end
+      object Label7: TLabel
+        Left = 216
+        Height = 15
+        Top = 64
+        Width = 67
+        Caption = 'Cor da Linha'
+        ParentColor = False
+        ParentFont = False
+      end
+      object lbNiveisIdentacao: TListBox
+        Left = 8
+        Height = 208
+        Top = 24
+        Width = 176
+        ItemHeight = 0
+        OnSelectionChange = lbNiveisIdentacaoSelectionChange
+        ParentFont = False
+        Sorted = True
+        TabOrder = 0
+      end
+      object Label8: TLabel
+        Left = 8
+        Height = 15
+        Top = 6
+        Width = 109
+        Caption = 'Níveis de Identação'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object chkDefaultNivel: TCheckBox
+        Left = 218
+        Height = 19
+        Top = 27
+        Width = 126
+        Caption = 'Utilizar Valor Padrão'
+        OnChange = chkDefaultNivelChange
+        ParentFont = False
+        TabOrder = 1
       end
     end
   end

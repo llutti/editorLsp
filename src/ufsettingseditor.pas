@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, RTTIGrids, SynEdit, LResources, Forms, Controls, Graphics, Dialogs, ButtonPanel,
   ComCtrls, ExtCtrls, Buttons, StdCtrls, EditBtn, PropEdits, ObjectInspector, ECTabCtrl, uEditorLspSettings,
-  SynLCHighlighter, Types, LCLType;
+  SynLCHighlighter, LCLType;
 
 type
 
@@ -19,10 +19,12 @@ type
     ButtonPanel1: TButtonPanel;
     chkDefault : TCheckBox;
     chkBold : TCheckBox;
+    chkDefaultNivel: TCheckBox;
     chkItalic : TCheckBox;
     chkUnder : TCheckBox;
     colBackCol : TColorButton;
     colTextCol : TColorButton;
+    CorLinhaNivel: TColorButton;
     dePastaRootModulo : TDirectoryEdit;
     fnArqExc : TFileNameEdit;
     Label1 : TLabel;
@@ -31,7 +33,10 @@ type
     Label4 : TLabel;
     Label5 : TLabel;
     Label6 : TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
     lbArqExc : TListBox;
+    lbNiveisIdentacao: TListBox;
     lbModulos : TListBox;
     lbElementosSintaxe : TListBox;
     PageControl1: TPageControl;
@@ -40,18 +45,22 @@ type
     TabSheet1 : TTabSheet;
     TabSheet2: TTabSheet;
     TabSheet3 : TTabSheet;
+    TabSheet4: TTabSheet;
     TIPropertyGrid1: TTIPropertyGrid;
     procedure bbAddArqExcClick(Sender : TObject);
     procedure bbRemoverArqExcClick(Sender : TObject);
     procedure chkDefaultChange(Sender : TObject);
+    procedure chkDefaultNivelChange(Sender: TObject);
     procedure dePastaRootModuloChange(Sender : TObject);
     procedure FormCreate(Sender: TObject);
     procedure lbArqExcClick(Sender : TObject);
     procedure lbElementosSintaxeSelectionChange(Sender : TObject; User : boolean);
     procedure lbModulosSelectionChange(Sender : TObject; User : boolean);
+    procedure lbNiveisIdentacaoSelectionChange(Sender : TObject; User : boolean);
     procedure OKButtonClick(Sender: TObject);
   private
     procedure UpdateDisplayElemento(pValue:TLCElementoSintaxe);
+    procedure UpdateDisplayNivelIdentacao(pValue:TLCNiveisIdentacaoConfig);
 
     { private declarations }
   public
@@ -100,6 +109,12 @@ begin
     end;
   end;
 
+  if lbNiveisIdentacao.Tag <> -1 then
+  begin
+    TLCNiveisIdentacaoConfig(lbNiveisIdentacao.Items.Objects[lbNiveisIdentacao.Tag]).DefaultValues := chkDefaultNivel.checked;
+    TLCNiveisIdentacaoConfig(lbNiveisIdentacao.Items.Objects[lbNiveisIdentacao.Tag]).Atributos.Foreground := CorLinhaNivel.ButtonColor;
+  end;
+
   FrmMain.SalvarConfiguracoes;
   Self.ModalResult := mrOK;
 end;
@@ -119,11 +134,23 @@ begin
   chkUnder.Checked := fsUnderline in pValue.Atributos.Style;
 end;
 
+procedure TFSettingsEditor.UpdateDisplayNivelIdentacao(
+  pValue: TLCNiveisIdentacaoConfig);
+begin
+  chkDefaultNivel.checked := pValue.DefaultValues;
+
+  CorLinhaNivel.ButtonColor := pValue.Atributos.Foreground;
+  CorLinhaNivel.Hint := '$' + IntToHex(pValue.Atributos.Foreground, 6);
+end;
+
 procedure TFSettingsEditor.FormCreate(Sender: TObject);
 var
+  x:TColor;
+  i:integer;
   item:TCollectionItem;
   Modulo: TModuloVetorh;
   Elemento: TLCElementoSintaxe;
+  Nivel:TLCNiveisIdentacaoConfig;
 begin
   FrmMain.AtualizarPreferencias(SynEdit1);
   TIPropertyGrid1.TIObject := FrmMain.EditorSettings;
@@ -153,6 +180,20 @@ begin
   lbElementosSintaxe.ItemIndex := 0;
   lbElementosSintaxe.Tag := 0;
   UpdateDisplayElemento(TLCElementoSintaxe(lbElementosSintaxe.Items.Objects[0]));
+
+  // Aba Niveis de identação
+  lbNiveisIdentacao.Clear;
+  lbNiveisIdentacao.Tag := -1;
+  for item in FrmMain.EditorSettings.Editor.NiveisIdentacao do
+  begin
+    Nivel := TLCNiveisIdentacaoConfig(item);
+    x := Nivel.Atributos.Foreground;
+    lbNiveisIdentacao.AddItem(Nivel.Description , Nivel);
+  end;
+  // Selecionar o primeiro item da lista
+  lbNiveisIdentacao.ItemIndex := 0;
+  lbNiveisIdentacao.Tag := 0;
+  UpdateDisplayNivelIdentacao(TLCNiveisIdentacaoConfig(lbNiveisIdentacao.Items.Objects[0]));
 end;
 
 procedure TFSettingsEditor.lbArqExcClick(Sender : TObject);
@@ -269,6 +310,22 @@ begin
   chkUnder.Enabled := not chkDefault.checked;
 end;
 
+procedure TFSettingsEditor.chkDefaultNivelChange(Sender: TObject);
+var
+  oNivel: TLCNiveisIdentacaoConfig;
+begin
+  if chkDefaultNivel.checked = true then
+  begin
+    if lbNiveisIdentacao.Tag <> -1 then
+    begin
+      oNivel := TLCNiveisIdentacaoConfig(lbNiveisIdentacao.Items.Objects[lbNiveisIdentacao.Tag]);
+      oNivel.DefaultValues := True;
+      oNivel.Atributos.Foreground := FrmMain.EditorSettings.Editor.GetCorPadraoNivelIdentacao(oNivel.Nivel);
+      UpdateDisplayNivelIdentacao(oNivel);
+    end;
+  end;
+end;
+
 procedure TFSettingsEditor.lbModulosSelectionChange(Sender : TObject; User : boolean);
 var
   i:Integer;
@@ -293,6 +350,33 @@ begin
         lbModulos.Tag := i;
         dePastaRootModulo.Directory := TModuloVetorh(lbModulos.Items.Objects[i]).PastaBase;
         lbArqExc.Items.Assign(TModuloVetorh(lbModulos.Items.Objects[i]).ArquivosExcluidos);
+      end;
+    end;
+  end;
+end;
+
+procedure TFSettingsEditor.lbNiveisIdentacaoSelectionChange(Sender : TObject; User : boolean);
+var
+  i:Integer;
+begin
+  if lbNiveisIdentacao.Tag <> -1 then
+  begin
+    TLCNiveisIdentacaoConfig(lbNiveisIdentacao.Items.Objects[lbNiveisIdentacao.Tag]).DefaultValues := chkDefaultNivel.checked;
+    TLCNiveisIdentacaoConfig(lbNiveisIdentacao.Items.Objects[lbNiveisIdentacao.Tag]).Atributos.Foreground := CorLinhaNivel.ButtonColor;
+  end;
+
+  lbNiveisIdentacao.Tag := -1;
+  CorLinhaNivel.Color := clNone;
+
+  if lbNiveisIdentacao.SelCount > 0 then
+  begin
+    for i:= 0 to lbNiveisIdentacao.Count - 1 do
+    begin
+      if lbNiveisIdentacao.Selected[i] = true then
+      begin
+        lbNiveisIdentacao.Tag := i;
+
+        UpdateDisplayNivelIdentacao(TLCNiveisIdentacaoConfig(lbNiveisIdentacao.Items.Objects[i]));
       end;
     end;
   end;
