@@ -44,7 +44,7 @@ begin
   SynEdit1.Parent := self;
   SynEdit1.Align:=alClient;
 
-  aFileName := ExtractFilePath(Application.ExeName) + FILEAUTOCOMPLETELIST;
+  aFileName := FrmMain.EditorSettings.PathConfig + FILEAUTOCOMPLETELIST;
   if FileExistsUTF8(aFileName) then
   begin
     SynEdit1.LoadFromFile(aFileName);
@@ -55,7 +55,7 @@ procedure TFAutoCompletar.OKButtonClick(Sender: TObject);
 Var
   aFileName : String;
 begin
-  aFileName := ExtractFilePath(Application.ExeName) + FILEAUTOCOMPLETELIST;
+  aFileName := FrmMain.EditorSettings.PathConfig + FILEAUTOCOMPLETELIST;
   if Trim(SynEdit1.Text) = '' then
   begin
     DeleteFile(aFileName)

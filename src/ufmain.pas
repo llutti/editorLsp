@@ -13,16 +13,20 @@ uses
   SynEdit, SynEditTypes, ECTypes, ECAccordion, VirtualTrees;
 
 resourcestring
-  Editor_Name = 'BCCS ::. Editor para Linguagem Senior de Programação .::';
-  sQuestionSaveFile = 'Salvar alterações em "%s" ?';
-  sQuestionConfirmExitApp = 'Você quer Finalizar este Programa ?';
-  sQuestionSearchBeginFile = 'Deseja continuar do Início do Arquivo?';
-  sWarningTextNotFound = 'O texto "%s" não pode ser localizado!';
+  rsEditorName = 'BCCS ::. Editor para Linguagem Senior de Programacao .::';
+  rsQuestionSaveFile = 'Salvar alteracoes em "%s" ?';
+  rsQuestionConfirmExitApp = 'Voce quer Finalizar este Programa ?';
+  rsQuestionSearchBeginFile = 'Deseja continuar do Inicio do Arquivo?';
+  rsWarningTextNotFound = 'O texto "%s" nao pode ser localizado!';
+  rsUnchanged = 'Nao Alterado';
+  rsChanged = 'Alterado';
+  rsReplace = 'Substituir';
+  rsInsert = 'Inserir';
 
 Const
   EndOfLine: shortstring = LineEnding;
-  ModifiedStrs: array[boolean] of string = ('Não Alterado', 'Alterado');
-  InsertModeStrs: array[boolean] of string = ('Substituir', 'Inserir');
+  ModifiedStrs: array[boolean] of string = (rsUnchanged, rsChanged);
+  InsertModeStrs: array[boolean] of string = (rsReplace, rsInsert);
 
   CompletionLinesInWindow = 10; // Quantidade de linhas Máxima de linhas se apresentado na lista de funções
 
@@ -1988,7 +1992,7 @@ var
   sigla: TLCSiglaModuloVetorh;
 begin
   if  (fSettings.AskBeforeExit = True)
-  and (Application.MessageBox(PChar(sQuestionConfirmExitApp),PChar(Application.Title), MB_YESNO or MB_DEFBUTTON2 or MB_ICONQUESTION) = IDNO) then
+  and (Application.MessageBox(PChar(rsQuestionConfirmExitApp),PChar(Application.Title), MB_YESNO or MB_DEFBUTTON2 or MB_ICONQUESTION) = IDNO) then
   begin
     CanClose := false;
     exit;
@@ -2044,7 +2048,6 @@ end;
 
 procedure TFrmMain.FormCreate(Sender: TObject);
 Var
-  Path: String;
   bAchouAtivo:Boolean;
   i : Integer;
   oSessionFile: TSessionFile;
@@ -2073,23 +2076,47 @@ begin
 
   // Iniciarlizar as variáveis
   fSettings := TEditorLspSettings.Create;
-  Path := ExtractFilePath(Application.ExeName) + '\';
-  configFileName := ChangeFileExt(Application.ExeName, '.json');
+  configFileName := ChangeFileExt(ExtractFileName(Application.ExeName), '.json');
+
+  if DirPathExists(fSettings.PathConfig) = false then
+  begin
+    CreateDir(fSettings.PathConfig);
+
+    if FileExistsUTF8(fSettings.PathAppRoot + 'SynLCLsp.json') = true then
+    begin
+      RenameFile(fSettings.PathAppRoot + 'SynLCLsp.json', fSettings.PathConfig + 'SynLCLsp.json');
+    end;
+
+    if FileExistsUTF8(fSettings.PathAppRoot + configFileName) = true then
+    begin
+      RenameFile(fSettings.PathAppRoot + configFileName, fSettings.PathConfig + configFileName);
+    end;
+
+    if FileExistsUTF8(fSettings.PathAppRoot + FILEAUTOCOMPLETELIST) = true then
+    begin
+      RenameFile(fSettings.PathAppRoot + FILEAUTOCOMPLETELIST, fSettings.PathConfig + FILEAUTOCOMPLETELIST);
+    end;
+
+    if FileExistsUTF8(fSettings.PathAppRoot + FILECOMPLETIONPROPOSAL) = true then
+    begin
+      RenameFile(fSettings.PathAppRoot + FILECOMPLETIONPROPOSAL, fSettings.PathConfig + FILECOMPLETIONPROPOSAL);
+    end;
+  end;
 
   FSynLsp := TSynLCHighlighter.Create(Self);
-  FSynLsp.LoadSettingsFromFile('SynLCLsp.json');
+  FSynLsp.LoadSettingsFromFile(fSettings.PathConfig + 'SynLCLsp.json');
 
   InicializarListaModulos;
 
   CarregarConfiguracoes;
 
-  SetDefaultLang(fSettings.Idioma);
+  SetDefaultLang(fSettings.getIdiomaI18n);
 
-  Caption := Editor_Name + ' ' + VersionOfApplication;
+  Caption := rsEditorName + ' ' + VersionOfApplication;
 
-  if FileExistsUTF8(Path + FILEAUTOCOMPLETELIST) then
+  if FileExistsUTF8(fSettings.PathConfig + FILEAUTOCOMPLETELIST) then
   begin
-    SynAutoComplete1.AutoCompleteList.LoadFromFile(Path + FILEAUTOCOMPLETELIST);
+    SynAutoComplete1.AutoCompleteList.LoadFromFile(fSettings.PathConfig + FILEAUTOCOMPLETELIST);
   end;
 
   CarregarCompletionProposal;
@@ -2821,11 +2848,11 @@ begin
       if (frEntireScope in ReplaceDialog1.Options) then
       begin
         Beep;
-        ShowMessage(Format(sWarningTextNotFound,[sSearch]));
+        ShowMessage(Format(rsWarningTextNotFound,[sSearch]));
       end
       else
       begin
-        nRet := Application.MessageBox(PChar(sQuestionSearchBeginFile),
+        nRet := Application.MessageBox(PChar(rsQuestionSearchBeginFile),
                                    PChar(Application.Title),
                                    MB_YESNO or MB_DEFBUTTON2 or MB_ICONQUESTION);
         if (nRet = IDYES) then
@@ -2907,11 +2934,11 @@ begin
       if (frEntireScope in dlg.Options) then
       begin
         Beep;
-        ShowMessage(Format(sWarningTextNotFound,[sSearch]));
+        ShowMessage(Format(rsWarningTextNotFound,[sSearch]));
       end
       else
       begin
-        nRet := Application.MessageBox(PChar(sQuestionSearchBeginFile),
+        nRet := Application.MessageBox(PChar(rsQuestionSearchBeginFile),
                                    PChar(Application.Title),
                                    MB_YESNO or MB_DEFBUTTON2 or MB_ICONQUESTION);
         if (nRet = IDYES) then
@@ -3392,7 +3419,7 @@ begin
   begin
     if (fSettings.PathToBackupFiles = '') then
     begin
-      fSettings.PathToBackupFiles := ExtractFilePath(Application.ExeName);
+      fSettings.PathToBackupFiles := IncludeTrailingPathDelimiter(fSettings.PathAppRoot + 'backup');
     end;
 
     if DirectoryExistsUTF8(fSettings.PathToBackupFiles) = false then
@@ -3499,7 +3526,7 @@ var
 begin
   if (EhChamadaInterna = false) then
   begin
-    fSettings.LoadFromFile(configFileName);
+    fSettings.LoadFromFile(fSettings.PathConfig + configFileName);
 
     SetBounds(fSettings.Left, fSettings.Top, fSettings.Width, fSettings.Height);
 
@@ -3544,7 +3571,7 @@ begin
   fSettings.ListOfCommandsWidth := pnlComandos.Width;
   fSettings.ListOfCommandsIndex := ecaLista.ItemIndex;
 
-  fSettings.SaveToFile(configFileName);
+  fSettings.SaveToFile(fSettings.PathConfig + configFileName);
 end;
 
 function TFrmMain.FecharTodasAbas(ExcetoAtiva : Boolean; SaveSession : Boolean) : Boolean;
@@ -3607,7 +3634,7 @@ var
   Lin:Integer;
 begin
   Lst := TStringList.Create;
-  aFileName := ExtractFilePath(Application.ExeName) + FILECOMPLETIONPROPOSAL;
+  aFileName := fSettings.PathConfig + FILECOMPLETIONPROPOSAL;
   if FileExistsUTF8(aFileName) = True then
   begin
     Lst.LoadFromFile(aFileName);
@@ -3758,7 +3785,7 @@ begin
   try
     if (editor.Modified = true) then
     begin
-      nRet := Application.MessageBox(PChar(Format(sQuestionSaveFile,[editor.FileName])),
+      nRet := Application.MessageBox(PChar(Format(rsQuestionSaveFile,[editor.FileName])),
                                  PChar(Application.Title),
                                  MB_YESNOCANCEL or MB_DEFBUTTON2 or MB_ICONQUESTION);
       if (nRet = IDCANCEL) then
@@ -3925,7 +3952,7 @@ begin
   begin
     StatusBar1.Panels[iPnlSize].Text := '';
   end;
-  StatusBar1.Panels[iPnlFileCode].Text := editor.FileCode;
+  StatusBar1.Panels[iPnlFileCode].Text := AnsiUpperCase(editor.FileCode);
 
 end;
 
@@ -4090,10 +4117,7 @@ begin
   if (Ativar = true) then
   begin
     ECTabCtrl1.MakeTabAvailable(tab.Index, Ativar);
-    //ECTabCtrl1.ActivateTab(0); // Necessário para que o foco no synedit seja executado
-    //ECTabCtrl1.ActivateTab(tab.Index);
   end;
-
 end;
 
 procedure TFrmMain.AtualizarPreferencias(editor: TSynEdit);

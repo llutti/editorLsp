@@ -1,19 +1,19 @@
 object FSobre: TFSobre
   Left = 1081
-  Height = 174
+  Height = 199
   Top = 275
-  Width = 257
+  Width = 290
   BorderStyle = bsDialog
   Caption = 'Sobre...'
-  ClientHeight = 174
-  ClientWidth = 257
+  ClientHeight = 199
+  ClientWidth = 290
   Color = clBtnFace
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   OnCreate = FormCreate
   Position = poMainFormCenter
-  LCLVersion = '1.7'
+  LCLVersion = '1.8.0.6'
   object Label1: TLabel
     Left = 79
     Height = 19
@@ -33,7 +33,7 @@ object FSobre: TFSobre
   object Label2: TLabel
     Left = 19
     Height = 13
-    Top = 100
+    Top = 125
     Width = 133
     Alignment = taCenter
     AutoSize = False
@@ -50,7 +50,7 @@ object FSobre: TFSobre
   object Label3: TLabel
     Left = 19
     Height = 13
-    Top = 117
+    Top = 142
     Width = 133
     Alignment = taCenter
     AutoSize = False
@@ -5272,8 +5272,8 @@ object FSobre: TFSobre
   object ButtonPanel1: TButtonPanel
     Left = 6
     Height = 34
-    Top = 134
-    Width = 245
+    Top = 159
+    Width = 278
     OKButton.Name = 'OKButton'
     OKButton.DefaultCaption = True
     HelpButton.Name = 'HelpButton'
@@ -5318,5 +5318,13 @@ object FSobre: TFSobre
     Font.Quality = fqDraft
     ParentColor = False
     ParentFont = False
+  end
+  object ECLink1: TECLink
+    Left = 74
+    Height = 13
+    Top = 99
+    Width = 159
+    Caption = 'https://github.com/llutti/editorLsp'
+    ShowAccelChar = False
   end
 end

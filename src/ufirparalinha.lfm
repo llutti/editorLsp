@@ -5,17 +5,17 @@ object frmIrParaLinha: TfrmIrParaLinha
   Width = 236
   ActiveControl = edLinha
   BorderStyle = bsToolWindow
-  Caption = 'Ir para Linha'
+  Caption = 'Ir para Linha ...'
   ClientHeight = 156
   ClientWidth = 236
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poOwnerFormCenter
   ShowInTaskBar = stNever
-  LCLVersion = '1.7'
+  LCLVersion = '1.8.0.6'
   object edLinha: TEdit
     Left = 119
-    Height = 28
+    Height = 23
     Top = 16
     Width = 80
     NumbersOnly = True
@@ -23,48 +23,48 @@ object frmIrParaLinha: TfrmIrParaLinha
   end
   object Label1: TLabel
     Left = 25
-    Height = 20
+    Height = 15
     Top = 18
-    Width = 89
+    Width = 71
     Caption = 'Ir para Linha :'
     ParentColor = False
   end
   object Label2: TLabel
     Left = 13
-    Height = 20
+    Height = 15
     Top = 52
-    Width = 101
+    Width = 82
     Caption = 'Primeira Linha :'
     ParentColor = False
   end
   object Label3: TLabel
     Left = 24
-    Height = 20
+    Height = 15
     Top = 81
-    Width = 90
+    Width = 73
     Caption = 'Última Linha :'
     ParentColor = False
   end
   object lblPrimeiraLinha: TLabel
     Left = 119
-    Height = 20
+    Height = 15
     Top = 52
-    Width = 101
-    Caption = 'Primeira Linha :'
+    Width = 82
+    AutoSize = False
     ParentColor = False
   end
   object lblUltimaLinha: TLabel
     Left = 119
-    Height = 20
+    Height = 15
     Top = 81
-    Width = 90
-    Caption = 'Última Linha :'
+    Width = 80
+    AutoSize = False
     ParentColor = False
   end
   object ButtonPanel1: TButtonPanel
     Left = 6
-    Height = 38
-    Top = 112
+    Height = 34
+    Top = 116
     Width = 224
     OKButton.Name = 'OKButton'
     OKButton.DefaultCaption = True

@@ -1,0 +1,974 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Luciano Cargnelutti <llutti@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
+"X-Generator: Poedit 2.0.6\n"
+
+#: lcsynedit.rsfileoverride
+msgid "O Arquivo \"%s\" ja existe. Deseja Sobrescrever?"
+msgstr "El archivo \"% s\" ya existe. ¿Desea Sobrescribir?"
+
+#: lcsynedit.rsuntitled
+msgctxt "lcsynedit.rsuntitled"
+msgid "Sem Nome %d"
+msgstr "Sin Nombre% d"
+
+#: tfautocompletar.caption
+msgctxt "tfautocompletar.caption"
+msgid "Auto Completar"
+msgstr "Auto Completo"
+
+#: tfcaracteresespeciais.bbinsert.caption
+msgctxt "tfcaracteresespeciais.bbinsert.caption"
+msgid "Inserir"
+msgstr "Insertar"
+
+#: tfcaracteresespeciais.caption
+msgid "Caracteres Especiais"
+msgstr ""
+
+#: tfcaracteresespeciais.label1.caption
+msgid "Valor ASCII : "
+msgstr ""
+
+#: tfcaracteresespeciais.label2.caption
+msgid "Valor HTML : "
+msgstr ""
+
+#: tfparametrosfuncoes.caption
+msgctxt "tfparametrosfuncoes.caption"
+msgid "Parametros das Funcoes"
+msgstr ""
+
+#: tfrmirparalinha.caption
+msgid "Ir para Linha ..."
+msgstr ""
+
+#: tfrmirparalinha.label1.caption
+msgid "Ir para Linha :"
+msgstr ""
+
+#: tfrmirparalinha.label2.caption
+msgctxt "tfrmirparalinha.label2.caption"
+msgid "Primeira Linha :"
+msgstr ""
+
+#: tfrmirparalinha.label3.caption
+msgctxt "tfrmirparalinha.label3.caption"
+msgid "Última Linha :"
+msgstr ""
+
+#: tfrmmain.acicomandos.caption
+msgid "Comandos"
+msgstr ""
+
+#: tfrmmain.acifuncoes.caption
+msgid "Funcoes"
+msgstr ""
+
+#: tfrmmain.acivariaveis.caption
+msgid "Variaveis"
+msgstr ""
+
+#: tfrmmain.actabrir.caption
+msgctxt "tfrmmain.actabrir.caption"
+msgid "&Abrir ..."
+msgstr ""
+
+#: tfrmmain.actabrir.hint
+msgctxt "tfrmmain.actabrir.hint"
+msgid "Abrir um novo arquivo"
+msgstr ""
+
+#: tfrmmain.actabrirtodosrecentes.caption
+msgctxt "tfrmmain.actabrirtodosrecentes.caption"
+msgid "Abrir Todos"
+msgstr ""
+
+#: tfrmmain.actabrirtodosrecentes.hint
+msgid "Abrir todos os arquivo abertos recentemente"
+msgstr ""
+
+#: tfrmmain.actautocompletar.caption
+msgctxt "tfrmmain.actautocompletar.caption"
+msgid "Auto Completar..."
+msgstr ""
+
+#: tfrmmain.actchecarsintaxe.caption
+msgid "Checar Sintaxe"
+msgstr ""
+
+#: tfrmmain.actchecarsintaxe.hint
+msgid "Verificar a Sintaxe do arquivo de forma simplificada."
+msgstr ""
+
+#: tfrmmain.actcircundarselecao.caption
+msgid "Circundar Selecao"
+msgstr ""
+
+#: tfrmmain.actcomentarselecao.caption
+msgid "Comentar Selecao"
+msgstr ""
+
+#: tfrmmain.actconverterinverter.caption
+msgctxt "tfrmmain.actconverterinverter.caption"
+msgid "Inverter"
+msgstr ""
+
+#: tfrmmain.actconvertermaiusculo.caption
+msgctxt "tfrmmain.actconvertermaiusculo.caption"
+msgid "Maiusculo"
+msgstr ""
+
+#: tfrmmain.actconverterminusculo.caption
+msgctxt "tfrmmain.actconverterminusculo.caption"
+msgid "Minusculo"
+msgstr ""
+
+#: tfrmmain.actconverterprimeiramaius.caption
+msgctxt "tfrmmain.actconverterprimeiramaius.caption"
+msgid "Primeira Maiuscula"
+msgstr ""
+
+#: tfrmmain.actcopiartudo.caption
+msgctxt "tfrmmain.actcopiartudo.caption"
+msgid "Copiar Tudo"
+msgstr ""
+
+#: tfrmmain.actcopiartudo.hint
+msgctxt "tfrmmain.actcopiartudo.hint"
+msgid "Copiar todo o texto do arquivo atual para a area de transferencia"
+msgstr ""
+
+#: tfrmmain.actduplicartexto.caption
+msgid "Duplicar Texto"
+msgstr ""
+
+#: tfrmmain.actduplicartexto.hint
+msgid "Duplicar a Linha atual ou o Texto selecionado"
+msgstr ""
+
+#: tfrmmain.acteditredo.caption
+msgctxt "tfrmmain.acteditredo.caption"
+msgid "Refazer"
+msgstr ""
+
+#: tfrmmain.actfecharatual.caption
+msgctxt "tfrmmain.actfecharatual.caption"
+msgid "Fechar Atual"
+msgstr ""
+
+#: tfrmmain.actfecharatual.hint
+msgctxt "tfrmmain.actfecharatual.hint"
+msgid "Fechar o Arquivo Atual"
+msgstr ""
+
+#: tfrmmain.actfechartodos.caption
+msgctxt "tfrmmain.actfechartodos.caption"
+msgid "Fechar Todos"
+msgstr ""
+
+#: tfrmmain.actfechartodos.hint
+msgctxt "tfrmmain.actfechartodos.hint"
+msgid "Fechar todos os arquivos abertos"
+msgstr ""
+
+#: tfrmmain.actfechartodosexceto.caption
+msgctxt "tfrmmain.actfechartodosexceto.caption"
+msgid "Fechar Todos Exceto Atual"
+msgstr ""
+
+#: tfrmmain.actfechartodosexceto.hint
+msgctxt "tfrmmain.actfechartodosexceto.hint"
+msgid "Fechar todos os arquivos abertos com excecao do atual"
+msgstr ""
+
+#: tfrmmain.actformatartexto.caption
+msgctxt "tfrmmain.actformatartexto.caption"
+msgid "Formatar Texto"
+msgstr ""
+
+#: tfrmmain.actidentaraumentar.caption
+msgctxt "tfrmmain.actidentaraumentar.caption"
+msgid "Aumentar"
+msgstr ""
+
+#: tfrmmain.actidentaraumentar.hint
+msgctxt "tfrmmain.actidentaraumentar.hint"
+msgid "Aumentar a identacao das linhas selecionadas"
+msgstr ""
+
+#: tfrmmain.actidentardiminuir.caption
+msgctxt "tfrmmain.actidentardiminuir.caption"
+msgid "Diminuir"
+msgstr ""
+
+#: tfrmmain.actidentardiminuir.hint
+msgctxt "tfrmmain.actidentardiminuir.hint"
+msgid "Diminuir a identacao das linhas selecionadas"
+msgstr ""
+
+#: tfrmmain.actinsericarespascii.caption
+msgctxt "tfrmmain.actinsericarespascii.caption"
+msgid "Caracter Especial - ASCII"
+msgstr ""
+
+#: tfrmmain.actinsericaresphtml.caption
+msgctxt "tfrmmain.actinsericaresphtml.caption"
+msgid "Caracter Especial - HTML"
+msgstr ""
+
+#: tfrmmain.actinserirdata.caption
+msgctxt "tfrmmain.actinserirdata.caption"
+msgid "Data"
+msgstr "Fecha"
+
+#: tfrmmain.actinserirdatacompleta.caption
+msgctxt "tfrmmain.actinserirdatacompleta.caption"
+msgid "Data Completa"
+msgstr "Fecha Completa"
+
+#: tfrmmain.actinserirdatahora.caption
+msgctxt "tfrmmain.actinserirdatahora.caption"
+msgid "Data/Hora"
+msgstr "Fecha / Hora"
+
+#: tfrmmain.actinserirdirarqatual.caption
+msgctxt "tfrmmain.actinserirdirarqatual.caption"
+msgid "Diretorio Arquivo Atual"
+msgstr "Directorio Archivos Actual"
+
+#: tfrmmain.actinserirhora.caption
+msgctxt "tfrmmain.actinserirhora.caption"
+msgid "Hora"
+msgstr "Hora"
+
+#: tfrmmain.actinserirnmarqatual.caption
+msgctxt "tfrmmain.actinserirnmarqatual.caption"
+msgid "Nome Arquivo Atual"
+msgstr "Nombre Archivo Actual"
+
+#: tfrmmain.actirpara0.caption
+msgctxt "tfrmmain.actirpara0.caption"
+msgid "Marcador 0"
+msgstr ""
+
+#: tfrmmain.actirpara1.caption
+msgctxt "tfrmmain.actirpara1.caption"
+msgid "Marcador 1"
+msgstr ""
+
+#: tfrmmain.actirpara2.caption
+msgctxt "tfrmmain.actirpara2.caption"
+msgid "Marcador 2"
+msgstr ""
+
+#: tfrmmain.actirpara3.caption
+msgctxt "tfrmmain.actirpara3.caption"
+msgid "Marcador 3"
+msgstr ""
+
+#: tfrmmain.actirpara4.caption
+msgctxt "tfrmmain.actirpara4.caption"
+msgid "Marcador 4"
+msgstr ""
+
+#: tfrmmain.actirpara5.caption
+msgctxt "tfrmmain.actirpara5.caption"
+msgid "Marcador 5"
+msgstr ""
+
+#: tfrmmain.actirpara6.caption
+msgctxt "tfrmmain.actirpara6.caption"
+msgid "Marcador 6"
+msgstr ""
+
+#: tfrmmain.actirpara7.caption
+msgctxt "tfrmmain.actirpara7.caption"
+msgid "Marcador 7"
+msgstr ""
+
+#: tfrmmain.actirpara8.caption
+msgctxt "tfrmmain.actirpara8.caption"
+msgid "Marcador 8"
+msgstr ""
+
+#: tfrmmain.actirpara9.caption
+msgctxt "tfrmmain.actirpara9.caption"
+msgid "Marcador 9"
+msgstr ""
+
+#: tfrmmain.actirparalinha.caption
+msgctxt "tfrmmain.actirparalinha.caption"
+msgid "Ir Para Linha..."
+msgstr ""
+
+#: tfrmmain.actirparalinha.hint
+msgctxt "tfrmmain.actirparalinha.hint"
+msgid "Mover o cursor para uma linha determinada."
+msgstr ""
+
+#: tfrmmain.actlimparrecentes.caption
+msgctxt "tfrmmain.actlimparrecentes.caption"
+msgid "Limpar Recentes"
+msgstr ""
+
+#: tfrmmain.actlimparrecentes.hint
+msgid "Limpar a listas do arquivos abertos recentemente"
+msgstr ""
+
+#: tfrmmain.actlimpartodos.caption
+msgctxt "tfrmmain.actlimpartodos.caption"
+msgid "Limpar Todos"
+msgstr "Limpiar Todos"
+
+#: tfrmmain.actlocalizar.caption
+msgctxt "tfrmmain.actlocalizar.caption"
+msgid "Localizar..."
+msgstr "Buscar..."
+
+#: tfrmmain.actlocalizarproximo.caption
+msgctxt "tfrmmain.actlocalizarproximo.caption"
+msgid "Localizar Proximo"
+msgstr "Buscar Siguiente"
+
+#: tfrmmain.actmarcar0.caption
+msgctxt "tfrmmain.actmarcar0.caption"
+msgid "Marcador 0"
+msgstr ""
+
+#: tfrmmain.actmarcar1.caption
+msgctxt "tfrmmain.actmarcar1.caption"
+msgid "Marcador 1"
+msgstr ""
+
+#: tfrmmain.actmarcar2.caption
+msgctxt "tfrmmain.actmarcar2.caption"
+msgid "Marcador 2"
+msgstr ""
+
+#: tfrmmain.actmarcar3.caption
+msgctxt "tfrmmain.actmarcar3.caption"
+msgid "Marcador 3"
+msgstr ""
+
+#: tfrmmain.actmarcar4.caption
+msgctxt "tfrmmain.actmarcar4.caption"
+msgid "Marcador 4"
+msgstr ""
+
+#: tfrmmain.actmarcar5.caption
+msgctxt "tfrmmain.actmarcar5.caption"
+msgid "Marcador 5"
+msgstr ""
+
+#: tfrmmain.actmarcar6.caption
+msgctxt "tfrmmain.actmarcar6.caption"
+msgid "Marcador 6"
+msgstr ""
+
+#: tfrmmain.actmarcar7.caption
+msgctxt "tfrmmain.actmarcar7.caption"
+msgid "Marcador 7"
+msgstr ""
+
+#: tfrmmain.actmarcar8.caption
+msgctxt "tfrmmain.actmarcar8.caption"
+msgid "Marcador 8"
+msgstr ""
+
+#: tfrmmain.actmarcar9.caption
+msgctxt "tfrmmain.actmarcar9.caption"
+msgid "Marcador 8"
+msgstr ""
+
+#: tfrmmain.actmodocoluna.caption
+msgctxt "tfrmmain.actmodocoluna.caption"
+msgid "Coluna"
+msgstr ""
+
+#: tfrmmain.actmodolinha.caption
+msgctxt "tfrmmain.actmodolinha.caption"
+msgid "Linha"
+msgstr ""
+
+#: tfrmmain.actmodonormal.caption
+msgctxt "tfrmmain.actmodonormal.caption"
+msgid "Normal"
+msgstr ""
+
+#: tfrmmain.actmostrarcaractespeciais.caption
+msgctxt "tfrmmain.actmostrarcaractespeciais.caption"
+msgid "Mostrar Caracteres Especiais"
+msgstr ""
+
+#: tfrmmain.actmostrarcomandos.caption
+msgid "Mostrar Comandos"
+msgstr ""
+
+#: tfrmmain.actmostrarexplorer.caption
+msgid "Mostar Explorer"
+msgstr ""
+
+#: tfrmmain.actmostrarexplorer.hint
+msgid "Mostrar lista de Arquivos"
+msgstr ""
+
+#: tfrmmain.actmoverlinhasparabaixo.caption
+msgid "Para Baixo"
+msgstr ""
+
+#: tfrmmain.actmoverlinhasparacima.caption
+msgid "Para Cima"
+msgstr ""
+
+#: tfrmmain.actnovo.caption
+msgctxt "tfrmmain.actnovo.caption"
+msgid "Novo"
+msgstr "Nuevo"
+
+#: tfrmmain.actnovo.hint
+msgctxt "tfrmmain.actnovo.hint"
+msgid "Criar um novo arquivo"
+msgstr ""
+
+#: tfrmmain.actparametrosfuncoes.caption
+msgid "Parametros Funcoes..."
+msgstr ""
+
+#: tfrmmain.actpreferencias.caption
+msgid "Preferencias..."
+msgstr ""
+
+#: tfrmmain.actproximatab.caption
+msgctxt "tfrmmain.actproximatab.caption"
+msgid "Proximo Arquivo"
+msgstr "Siguiente Archivo"
+
+#: tfrmmain.actsair.caption
+msgctxt "tfrmmain.actsair.caption"
+msgid "S&air"
+msgstr "S&alir"
+
+#: tfrmmain.actsair.hint
+msgctxt "tfrmmain.actsair.hint"
+msgid "Fechar o editor"
+msgstr "Cerrar el Editor"
+
+#: tfrmmain.actsalvar.caption
+msgctxt "tfrmmain.actsalvar.caption"
+msgid "Salvar"
+msgstr "Guardar"
+
+#: tfrmmain.actsalvar.hint
+msgctxt "tfrmmain.actsalvar.hint"
+msgid "Salvar as modificacoes do arquivo atual"
+msgstr ""
+
+#: tfrmmain.actsalvarcomo.caption
+msgctxt "tfrmmain.actsalvarcomo.caption"
+msgid "Salvar Como..."
+msgstr "Guardar Como..."
+
+#: tfrmmain.actsalvarcomo.hint
+msgctxt "tfrmmain.actsalvarcomo.hint"
+msgid "Salvar o arquivo atual com outro nome"
+msgstr ""
+
+#: tfrmmain.actsalvartodos.caption
+msgctxt "tfrmmain.actsalvartodos.caption"
+msgid "Salvar Todos"
+msgstr "Guardar Todos"
+
+#: tfrmmain.actsalvartodos.hint
+msgctxt "tfrmmain.actsalvartodos.hint"
+msgid "Salvar todos os arquivos aberto"
+msgstr ""
+
+#: tfrmmain.actshowmsg.caption
+msgid "Mostrar Mensagens"
+msgstr ""
+
+#: tfrmmain.actshowmsg.hint
+msgid "Mostrar/Ocultar Mensagem da Compilacao"
+msgstr ""
+
+#: tfrmmain.actsomenteleitura.caption
+msgctxt "tfrmmain.actsomenteleitura.caption"
+msgid "Somente Leitura"
+msgstr ""
+
+#: tfrmmain.actsomenteleitura.hint
+msgid "Marcar o arquivo atual como \"Somente Leitura\" no editor"
+msgstr ""
+
+#: tfrmmain.actsubstituir.caption
+msgctxt "tfrmmain.actsubstituir.caption"
+msgid "Substituir..."
+msgstr "Reemplazar..."
+
+#: tfrmmain.acttabanterior.caption
+msgctxt "tfrmmain.acttabanterior.caption"
+msgid "Arquivo Anterior"
+msgstr "Archivo Anterior"
+
+#: tfrmmain.caption
+msgid "BCCS :: Editor"
+msgstr "BCCS :: Editor"
+
+#: tfrmmain.editcopy1.caption
+msgctxt "tfrmmain.editcopy1.caption"
+msgid "&Copiar"
+msgstr ""
+
+#: tfrmmain.editcopy1.hint
+msgctxt "tfrmmain.editcopy1.hint"
+msgid "Copiar"
+msgstr ""
+
+#: tfrmmain.editcut1.caption
+msgctxt "tfrmmain.editcut1.caption"
+msgid "Recor&tar"
+msgstr "Cor&tar"
+
+#: tfrmmain.editcut1.hint
+msgctxt "tfrmmain.editcut1.hint"
+msgid "Recortar"
+msgstr "Cortar"
+
+#: tfrmmain.editdelete1.caption
+msgctxt "tfrmmain.editdelete1.caption"
+msgid "&Excluir"
+msgstr "&Borrar"
+
+#: tfrmmain.editdelete1.hint
+msgctxt "tfrmmain.editdelete1.hint"
+msgid "Excluir"
+msgstr "Borrar"
+
+#: tfrmmain.editpaste1.caption
+msgctxt "tfrmmain.editpaste1.caption"
+msgid "Co&lar"
+msgstr ""
+
+#: tfrmmain.editpaste1.hint
+msgctxt "tfrmmain.editpaste1.hint"
+msgid "Colar"
+msgstr ""
+
+#: tfrmmain.editselectall1.caption
+msgctxt "tfrmmain.editselectall1.caption"
+msgid "Selecionar &Tudo"
+msgstr ""
+
+#: tfrmmain.editselectall1.hint
+msgctxt "tfrmmain.editselectall1.hint"
+msgid "Selecionar Tudo"
+msgstr "Seleccionar Todo"
+
+#: tfrmmain.editundo1.caption
+msgctxt "tfrmmain.editundo1.caption"
+msgid "Des&fazer"
+msgstr ""
+
+#: tfrmmain.editundo1.hint
+msgctxt "tfrmmain.editundo1.hint"
+msgid "Desfazer"
+msgstr ""
+
+#: tfrmmain.lbdescricao.caption
+msgid "lbDescricao"
+msgstr ""
+
+#: tfrmmain.lbsintaxe.caption
+msgid "lbSintaxe"
+msgstr ""
+
+#: tfrmmain.menuitem1.caption
+msgctxt "tfrmmain.menuitem1.caption"
+msgid "Arquivo"
+msgstr "Archivo"
+
+#: tfrmmain.menuitem122.caption
+msgctxt "tfrmmain.menuitem122.caption"
+msgid "Aumentar Identação"
+msgstr ""
+
+#: tfrmmain.menuitem123.caption
+msgctxt "tfrmmain.menuitem123.caption"
+msgid "Diminuir Identação"
+msgstr ""
+
+#: tfrmmain.menuitem129.caption
+msgid "Mover Linhas"
+msgstr ""
+
+#: tfrmmain.menuitem136.caption
+msgid "Sintaxe"
+msgstr ""
+
+#: tfrmmain.menuitem2.caption
+msgctxt "tfrmmain.menuitem2.caption"
+msgid "Editar"
+msgstr ""
+
+#: tfrmmain.menuitem29.caption
+msgctxt "tfrmmain.menuitem29.caption"
+msgid "Sobre..."
+msgstr ""
+
+#: tfrmmain.menuitem3.caption
+msgctxt "tfrmmain.menuitem3.caption"
+msgid "Configuracoes"
+msgstr ""
+
+#: tfrmmain.menuitem34.caption
+msgctxt "tfrmmain.menuitem34.caption"
+msgid "Formatar"
+msgstr ""
+
+#: tfrmmain.menuitem35.caption
+msgctxt "tfrmmain.menuitem35.caption"
+msgid "Converter"
+msgstr ""
+
+#: tfrmmain.menuitem36.caption
+msgctxt "tfrmmain.menuitem36.caption"
+msgid "Identacao"
+msgstr ""
+
+#: tfrmmain.menuitem38.caption
+msgctxt "tfrmmain.menuitem38.caption"
+msgid "Formatar Texto"
+msgstr ""
+
+#: tfrmmain.menuitem39.caption
+msgctxt "tfrmmain.menuitem39.caption"
+msgid "Modo de Selecao"
+msgstr ""
+
+#: tfrmmain.menuitem4.caption
+msgctxt "tfrmmain.menuitem4.caption"
+msgid "Ajuda"
+msgstr "Ayuda"
+
+#: tfrmmain.menuitem40.caption
+msgctxt "tfrmmain.menuitem40.caption"
+msgid "Localizar"
+msgstr "Buscar"
+
+#: tfrmmain.menuitem63.caption
+msgctxt "tfrmmain.menuitem63.caption"
+msgid "Inserir"
+msgstr "Insertar"
+
+#: tfrmmain.menuitem7.caption
+msgctxt "tfrmmain.menuitem7.caption"
+msgid "Abrir Recente"
+msgstr ""
+
+#: tfrmmain.menuitem78.caption
+msgctxt "tfrmmain.menuitem78.caption"
+msgid "Marcadores"
+msgstr ""
+
+#: tfrmmain.menuitem79.caption
+msgctxt "tfrmmain.menuitem79.caption"
+msgid "Marcar"
+msgstr ""
+
+#: tfrmmain.menuitem90.caption
+msgctxt "tfrmmain.menuitem90.caption"
+msgid "Ir Para"
+msgstr ""
+
+#: tfrmmain.panel1.caption
+msgid "Panel1"
+msgstr ""
+
+#: tfrmmain.panel4.caption
+msgid "Panel4"
+msgstr ""
+
+#: tfrmmain.speedbutton1.hint
+msgid "Recarregar Lista Arquivos"
+msgstr ""
+
+#: tfrmmain.statusbar1.panels[0].text
+msgctxt "tfrmmain.statusbar1.panels[0].text"
+msgid "Lin 99999 Col 99999"
+msgstr ""
+
+#: tfrmmain.statusbar1.panels[10].text
+msgctxt "tfrmmain.statusbar1.panels[10].text"
+msgid "Texto de Ajuda : Hint"
+msgstr ""
+
+#: tfrmmain.statusbar1.panels[1].text
+msgctxt "tfrmmain.statusbar1.panels[1].text"
+msgid "Inserir"
+msgstr "Insertar"
+
+#: tfrmmain.statusbar1.panels[2].text
+msgctxt "tfrmmain.statusbar1.panels[2].text"
+msgid "Não Alterado"
+msgstr ""
+
+#: tfrmmain.statusbar1.panels[3].text
+msgctxt "tfrmmain.statusbar1.panels[3].text"
+msgid "NUM"
+msgstr ""
+
+#: tfrmmain.statusbar1.panels[4].text
+msgctxt "tfrmmain.statusbar1.panels[4].text"
+msgid "CAPS"
+msgstr ""
+
+#: tfrmmain.statusbar1.panels[5].text
+msgctxt "tfrmmain.statusbar1.panels[5].text"
+msgid "SCRL"
+msgstr ""
+
+#: tfrmmain.statusbar1.panels[6].text
+msgctxt "tfrmmain.statusbar1.panels[6].text"
+msgid "236,89 kb"
+msgstr ""
+
+#: tfrmmain.toolbar1.caption
+msgctxt "tfrmmain.toolbar1.caption"
+msgid "ToolBar1"
+msgstr ""
+
+#: tfrmmain.toolbutton10.caption
+msgctxt "tfrmmain.toolbutton10.caption"
+msgid "ToolButton10"
+msgstr ""
+
+#: tfrmmain.toolbutton12.caption
+msgctxt "tfrmmain.toolbutton12.caption"
+msgid "ToolButton12"
+msgstr ""
+
+#: tfrmmain.toolbutton16.caption
+msgctxt "tfrmmain.toolbutton16.caption"
+msgid "ToolButton16"
+msgstr ""
+
+#: tfrmmain.toolbutton19.caption
+msgctxt "tfrmmain.toolbutton19.caption"
+msgid "ToolButton19"
+msgstr ""
+
+#: tfrmmain.toolbutton22.caption
+msgctxt "tfrmmain.toolbutton22.caption"
+msgid "ToolButton22"
+msgstr ""
+
+#: tfrmmain.toolbutton24.caption
+msgctxt "tfrmmain.toolbutton24.caption"
+msgid "ToolButton24"
+msgstr ""
+
+#: tfrmmain.toolbutton26.caption
+msgctxt "tfrmmain.toolbutton26.caption"
+msgid "ToolButton26"
+msgstr ""
+
+#: tfrmmain.toolbutton28.caption
+msgid "ToolButton28"
+msgstr ""
+
+#: tfrmmain.toolbutton3.caption
+msgctxt "tfrmmain.toolbutton3.caption"
+msgid "ToolButton3"
+msgstr ""
+
+#: tfrmmain.toolbutton31.caption
+msgid "ToolButton31"
+msgstr ""
+
+#: tfrmmain.toolbutton32.caption
+msgid "ToolButton32"
+msgstr ""
+
+#: tfrmmain.toolbutton8.caption
+msgctxt "tfrmmain.toolbutton8.caption"
+msgid "ToolButton8"
+msgstr ""
+
+#: tfsettingseditor.bbaddarqexc.caption
+msgid "Adicionar Arquivo"
+msgstr ""
+
+#: tfsettingseditor.bbremoverarqexc.caption
+msgid "Remover Arquivo"
+msgstr ""
+
+#: tfsettingseditor.buttonpanel1.okbutton.caption
+msgid "&Salvar"
+msgstr ""
+
+#: tfsettingseditor.caption
+msgid "Preferencias do Editor LSP"
+msgstr ""
+
+#: tfsettingseditor.chkbold.caption
+msgid "Negrito"
+msgstr ""
+
+#: tfsettingseditor.chkdefault.caption
+msgid "Utilizar Valores Padrao"
+msgstr ""
+
+#: tfsettingseditor.chkdefaultnivel.caption
+msgid "Utilizar Valor Padrao"
+msgstr ""
+
+#: tfsettingseditor.chkitalic.caption
+msgid "Italico"
+msgstr ""
+
+#: tfsettingseditor.chkunder.caption
+msgid "Sublinhado"
+msgstr ""
+
+#: tfsettingseditor.label1.caption
+msgid "Modulo Vetorh"
+msgstr ""
+
+#: tfsettingseditor.label2.caption
+msgid "Pasta Base"
+msgstr ""
+
+#: tfsettingseditor.label3.caption
+msgid "Arquivos Excluidos"
+msgstr ""
+
+#: tfsettingseditor.label4.caption
+msgid "Elementos"
+msgstr ""
+
+#: tfsettingseditor.label5.caption
+msgid "Cor do Texto:"
+msgstr ""
+
+#: tfsettingseditor.label6.caption
+msgid "Cor do Fundo:"
+msgstr ""
+
+#: tfsettingseditor.label7.caption
+msgid "Cor da Linha"
+msgstr ""
+
+#: tfsettingseditor.label8.caption
+msgid "Niveis de Identacao"
+msgstr ""
+
+#: tfsettingseditor.tabsheet1.caption
+msgid "Modulos Vetorh"
+msgstr ""
+
+#: tfsettingseditor.tabsheet2.caption
+msgid "Editor"
+msgstr "Editor"
+
+#: tfsettingseditor.tabsheet3.caption
+msgid "Elementos Sintaxe"
+msgstr "Elementos Sintaxis"
+
+#: tfsettingseditor.tabsheet4.caption
+msgid "Linhas Identacao"
+msgstr "Líneas Identación"
+
+#: tfsobre.caption
+msgctxt "tfsobre.caption"
+msgid "Sobre..."
+msgstr "Acerca de ..."
+
+#: tfsobre.data_lb.caption
+msgid "Data :"
+msgstr "Fecha :"
+
+#: tfsobre.eclink1.caption
+msgid "https://github.com/llutti/editorLsp"
+msgstr "https://github.com/llutti/editorLsp"
+
+#: tfsobre.label1.caption
+msgid "BCCS Editor LSP"
+msgstr "BCCS Editor LSP"
+
+#: tfsobre.label2.caption
+msgid "Desenvolvido por"
+msgstr "Desarrollado por"
+
+#: tfsobre.label3.caption
+msgid "Luciano Cargnelutti"
+msgstr "Luciano Cargnelutti"
+
+#: tfsobre.plataformalb.caption
+msgid "Plataforma :"
+msgstr "Plataforma:"
+
+#: tfsobre.versao_lb.caption
+msgid "Versão :"
+msgstr "Versión :"
+
+#: ueditorlspsettings.rsdescnivelidentacao
+msgid "Nivel %s"
+msgstr "Nivel %s"
+
+#: ueditorlspsettings.rsunknown
+msgid "Desconhecido"
+msgstr "Desconocido"
+
+#: ufmain.rschanged
+msgid "Alterado"
+msgstr "Cambiado"
+
+#: ufmain.rseditorname
+msgid "BCCS ::. Editor para Linguagem Senior de Programacao .::"
+msgstr "BCCS ::. Editor para Lenguaje Senior de Programación .::"
+
+#: ufmain.rsinsert
+msgctxt "ufmain.rsinsert"
+msgid "Inserir"
+msgstr "Insertar"
+
+#: ufmain.rsquestionconfirmexitapp
+msgid "Voce quer Finalizar este Programa ?"
+msgstr "¿Quieres Finalizar este Programa?"
+
+#: ufmain.rsquestionsavefile
+msgid "Salvar alteracoes em \"%s\" ?"
+msgstr "¿Guardar cambios en \"% s\"?"
+
+#: ufmain.rsquestionsearchbeginfile
+msgid "Deseja continuar do Inicio do Arquivo?"
+msgstr "¿Desea continuar el Inicio del Archivo?"
+
+#: ufmain.rsreplace
+msgid "Substituir"
+msgstr "Reemplazar"
+
+#: ufmain.rsunchanged
+msgid "Nao Alterado"
+msgstr "No Cambiado"
+
+#: ufmain.rswarningtextnotfound
+msgid "O texto \"%s\" nao pode ser localizado!"
+msgstr "No se puede encontrar el texto \"% s\"!"
+
+#: ufsettingseditor.rsfilenotfound
+msgid "O Arquivo \"%s\" não foi encontrado."
+msgstr "No se encontró el archivo \"% s\"."
+
+#: ufsettingseditor.rsfilenotset
+msgid "O Arquivo nao foi informado."
+msgstr "El Archivo no fue informado."

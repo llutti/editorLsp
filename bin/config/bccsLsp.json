@@ -1,0 +1,771 @@
+{
+  "AskBeforeExit" : false,
+  "CreateEmptyFile" : true,
+  "Editor" : {
+    "ActiveLine" : {
+      "BackAlpha" : 0,
+      "BackPriority" : 0,
+      "Background" : 16775142,
+      "BoldPriority" : 0,
+      "ForeAlpha" : 0,
+      "ForePriority" : 0,
+      "Foreground" : 536870911,
+      "FrameAlpha" : 0,
+      "FrameColor" : 16762707,
+      "FrameEdges" : "sfeAround",
+      "FramePriority" : 0,
+      "FrameStyle" : "slsDashed",
+      "ItalicPriority" : 0,
+      "StrikeOutPriority" : 0,
+      "Style" : [
+      ],
+      "StyleMask" : [
+      ],
+      "UnderlinePriority" : 0
+    },
+    "BracketHighlightStyle" : "sbhsBoth",
+    "BracketMatchColor" : {
+      "BackAlpha" : 0,
+      "BackPriority" : 0,
+      "Background" : 255,
+      "BoldPriority" : 0,
+      "ForeAlpha" : 0,
+      "ForePriority" : 0,
+      "Foreground" : 16777215,
+      "FrameAlpha" : 0,
+      "FrameColor" : 536870911,
+      "FrameEdges" : "sfeAround",
+      "FramePriority" : 0,
+      "FrameStyle" : "slsSolid",
+      "ItalicPriority" : 0,
+      "StrikeOutPriority" : 0,
+      "Style" : [
+      ],
+      "StyleMask" : [
+      ],
+      "UnderlinePriority" : 0
+    },
+    "ElementosSintaxe" : [
+      {
+        "Atributos" : {
+          "Background" : 536870911,
+          "Foreground" : 32896,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeNone",
+          "FrameStyle" : "slsSolid",
+          "Style" : [
+            "fsBold"
+          ],
+          "StyleMask" : [
+          ]
+        },
+        "DefaultValues" : true,
+        "Description" : "Atributos",
+        "Kind" : "tLCAttributeName"
+      },
+      {
+        "Atributos" : {
+          "Background" : 536870911,
+          "Foreground" : 8421376,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeNone",
+          "FrameStyle" : "slsSolid",
+          "Style" : [
+            "fsBold"
+          ],
+          "StyleMask" : [
+          ]
+        },
+        "DefaultValues" : true,
+        "Description" : "Comentários",
+        "Kind" : "tLCComment"
+      },
+      {
+        "Atributos" : {
+          "Background" : 536870911,
+          "Foreground" : 8388736,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeNone",
+          "FrameStyle" : "slsSolid",
+          "Style" : [
+            "fsBold"
+          ],
+          "StyleMask" : [
+          ]
+        },
+        "DefaultValues" : true,
+        "Description" : "Tipo Dados",
+        "Kind" : "tLCDataType"
+      },
+      {
+        "Atributos" : {
+          "Background" : 536870911,
+          "Foreground" : 8388608,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeNone",
+          "FrameStyle" : "slsSolid",
+          "Style" : [
+          ],
+          "StyleMask" : [
+          ]
+        },
+        "DefaultValues" : true,
+        "Description" : "Identificador",
+        "Kind" : "tLCIdentifier"
+      },
+      {
+        "Atributos" : {
+          "Background" : 536870911,
+          "Foreground" : 0,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeNone",
+          "FrameStyle" : "slsSolid",
+          "Style" : [
+            "fsBold"
+          ],
+          "StyleMask" : [
+          ]
+        },
+        "DefaultValues" : true,
+        "Description" : "Comandos",
+        "Kind" : "tLCKey"
+      },
+      {
+        "Atributos" : {
+          "Background" : 536870911,
+          "Foreground" : 32768,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeNone",
+          "FrameStyle" : "slsSolid",
+          "Style" : [
+          ],
+          "StyleMask" : [
+          ]
+        },
+        "DefaultValues" : true,
+        "Description" : "Números",
+        "Kind" : "tLCNumber"
+      },
+      {
+        "Atributos" : {
+          "Background" : 536870911,
+          "Foreground" : 8388608,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeNone",
+          "FrameStyle" : "slsSolid",
+          "Style" : [
+            "fsBold"
+          ],
+          "StyleMask" : [
+          ]
+        },
+        "DefaultValues" : true,
+        "Description" : "Funções Programador",
+        "Kind" : "tLCReservedWord"
+      },
+      {
+        "Atributos" : {
+          "Background" : 536870911,
+          "Foreground" : 536870911,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeNone",
+          "FrameStyle" : "slsSolid",
+          "Style" : [
+          ],
+          "StyleMask" : [
+          ]
+        },
+        "DefaultValues" : true,
+        "Description" : "Espaço",
+        "Kind" : "tLCSpace"
+      },
+      {
+        "Atributos" : {
+          "Background" : 536870911,
+          "Foreground" : 16711680,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeNone",
+          "FrameStyle" : "slsSolid",
+          "Style" : [
+          ],
+          "StyleMask" : [
+          ]
+        },
+        "DefaultValues" : true,
+        "Description" : "Texto",
+        "Kind" : "tLCString"
+      },
+      {
+        "Atributos" : {
+          "Background" : 536870911,
+          "Foreground" : 128,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeNone",
+          "FrameStyle" : "slsSolid",
+          "Style" : [
+          ],
+          "StyleMask" : [
+          ]
+        },
+        "DefaultValues" : true,
+        "Description" : "Símbolos",
+        "Kind" : "tLCSymbol"
+      },
+      {
+        "Atributos" : {
+          "Background" : 536870911,
+          "Foreground" : 255,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeNone",
+          "FrameStyle" : "slsSolid",
+          "Style" : [
+          ],
+          "StyleMask" : [
+          ]
+        },
+        "DefaultValues" : true,
+        "Description" : "Variáveis",
+        "Kind" : "tLCVariable"
+      },
+      {
+        "Atributos" : {
+          "Background" : 536870911,
+          "Foreground" : 16744448,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeNone",
+          "FrameStyle" : "slsSolid",
+          "Style" : [
+            "fsBold"
+          ],
+          "StyleMask" : [
+          ]
+        },
+        "DefaultValues" : true,
+        "Description" : "Funções Customizadas",
+        "Kind" : "tLCCustomFunction"
+      }
+    ],
+    "FontName" : "Courier New",
+    "FontQuality" : "fqCleartype",
+    "FontSize" : 10,
+    "Gutter" : {
+      "AutoSize" : true,
+      "ChangesPart" : {
+        "AutoSize" : false,
+        "MarkupInfo" : {
+          "BackAlpha" : 0,
+          "BackPriority" : 0,
+          "Background" : -2147483635,
+          "BoldPriority" : 0,
+          "ForeAlpha" : 0,
+          "ForePriority" : 0,
+          "Foreground" : -2147483634,
+          "FrameAlpha" : 0,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeAround",
+          "FramePriority" : 0,
+          "FrameStyle" : "slsSolid",
+          "ItalicPriority" : 0,
+          "StrikeOutPriority" : 0,
+          "Style" : [
+          ],
+          "StyleMask" : [
+          ],
+          "UnderlinePriority" : 0
+        },
+        "ModifiedColor" : 59900,
+        "SavedColor" : 65280,
+        "Visible" : true,
+        "Width" : 2
+      },
+      "CodeFoldPart" : {
+        "AutoSize" : true,
+        "MarkupInfo" : {
+          "BackAlpha" : 0,
+          "BackPriority" : 0,
+          "Background" : -2147483633,
+          "BoldPriority" : 0,
+          "ForeAlpha" : 0,
+          "ForePriority" : 0,
+          "Foreground" : 8421504,
+          "FrameAlpha" : 0,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeAround",
+          "FramePriority" : 0,
+          "FrameStyle" : "slsSolid",
+          "ItalicPriority" : 0,
+          "StrikeOutPriority" : 0,
+          "Style" : [
+          ],
+          "StyleMask" : [
+          ],
+          "UnderlinePriority" : 0
+        },
+        "Visible" : true,
+        "Width" : 30
+      },
+      "Color" : 12615680,
+      "LineNumberPart" : {
+        "AutoSize" : true,
+        "DigitCount" : 3,
+        "LeadingZeros" : true,
+        "MarkupInfo" : {
+          "BackAlpha" : 0,
+          "BackPriority" : 0,
+          "Background" : 12615680,
+          "BoldPriority" : 0,
+          "ForeAlpha" : 0,
+          "ForePriority" : 0,
+          "Foreground" : 12632256,
+          "FrameAlpha" : 0,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeAround",
+          "FramePriority" : 0,
+          "FrameStyle" : "slsSolid",
+          "ItalicPriority" : 0,
+          "StrikeOutPriority" : 0,
+          "Style" : [
+          ],
+          "StyleMask" : [
+          ],
+          "UnderlinePriority" : 0
+        },
+        "ShowOnlyLineNumbersMultiplesOf" : 1,
+        "Visible" : true,
+        "Width" : 30,
+        "ZeroStart" : false
+      },
+      "SeparatorPart" : {
+        "AutoSize" : false,
+        "MarkupInfo" : {
+          "BackAlpha" : 0,
+          "BackPriority" : 0,
+          "Background" : 12615680,
+          "BoldPriority" : 0,
+          "ForeAlpha" : 0,
+          "ForePriority" : 0,
+          "Foreground" : 8421504,
+          "FrameAlpha" : 0,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeAround",
+          "FramePriority" : 0,
+          "FrameStyle" : "slsSolid",
+          "ItalicPriority" : 0,
+          "StrikeOutPriority" : 0,
+          "Style" : [
+          ],
+          "StyleMask" : [
+          ],
+          "UnderlinePriority" : 0
+        },
+        "Visible" : true,
+        "Width" : 2
+      },
+      "Visible" : true,
+      "Width" : 63
+    },
+    "LineErrorColor" : {
+      "BackAlpha" : 0,
+      "BackPriority" : 0,
+      "Background" : 15066597,
+      "BoldPriority" : 0,
+      "ForeAlpha" : 0,
+      "ForePriority" : 0,
+      "Foreground" : 536870911,
+      "FrameAlpha" : 0,
+      "FrameColor" : 255,
+      "FrameEdges" : "sfeAround",
+      "FramePriority" : 0,
+      "FrameStyle" : "slsDashed",
+      "ItalicPriority" : 0,
+      "StrikeOutPriority" : 0,
+      "Style" : [
+      ],
+      "StyleMask" : [
+      ],
+      "UnderlinePriority" : 0
+    },
+    "MarkupHighlightAllCaret" : {
+      "FullWord" : true,
+      "FullWordMaxLen" : 0,
+      "MarkupInfo" : {
+        "BackAlpha" : 0,
+        "BackPriority" : 0,
+        "Background" : 15658734,
+        "BoldPriority" : 0,
+        "ForeAlpha" : 0,
+        "ForePriority" : 0,
+        "Foreground" : 536870911,
+        "FrameAlpha" : 0,
+        "FrameColor" : 536870911,
+        "FrameEdges" : "sfeAround",
+        "FramePriority" : 0,
+        "FrameStyle" : "slsSolid",
+        "ItalicPriority" : 0,
+        "StrikeOutPriority" : 0,
+        "Style" : [
+        ],
+        "StyleMask" : [
+        ],
+        "UnderlinePriority" : 0
+      },
+      "Trim" : true,
+      "WaitTime" : 2000
+    },
+    "MaxUndo" : 1024,
+    "NiveisIdentacao" : [
+      {
+        "Atributos" : {
+          "BackAlpha" : 0,
+          "BackPriority" : 0,
+          "Background" : -2147483635,
+          "BoldPriority" : 0,
+          "ForeAlpha" : 0,
+          "ForePriority" : 0,
+          "Foreground" : 255,
+          "FrameAlpha" : 0,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeAround",
+          "FramePriority" : 0,
+          "FrameStyle" : "slsSolid",
+          "ItalicPriority" : 0,
+          "StrikeOutPriority" : 0,
+          "Style" : [
+          ],
+          "StyleMask" : [
+          ],
+          "UnderlinePriority" : 0
+        },
+        "DefaultValues" : true,
+        "Nivel" : 0
+      },
+      {
+        "Atributos" : {
+          "BackAlpha" : 0,
+          "BackPriority" : 0,
+          "Background" : -2147483635,
+          "BoldPriority" : 0,
+          "ForeAlpha" : 0,
+          "ForePriority" : 0,
+          "Foreground" : 39159,
+          "FrameAlpha" : 0,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeAround",
+          "FramePriority" : 0,
+          "FrameStyle" : "slsSolid",
+          "ItalicPriority" : 0,
+          "StrikeOutPriority" : 0,
+          "Style" : [
+          ],
+          "StyleMask" : [
+          ],
+          "UnderlinePriority" : 0
+        },
+        "DefaultValues" : true,
+        "Nivel" : 1
+      },
+      {
+        "Atributos" : {
+          "BackAlpha" : 0,
+          "BackPriority" : 0,
+          "Background" : -2147483635,
+          "BoldPriority" : 0,
+          "ForeAlpha" : 0,
+          "ForePriority" : 0,
+          "Foreground" : 2280512,
+          "FrameAlpha" : 0,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeAround",
+          "FramePriority" : 0,
+          "FrameStyle" : "slsSolid",
+          "ItalicPriority" : 0,
+          "StrikeOutPriority" : 0,
+          "Style" : [
+          ],
+          "StyleMask" : [
+          ],
+          "UnderlinePriority" : 0
+        },
+        "DefaultValues" : true,
+        "Nivel" : 2
+      },
+      {
+        "Atributos" : {
+          "BackAlpha" : 0,
+          "BackPriority" : 0,
+          "Background" : -2147483635,
+          "BoldPriority" : 0,
+          "ForeAlpha" : 0,
+          "ForePriority" : 0,
+          "Foreground" : 13421568,
+          "FrameAlpha" : 0,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeAround",
+          "FramePriority" : 0,
+          "FrameStyle" : "slsSolid",
+          "ItalicPriority" : 0,
+          "StrikeOutPriority" : 0,
+          "Style" : [
+          ],
+          "StyleMask" : [
+          ],
+          "UnderlinePriority" : 0
+        },
+        "DefaultValues" : true,
+        "Nivel" : 3
+      },
+      {
+        "Atributos" : {
+          "BackAlpha" : 0,
+          "BackPriority" : 0,
+          "Background" : -2147483635,
+          "BoldPriority" : 0,
+          "ForeAlpha" : 0,
+          "ForePriority" : 0,
+          "Foreground" : 16738346,
+          "FrameAlpha" : 0,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeAround",
+          "FramePriority" : 0,
+          "FrameStyle" : "slsSolid",
+          "ItalicPriority" : 0,
+          "StrikeOutPriority" : 0,
+          "Style" : [
+          ],
+          "StyleMask" : [
+          ],
+          "UnderlinePriority" : 0
+        },
+        "DefaultValues" : true,
+        "Nivel" : 4
+      },
+      {
+        "Atributos" : {
+          "BackAlpha" : 0,
+          "BackPriority" : 0,
+          "Background" : -2147483635,
+          "BoldPriority" : 0,
+          "ForeAlpha" : 0,
+          "ForePriority" : 0,
+          "Foreground" : 13566148,
+          "FrameAlpha" : 0,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeAround",
+          "FramePriority" : 0,
+          "FrameStyle" : "slsSolid",
+          "ItalicPriority" : 0,
+          "StrikeOutPriority" : 0,
+          "Style" : [
+          ],
+          "StyleMask" : [
+          ],
+          "UnderlinePriority" : 0
+        },
+        "DefaultValues" : true,
+        "Nivel" : 5
+      },
+      {
+        "Atributos" : {
+          "BackAlpha" : 0,
+          "BackPriority" : 0,
+          "Background" : -2147483635,
+          "BoldPriority" : 0,
+          "ForeAlpha" : 0,
+          "ForePriority" : 0,
+          "Foreground" : 12615680,
+          "FrameAlpha" : 0,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeAround",
+          "FramePriority" : 0,
+          "FrameStyle" : "slsSolid",
+          "ItalicPriority" : 0,
+          "StrikeOutPriority" : 0,
+          "Style" : [
+          ],
+          "StyleMask" : [
+          ],
+          "UnderlinePriority" : 0
+        },
+        "DefaultValues" : true,
+        "Nivel" : 6
+      },
+      {
+        "Atributos" : {
+          "BackAlpha" : 0,
+          "BackPriority" : 0,
+          "Background" : -2147483635,
+          "BoldPriority" : 0,
+          "ForeAlpha" : 0,
+          "ForePriority" : 0,
+          "Foreground" : 4227200,
+          "FrameAlpha" : 0,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeAround",
+          "FramePriority" : 0,
+          "FrameStyle" : "slsSolid",
+          "ItalicPriority" : 0,
+          "StrikeOutPriority" : 0,
+          "Style" : [
+          ],
+          "StyleMask" : [
+          ],
+          "UnderlinePriority" : 0
+        },
+        "DefaultValues" : true,
+        "Nivel" : 7
+      },
+      {
+        "Atributos" : {
+          "BackAlpha" : 0,
+          "BackPriority" : 0,
+          "Background" : -2147483635,
+          "BoldPriority" : 0,
+          "ForeAlpha" : 0,
+          "ForePriority" : 0,
+          "Foreground" : 4194432,
+          "FrameAlpha" : 0,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeAround",
+          "FramePriority" : 0,
+          "FrameStyle" : "slsSolid",
+          "ItalicPriority" : 0,
+          "StrikeOutPriority" : 0,
+          "Style" : [
+          ],
+          "StyleMask" : [
+          ],
+          "UnderlinePriority" : 0
+        },
+        "DefaultValues" : true,
+        "Nivel" : 8
+      },
+      {
+        "Atributos" : {
+          "BackAlpha" : 0,
+          "BackPriority" : 0,
+          "Background" : -2147483635,
+          "BoldPriority" : 0,
+          "ForeAlpha" : 0,
+          "ForePriority" : 0,
+          "Foreground" : 8421440,
+          "FrameAlpha" : 0,
+          "FrameColor" : 536870911,
+          "FrameEdges" : "sfeAround",
+          "FramePriority" : 0,
+          "FrameStyle" : "slsSolid",
+          "ItalicPriority" : 0,
+          "StrikeOutPriority" : 0,
+          "Style" : [
+          ],
+          "StyleMask" : [
+          ],
+          "UnderlinePriority" : 0
+        },
+        "DefaultValues" : true,
+        "Nivel" : 9
+      }
+    ],
+    "Options" : [
+      "eoAutoIndent",
+      "eoBracketHighlight",
+      "eoEnhanceHomeKey",
+      "eoGroupUndo",
+      "eoPersistentCaret",
+      "eoScrollPastEol",
+      "eoSmartTabs",
+      "eoTabIndent",
+      "eoTabsToSpaces",
+      "eoTrimTrailingSpaces",
+      "eoAltSetsColumnMode",
+      "eoDragDropEditing"
+    ],
+    "Options2" : [
+      "eoFoldedCopyPaste",
+      "eoOverwriteBlock"
+    ],
+    "RightEdge" : 80,
+    "RightEdgeColor" : 12632256,
+    "TabWidth" : 2,
+    "WantTabs" : true
+  },
+  "EnabledAutoSaveFile" : true,
+  "ExplorerWidth" : 170,
+  "Filters" : [
+    "*.txt",
+    "*.sql",
+    "*.log",
+    "*.bat"
+  ],
+  "Height" : 575,
+  "Idioma" : "ieLCPtBr",
+  "IntervalAutoSaveFile" : 5,
+  "Left" : 404,
+  "ListOfCommandsIndex" : 1,
+  "ListOfCommandsWidth" : 252,
+  "MakeBackupFiles" : true,
+  "MaxMruFilesStored" : 16,
+  "Maximized" : true,
+  "ModulosVetorh" : [
+    {
+      "ArquivosExcluidos" : [
+      ],
+      "PastaBase" : "",
+      "Sigla" : "smvBS"
+    },
+    {
+      "ArquivosExcluidos" : [
+      ],
+      "PastaBase" : "",
+      "Sigla" : "smvCS"
+    },
+    {
+      "ArquivosExcluidos" : [
+      ],
+      "PastaBase" : "",
+      "Sigla" : "smvFP"
+    },
+    {
+      "ArquivosExcluidos" : [
+      ],
+      "PastaBase" : "",
+      "Sigla" : "smvHR"
+    },
+    {
+      "ArquivosExcluidos" : [
+      ],
+      "PastaBase" : "",
+      "Sigla" : "smvRS"
+    },
+    {
+      "ArquivosExcluidos" : [
+      ],
+      "PastaBase" : "",
+      "Sigla" : "smvSM"
+    },
+    {
+      "ArquivosExcluidos" : [
+      ],
+      "PastaBase" : "",
+      "Sigla" : "smvSP"
+    },
+    {
+      "ArquivosExcluidos" : [
+      ],
+      "PastaBase" : "",
+      "Sigla" : "smvTR"
+    }
+  ],
+  "MruFiles" : [
+  ],
+  "NumberOfBackupFilesToPreserve" : 999,
+  "PathBase" : "c:\\",
+  "PathToBackupFiles" : "D:\\Projetos\\EditorLSP\\",
+  "SaveBookmarksWhenCloseFile" : true,
+  "SaveSession" : true,
+  "SessionFiles" : [
+  ],
+  "ShowExplorer" : false,
+  "ShowListOfCommands" : false,
+  "Top" : 190,
+  "Width" : 1034
+}

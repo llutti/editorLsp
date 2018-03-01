@@ -9,6 +9,10 @@ uses
   ComCtrls, ExtCtrls, Buttons, StdCtrls, EditBtn, PropEdits, ObjectInspector, ECTabCtrl, uEditorLspSettings,
   SynLCHighlighter, LCLType;
 
+resourcestring
+  rsFileNotSet = 'O Arquivo nao foi informado.';
+  rsFileNotFound = 'O Arquivo "%s" não foi encontrado.';
+
 type
 
   { TFSettingsEditor }
@@ -145,8 +149,6 @@ end;
 
 procedure TFSettingsEditor.FormCreate(Sender: TObject);
 var
-  x:TColor;
-  i:integer;
   item:TCollectionItem;
   Modulo: TModuloVetorh;
   Elemento: TLCElementoSintaxe;
@@ -187,7 +189,6 @@ begin
   for item in FrmMain.EditorSettings.Editor.NiveisIdentacao do
   begin
     Nivel := TLCNiveisIdentacaoConfig(item);
-    x := Nivel.Atributos.Foreground;
     lbNiveisIdentacao.AddItem(Nivel.Description , Nivel);
   end;
   // Selecionar o primeiro item da lista
@@ -226,12 +227,7 @@ begin
       TLCElementoSintaxe(lbElementosSintaxe.Items.Objects[lbElementosSintaxe.Tag]).Atributos.Style :=
         TLCElementoSintaxe(lbElementosSintaxe.Items.Objects[lbElementosSintaxe.Tag]).Atributos.Style + [fsUnderline];
     end;
-
   end;
-
-  //property FrameColor: TColor read FFrameColor write FFrameColor;
-  //property FrameStyle: TSynLineStyle  read FFrameStyle write FFrameStyle;
-  //property FrameEdges: TSynFrameEdges read FFrameEdges write FFrameEdges;
 
   lbElementosSintaxe.Tag := -1;
   colBackCol.Color := clNone;
@@ -260,13 +256,13 @@ procedure TFSettingsEditor.bbAddArqExcClick(Sender : TObject);
 begin
   if (fnArqExc.FileName = '') then
   begin
-    showmessage('O Arquivo não foi informado.');
+    showmessage(rsFileNotSet);
     exit;
   end;
 
   if (FileExists(fnArqExc.FileName) = false) then
   begin
-    showmessage(format('O Arquivo "%s" não existe.',[fnArqExc.FileName]));
+    showmessage(format(rsFileNotFound,[fnArqExc.FileName]));
     exit;
   end;
 
@@ -303,11 +299,11 @@ begin
       FreeAndNil(oPadrao);
     end;
   end;
-  colBackCol.Enabled := not chkDefault.checked;
-  colTextCol.Enabled := not chkDefault.checked;
-  chkBold.Enabled := not chkDefault.checked;
-  chkItalic.Enabled := not chkDefault.checked;
-  chkUnder.Enabled := not chkDefault.checked;
+  //colBackCol.Enabled := not chkDefault.checked;
+  //colTextCol.Enabled := not chkDefault.checked;
+  //chkBold.Enabled := not chkDefault.checked;
+  //chkItalic.Enabled := not chkDefault.checked;
+  //chkUnder.Enabled := not chkDefault.checked;
 end;
 
 procedure TFSettingsEditor.chkDefaultNivelChange(Sender: TObject);

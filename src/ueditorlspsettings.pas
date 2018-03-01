@@ -13,7 +13,15 @@ const
   MAX_NIVEL_IDENTACAO = 10;
 
 resourcestring
-  DescNivelIdentacao = 'Nível %s';
+  rsUnknown = 'Desconhecido';
+  rsDescNivelIdentacao = 'Nivel %s';
+
+type
+  TLCIdiomaEditor = (ieLCPtBr, ieLCEs);
+
+Const
+  LCIdiomasEditor = [Low(TLCIdiomaEditor)..High(TLCIdiomaEditor)];
+  LCI18nIdiomasEditor: array[TLCIdiomaEditor] of string = ('pt_br', 'es');
 
 type
 
@@ -304,7 +312,7 @@ type
       fEditor: TEditorSettings;
       FEnabledAutoSaveFile : Boolean;
       fHeight: Integer;
-      fIdioma: String;
+      fIdioma: TLCIdiomaEditor;
       FIntervalAutoSaveFile : Integer;
       fLeft: Integer;
       fListOfCommandsIndex : Integer;
@@ -316,6 +324,8 @@ type
       fMruFiles:TCollection;
       fAskBeforeExit: boolean;
       FNumberOfBackupFilesToPreserve : Integer;
+      fPathAppRoot : String;
+      fPathConfig : String;
       FPathToBackupFiles : String;
       fSaveBookmarksWhenCloseFile : boolean;
       FSaveSession : Boolean;
@@ -343,9 +353,15 @@ type
       procedure AddMruFiles(fileName:String; SynEd: TSynEdit);
       function getMruFile(index:Integer):TMRUFile;
       function getMruFile(aFileName:String):TMRUFile;
+
+      function getIdiomaI18n:String;
+
+      // Internal Configurations
+      property PathAppRoot:String read fPathAppRoot write fPathAppRoot;
+      property PathConfig:String read fPathConfig write fPathConfig;
     published
       // App propertys
-      property Idioma:String read fIdioma write fIdioma;
+      property Idioma:TLCIdiomaEditor read fIdioma write fIdioma;
       property AskBeforeExit:boolean read fAskBeforeExit write fAskBeforeExit;
       property CreateEmptyFile: boolean read fCreateEmptyFile write fCreateEmptyFile;
 
@@ -403,7 +419,7 @@ uses
 
 function TLCNiveisIdentacaoConfig.GetDescription: String;
 begin
-  Result := Format(DescNivelIdentacao, [FormatFloat('#,#00', Nivel+1)]);
+  Result := Format(rsDescNivelIdentacao, [FormatFloat('#,#00', Nivel+1)]);
 end;
 
 function TLCNiveisIdentacaoConfig.GetNivel : Integer;
@@ -441,7 +457,7 @@ begin
   inherited Create(ACollection);
   fDefaultValues:= True;
   fKind := tLCUnknown;
-  fDescription := 'Unknown';
+  fDescription := rsUnknown;
   fAtributos := TSynLCAttributeSettings.Create;
 end;
 
@@ -774,7 +790,7 @@ begin
   fModulosVetorh := TCollection.Create(TModuloVetorh);
   fEditor := TEditorSettings.Create;
 
-  fIdioma := 'pt_BR';
+  fIdioma := ieLCPtBr;
   fMaxMruFilesStored := 16;
   fHeight := 400;
   fLeft := 0;
@@ -782,6 +798,9 @@ begin
   fAskBeforeExit:= false;
   fTop:= 0;
   fWidth:= 400;
+
+  fPathAppRoot := IncludeTrailingPathDelimiter(ExtractFilePath(Application.ExeName));
+  fPathConfig := IncludeTrailingPathDelimiter(fPathAppRoot + 'config');
 
   fFiltros := TStringList.Create;
   fPathBase := 'c:\';
@@ -964,6 +983,11 @@ begin
       end;
     end;
   end;
+
+  if not (fIdioma in LCIdiomasEditor) then
+  begin
+    fIdioma := ieLCPtBr;
+  end;
 end;
 
 procedure TEditorLspSettings.UpdateSettingsByEditor(SynEd: TSynEdit);
@@ -1101,6 +1125,15 @@ begin
       result := TMRUFile(Self.MruFiles.Items[i]);
       exit;
     end;
+  end;
+end;
+
+function TEditorLspSettings.getIdiomaI18n : String;
+begin
+  Result := LCI18nIdiomasEditor[ieLCPtBr];
+  if  (fIdioma in (LCIdiomasEditor - [ieLCPtBr])) then
+  begin
+    Result := LCI18nIdiomasEditor[fIdioma];
   end;
 end;
 

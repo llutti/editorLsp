@@ -1,7 +1,7 @@
 object FrmMain: TFrmMain
-  Left = 404
+  Left = 398
   Height = 575
-  Top = 190
+  Top = 173
   Width = 1034
   AllowDropFiles = True
   Caption = 'BCCS :: Editor'
@@ -459,7 +459,7 @@ object FrmMain: TFrmMain
       GlyphCollapse = egdArrsB_DD
       GlyphExpand = egdArrsB_UU
       ItemHeight = 40
-      ItemIndex = 1
+      ItemIndex = 2
       SelectedFontOptions.FontSize = 0
       SelectedFontOptions.FontStyles = [fsBold]
       Spacing = 10
@@ -472,14 +472,14 @@ object FrmMain: TFrmMain
         AnchorSideBottom.Control = ecaLista
         AnchorSideBottom.Side = asrBottom
         Left = 0
-        Height = 305
-        Top = 80
+        Height = 0
+        Top = 0
         Width = 250
-        Caption = 'Funções'
+        Caption = 'Funcoes'
         Order = 1
         object lbxFuncoes: TListBox
           Left = 0
-          Height = 305
+          Height = 0
           Top = 0
           Width = 250
           Align = alClient
@@ -534,14 +534,14 @@ object FrmMain: TFrmMain
         AnchorSideBottom.Control = ecaLista
         AnchorSideBottom.Side = asrBottom
         Left = 0
-        Height = 0
-        Top = 0
+        Height = 305
+        Top = 120
         Width = 250
-        Caption = 'Variáveis'
+        Caption = 'Variaveis'
         Order = 2
         object lbxVariaveis: TListBox
           Left = 0
-          Height = 0
+          Height = 305
           Top = 0
           Width = 250
           Align = alClient
@@ -678,7 +678,6 @@ object FrmMain: TFrmMain
         Height = 23
         Top = 3
         Width = 138
-        Directory = 'DirectoryEdit1'
         OnAcceptDirectory = DirectoryEdit1AcceptDirectory
         DialogOptions = [ofPathMustExist, ofEnableSizing, ofDontAddToRecent, ofViewDetail]
         ShowHidden = False
@@ -691,7 +690,6 @@ object FrmMain: TFrmMain
         MaxLength = 0
         TabOrder = 0
         OnEditingDone = DirectoryEdit1EditingDone
-        Text = 'DirectoryEdit1'
       end
     end
   end
@@ -4127,7 +4125,7 @@ object FrmMain: TFrmMain
     object actSalvar: TAction
       Category = 'Arquivo'
       Caption = 'Salvar'
-      Hint = 'Salvar as modificações do arquivo atual'
+      Hint = 'Salvar as modificacoes do arquivo atual'
       ImageIndex = 52
       OnExecute = actSalvarExecute
       ShortCut = 16467
@@ -4149,7 +4147,7 @@ object FrmMain: TFrmMain
     object actSalvarTodos: TAction
       Category = 'Arquivo'
       Caption = 'Salvar Todos'
-      Hint = 'Gravar todos os arquivos aberto'
+      Hint = 'Salvar todos os arquivos aberto'
       ImageIndex = 38
       OnExecute = actSalvarTodosExecute
       ShortCut = 24659
@@ -4163,20 +4161,20 @@ object FrmMain: TFrmMain
     object actFecharTodosExceto: TAction
       Category = 'Arquivo'
       Caption = 'Fechar Todos Exceto Atual'
-      Hint = 'Fechar todos os arquivos abertos com exceção do atual'
+      Hint = 'Fechar todos os arquivos abertos com excecao do atual'
       OnExecute = actFecharTodosExcetoExecute
     end
     object actCopiarTudo: TAction
       Category = 'Edit'
       Caption = 'Copiar Tudo'
-      Hint = 'Copiar todo o texto do arquivo atual para a área de transferência'
+      Hint = 'Copiar todo o texto do arquivo atual para a area de transferencia'
       ImageIndex = 67
       OnExecute = actCopiarTudoExecute
       ShortCut = 24641
     end
     object actProximaTab: TAction
       Category = 'Tabs'
-      Caption = 'Próximo Arquivo'
+      Caption = 'Proximo Arquivo'
       OnExecute = actProximaTabExecute
       ShortCut = 16393
     end
@@ -4188,8 +4186,8 @@ object FrmMain: TFrmMain
     end
     object actIdentarDiminuir: TAction
       Category = 'Formatar'
-      Caption = 'Diminutir'
-      Hint = 'Diminuir a identação das linhas selecionadas'
+      Caption = 'Diminuir'
+      Hint = 'Diminuir a identacao das linhas selecionadas'
       ImageIndex = 71
       OnExecute = actIdentarDiminuirExecute
       ShortCut = 24661
@@ -4197,7 +4195,7 @@ object FrmMain: TFrmMain
     object actIdentarAumentar: TAction
       Category = 'Formatar'
       Caption = 'Aumentar'
-      Hint = 'Aumentar a identação das linhas selecionadas'
+      Hint = 'Aumentar a identacao das linhas selecionadas'
       ImageIndex = 70
       OnExecute = actIdentarAumentarExecute
       ShortCut = 24649
@@ -4391,14 +4389,14 @@ object FrmMain: TFrmMain
     end
     object actConverterMaiusculo: TAction
       Category = 'Formatar'
-      Caption = 'Maiúsculo'
+      Caption = 'Maiusculo'
       ImageIndex = 84
       OnExecute = actConverterMaiusculoExecute
       ShortCut = 16469
     end
     object actConverterMinusculo: TAction
       Category = 'Formatar'
-      Caption = 'Minúsculo'
+      Caption = 'Minusculo'
       ImageIndex = 83
       OnExecute = actConverterMinusculoExecute
       ShortCut = 16460
@@ -4411,7 +4409,7 @@ object FrmMain: TFrmMain
     end
     object actConverterPrimeiraMaius: TAction
       Category = 'Formatar'
-      Caption = 'Primeira Maiúscula'
+      Caption = 'Primeira Maiuscula'
       ImageIndex = 85
       OnExecute = actConverterPrimeiraMaiusExecute
     end
@@ -4428,7 +4426,7 @@ object FrmMain: TFrmMain
     end
     object actLocalizarProximo: TAction
       Category = 'Localizar'
-      Caption = 'Localizar Próximo'
+      Caption = 'Localizar Proximo'
       ImageIndex = 57
       OnExecute = actLocalizarProximoExecute
       ShortCut = 114
@@ -4443,7 +4441,7 @@ object FrmMain: TFrmMain
     object actIrParaLinha: TAction
       Category = 'Localizar'
       Caption = 'Ir Para Linha...'
-      Hint = 'Mover o cursor para uma linha determinada'
+      Hint = 'Mover o cursor para uma linha determinada.'
       ImageIndex = 69
       OnExecute = actIrParaLinhaExecute
       ShortCut = 16455
@@ -4457,26 +4455,26 @@ object FrmMain: TFrmMain
     end
     object actComentarSelecao: TAction
       Category = 'Formatar'
-      Caption = 'Comentar Seleção'
+      Caption = 'Comentar Selecao'
       OnExecute = actComentarSelecaoExecute
       ShortCut = 113
     end
     object actLimparRecentes: TAction
       Category = 'Arquivo'
       Caption = 'Limpar Recentes'
-      HelpKeyword = 'Limpar a listas do arquivos abertos recentemente'
+      Hint = 'Limpar a listas do arquivos abertos recentemente'
       OnExecute = actLimparRecentesExecute
     end
     object actAbrirTodosRecentes: TAction
       Category = 'Arquivo'
       Caption = 'Abrir Todos'
-      HelpKeyword = 'Abrir todos os arquivo abertos recentemente'
+      Hint = 'Abrir todos os arquivo abertos recentemente'
       OnExecute = actAbrirTodosRecentesExecute
     end
     object actSomenteLeitura: TAction
       Category = 'Arquivo'
       Caption = 'Somente Leitura'
-      HelpKeyword = 'Marcar o arquivo atual como "Somente Leitura" no editor'
+      Hint = 'Marcar o arquivo atual como "Somente Leitura" no editor'
       ImageIndex = 61
       OnExecute = actSomenteLeituraExecute
       OnUpdate = actSomenteLeituraUpdate
@@ -4495,7 +4493,7 @@ object FrmMain: TFrmMain
     end
     object actParametrosFuncoes: TAction
       Category = 'Configurar'
-      Caption = 'Parametros Funções...'
+      Caption = 'Parametros Funcoes...'
       OnExecute = actParametrosFuncoesExecute
     end
     object actPreferencias: TAction
@@ -4513,7 +4511,7 @@ object FrmMain: TFrmMain
     end
     object actCircundarSelecao: TAction
       Category = 'Edit'
-      Caption = 'Circundar Seleção'
+      Caption = 'Circundar Selecao'
       OnExecute = actCircundarSelecaoExecute
       ShortCut = 24654
     end
@@ -4548,7 +4546,7 @@ object FrmMain: TFrmMain
     end
     object actInserirDirArqAtual: TAction
       Category = 'Edit'
-      Caption = 'Diretório Arquivo Atual'
+      Caption = 'Diretorio Arquivo Atual'
       OnExecute = actInserirDirArqAtualExecute
     end
     object actInseriCarEspASCII: TAction
@@ -4584,7 +4582,7 @@ object FrmMain: TFrmMain
     object actChecarSintaxe: TAction
       Category = 'Sintaxe'
       Caption = 'Checar Sintaxe'
-      Hint = 'Verificar a Sintaxe do arquivo de forma básica.'
+      Hint = 'Verificar a Sintaxe do arquivo de forma simplificada.'
       ImageIndex = 88
       OnExecute = actChecarSintaxeExecute
       ShortCut = 8312
@@ -4592,7 +4590,7 @@ object FrmMain: TFrmMain
     object actShowMsg: TAction
       Category = 'Sintaxe'
       Caption = 'Mostrar Mensagens'
-      Hint = 'Mostrar/Ocultar Mensagem da Compilação'
+      Hint = 'Mostrar/Ocultar Mensagem da Compilacao'
       ImageIndex = 87
       OnExecute = actShowMsgExecute
       ShortCut = 32888
@@ -5037,7 +5035,7 @@ object FrmMain: TFrmMain
         end
       end
       object MenuItem36: TMenuItem
-        Caption = 'Identação'
+        Caption = 'Identacao'
         object MenuItem45: TMenuItem
           Action = actIdentarAumentar
         end
@@ -5046,7 +5044,7 @@ object FrmMain: TFrmMain
         end
       end
       object MenuItem39: TMenuItem
-        Caption = 'Modo de Seleção'
+        Caption = 'Modo de Selecao'
         object MenuItem49: TMenuItem
           Action = actModoColuna
           GroupIndex = 1
@@ -5085,7 +5083,7 @@ object FrmMain: TFrmMain
       end
     end
     object MenuItem3: TMenuItem
-      Caption = 'Configurações'
+      Caption = 'Configuracoes'
       object MenuItem125: TMenuItem
         Action = actMostrarCaractEspeciais
       end

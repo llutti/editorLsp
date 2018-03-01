@@ -4,16 +4,16 @@ object FParametrosFuncoes: TFParametrosFuncoes
   Top = 152
   Width = 1059
   BorderStyle = bsSizeToolWin
-  Caption = 'Parâmetro das Funções'
+  Caption = 'Parametros das Funcoes'
   ClientHeight = 683
   ClientWidth = 1059
   OnCreate = FormCreate
   Position = poMainFormCenter
-  LCLVersion = '1.7'
+  LCLVersion = '1.8.0.6'
   object ButtonPanel1: TButtonPanel
     Left = 6
-    Height = 38
-    Top = 639
+    Height = 34
+    Top = 643
     Width = 1047
     OKButton.Name = 'OKButton'
     OKButton.DefaultCaption = True

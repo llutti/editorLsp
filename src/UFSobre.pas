@@ -6,7 +6,7 @@ interface
 
 uses
   LCLIntf, LCLType, Classes, Graphics, Controls, Forms,
-  StdCtrls, ExtCtrls, ButtonPanel;
+  StdCtrls, ExtCtrls, ButtonPanel, ECLink;
 
 type
 
@@ -14,6 +14,7 @@ type
 
   TFSobre = class(TForm)
     ButtonPanel1 : TButtonPanel;
+    ECLink1 : TECLink;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;

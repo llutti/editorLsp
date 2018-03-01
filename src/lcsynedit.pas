@@ -11,8 +11,8 @@ uses
   , SynEditKeyCmds, SynEditMouseCmds;
 
 resourcestring
-  sUntitled = 'Sem Nome %d';
-  sFileOverride = 'O Arquivo "%s" já existe. Deseja Sobrescrever?';
+  rsUntitled = 'Sem Nome %d';
+  rsFileOverride = 'O Arquivo "%s" ja existe. Deseja Sobrescrever?';
 
 type
   TLCSiglaModuloVetorh = (smvNone, smvBS, smvCS, smvFP, smvHR, smvRS, smvSM, smvSP, smvTR);
@@ -565,7 +565,7 @@ begin
   fIsNew := true;
   fSaved := false;
   Text := ' ';
-  fFileName := Format(sUntitled, [fUniqueIndex]);
+  fFileName := Format(rsUntitled, [fUniqueIndex]);
   if (aFileName <> '') then
   begin
     LoadFromFile(aFileName);
@@ -768,7 +768,7 @@ begin
   begin
     if FileExistsUTF8(fFileName) = True then
     begin
-      if Application.MessageBox(PChar(Format(sFileOverride,[fFileName])),
+      if Application.MessageBox(PChar(Format(rsFileOverride,[fFileName])),
                                 PChar(Application.Title),MB_YESNO + MB_ICONQUESTION + MB_DEFBUTTON2) = ID_NO then
       begin
         Exit;
