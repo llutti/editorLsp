@@ -41,8 +41,8 @@ type
 
   TLCArrayTokenDef = array of TLCTokenDef;
 
-  TPtrLCArrayTokenDef = ^TLCArrayTokenDef;     //puntero a tabla
-  TPtrLCTokenDef = ^TLCTokenDef;     //puntero a tabla
+  TPtrLCArrayTokenDef = ^TLCArrayTokenDef;
+  TPtrLCTokenDef = ^TLCTokenDef;
 
 
 const
@@ -695,7 +695,9 @@ end;
 
 function TSynLCHighlighter.StartLCCodeFoldBlock(ABlockType: TLCCodeFoldBlockType): TSynCustomCodeFoldBlock;
 begin
+  {$PUSH} {$Warnings OFF} {$Hints OFF}
   Result:=StartCodeFoldBlock(Pointer(PtrInt(ABlockType)) );
+  {$POP}
 end;
 
 procedure TSynLCHighlighter.EndLCCodeFoldBlock;
@@ -709,7 +711,11 @@ begin
   result := cfbtLCUnknown;
   p := TopCodeFoldBlockType(0);
   if p <> nil then
-    result := TLCCodeFoldBlockType(PtrUInt(p));
+  begin
+    {$PUSH} {$Warnings OFF} {$Hints OFF}
+      result := TLCCodeFoldBlockType(PtrUInt(p));
+    {$POP}
+  end;
 end;
 
 procedure TSynLCHighlighter.DoInitNode(var Node: TSynFoldNodeInfo;
@@ -723,11 +729,13 @@ begin
     Node.FoldAction := Node.FoldAction - [sfaFoldHide];
   end;
 
-  if  (ABlockType <> nil)
-  and (TLCCodeFoldBlockType(PtrUInt(ABlockType)) = cfbtLCInicioFim) then
-  begin
-    Include( Node.FoldAction, sfaOutlineKeepLevel);
-  end;  
+  {$PUSH} {$Warnings OFF} {$Hints OFF}
+    if  (ABlockType <> nil)
+    and (TLCCodeFoldBlockType(PtrUInt(ABlockType)) = cfbtLCInicioFim) then
+    begin
+      Include( Node.FoldAction, sfaOutlineKeepLevel);
+    end;
+  {$POP}
 end;
 
 procedure TSynLCHighlighter.GetArrayToToken(aToken : String; out aArray : TPtrLCArrayTokenDef);
@@ -1234,7 +1242,9 @@ end;
 procedure TSynLCHighlighter.SetRange(Value: Pointer);
 begin
   inherited SetRange(Value);
-  fRanges := TLCRangeStates(Integer(PtrUInt(CodeFoldRange.RangeType)));
+  {$PUSH} {$Warnings OFF} {$Hints OFF}
+    fRanges := TLCRangeStates(Integer(PtrUInt(CodeFoldRange.RangeType)));
+  {$POP}
 end;
 
 procedure TSynLCHighlighter.ResetRange;
@@ -1245,7 +1255,9 @@ end;
 
 function TSynLCHighlighter.GetRange: Pointer;
 begin
-  CodeFoldRange.RangeType:=Pointer(PtrUInt(Integer(fRanges)));
+  {$PUSH} {$Warnings OFF} {$Hints OFF}
+    CodeFoldRange.RangeType:=Pointer(PtrUInt(Integer(fRanges)));
+  {$POP}
   Result := inherited GetRange;
 end;
 
