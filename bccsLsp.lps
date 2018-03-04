@@ -50,7 +50,7 @@
         </CompilerOptions>
       </Item1>
     </BuildModes>
-    <Units Count="134">
+    <Units Count="141">
       <Unit0>
         <Filename Value="bccsLsp.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -64,10 +64,10 @@
         <ComponentName Value="FrmMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="2096"/>
-        <CursorPos X="42" Y="2117"/>
-        <UsageCount Value="54"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="446"/>
+        <CursorPos X="33" Y="466"/>
+        <UsageCount Value="60"/>
         <Bookmarks Count="2">
           <Item0 Y="2079" ID="1"/>
           <Item1 X="33" Y="1132" ID="2"/>
@@ -79,20 +79,18 @@
         <Filename Value="src\lcsynedit.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="LCSynEdit"/>
-        <EditorIndex Value="4"/>
-        <CursorPos Y="18"/>
-        <UsageCount Value="54"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="600"/>
+        <CursorPos X="47" Y="612"/>
+        <UsageCount Value="60"/>
       </Unit2>
       <Unit3>
         <Filename Value="src\ueditorlspsettings.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uEditorLspSettings"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="1116"/>
-        <CursorPos X="31" Y="1137"/>
-        <UsageCount Value="54"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="49"/>
+        <UsageCount Value="60"/>
       </Unit3>
       <Unit4>
         <Filename Value="src\ufirparalinha.pas"/>
@@ -102,7 +100,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="10" Y="11"/>
-        <UsageCount Value="54"/>
+        <UsageCount Value="60"/>
       </Unit4>
       <Unit5>
         <Filename Value="src\UFSobre.pas"/>
@@ -112,7 +110,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uFSobre"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="54"/>
+        <UsageCount Value="60"/>
       </Unit5>
       <Unit6>
         <Filename Value="src\UFCaracteresEspeciais.pas"/>
@@ -122,7 +120,9 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ufcaracteresespeciais"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="54"/>
+        <TopLine Value="246"/>
+        <CursorPos X="17" Y="258"/>
+        <UsageCount Value="60"/>
       </Unit6>
       <Unit7>
         <Filename Value="src\ufparametrosfuncoes.pas"/>
@@ -132,7 +132,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ufParametrosFuncoes"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="54"/>
+        <UsageCount Value="60"/>
       </Unit7>
       <Unit8>
         <Filename Value="src\ufautocompletar.pas"/>
@@ -144,7 +144,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="23"/>
         <CursorPos X="49" Y="58"/>
-        <UsageCount Value="54"/>
+        <UsageCount Value="60"/>
       </Unit8>
       <Unit9>
         <Filename Value="src\ufsettingseditor.pas"/>
@@ -153,28 +153,26 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uFSettingsEditor"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="179"/>
-        <CursorPos Y="192"/>
-        <UsageCount Value="54"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="50"/>
+        <CursorPos X="67" Y="61"/>
+        <UsageCount Value="60"/>
       </Unit9>
       <Unit10>
         <Filename Value="src\synlccompletion.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="SynLCCompletion"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="14" Y="10"/>
-        <UsageCount Value="54"/>
+        <CursorPos X="39" Y="18"/>
+        <UsageCount Value="60"/>
       </Unit10>
       <Unit11>
         <Filename Value="src\ucompilador.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uCompilador"/>
-        <UsageCount Value="54"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="25" Y="8"/>
+        <UsageCount Value="60"/>
       </Unit11>
       <Unit12>
         <Filename Value="ufmain.pas"/>
@@ -413,8 +411,8 @@
         <Filename Value="C:\lazarus\lcl\forms.pp"/>
         <UnitName Value="Forms"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="890"/>
-        <CursorPos X="27" Y="909"/>
+        <TopLine Value="117"/>
+        <CursorPos X="3" Y="81"/>
         <UsageCount Value="10"/>
       </Unit39>
       <Unit40>
@@ -453,9 +451,9 @@
         <Filename Value="C:\lazarus\components\synedit\syncompletion.pas"/>
         <UnitName Value="SynCompletion"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="1807"/>
-        <CursorPos X="34" Y="1835"/>
-        <UsageCount Value="9"/>
+        <TopLine Value="43"/>
+        <CursorPos X="37" Y="49"/>
+        <UsageCount Value="10"/>
       </Unit44>
       <Unit45>
         <Filename Value="c:\lazarus\fpc\3.0.0\source\rtl\objpas\sysutils\finah.inc"/>
@@ -1141,128 +1139,73 @@
         <CursorPos X="15" Y="111"/>
         <UsageCount Value="10"/>
       </Unit133>
+      <Unit134>
+        <Filename Value="src\synlchighlighter.pas"/>
+        <UnitName Value="SynLCHighlighter"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos Y="23"/>
+        <UsageCount Value="11"/>
+      </Unit134>
+      <Unit135>
+        <Filename Value="..\TesteSyn\unit1.pas"/>
+        <UnitName Value="Unit1"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="32"/>
+        <CursorPos X="62" Y="52"/>
+        <UsageCount Value="10"/>
+      </Unit135>
+      <Unit136>
+        <Filename Value="C:\lazarusSVN\components\synedit\syncompletion.pas"/>
+        <UnitName Value="SynCompletion"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="410"/>
+        <CursorPos X="63" Y="428"/>
+        <UsageCount Value="12"/>
+      </Unit136>
+      <Unit137>
+        <Filename Value="C:\lazarusSVN\components\synedit\syneditplugins.pas"/>
+        <UnitName Value="SynEditPlugins"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="59"/>
+        <CursorPos X="3" Y="51"/>
+        <UsageCount Value="10"/>
+      </Unit137>
+      <Unit138>
+        <Filename Value="C:\lazarusSVN\ide\sourceeditor.pp"/>
+        <UnitName Value="SourceEditor"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1154"/>
+        <CursorPos X="58" Y="1187"/>
+        <UsageCount Value="11"/>
+      </Unit138>
+      <Unit139>
+        <Filename Value="C:\lazarusSVN\components\synedit\syneditautocomplete.pp"/>
+        <UnitName Value="SynEditAutoComplete"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="133"/>
+        <UsageCount Value="10"/>
+      </Unit139>
+      <Unit140>
+        <Filename Value="C:\lazarusSVN\lcl\menus.pp"/>
+        <UnitName Value="Menus"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="19"/>
+        <UsageCount Value="10"/>
+      </Unit140>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="3" HistoryIndex="2">
       <Position1>
-        <Filename Value="src\ueditorlspsettings.pas"/>
-        <Caret Line="1129" Column="26" TopLine="1100"/>
+        <Filename Value="src\ufmain.pas"/>
+        <Caret Line="534" Column="14" TopLine="529"/>
       </Position1>
       <Position2>
-        <Filename Value="src\ueditorlspsettings.pas"/>
-        <Caret Line="1130" Column="28" TopLine="1111"/>
+        <Filename Value="src\ufmain.pas"/>
+        <Caret Line="177" Column="43" TopLine="166"/>
       </Position2>
       <Position3>
-        <Filename Value="src\ueditorlspsettings.pas"/>
-        <Caret Line="1129" Column="26" TopLine="1111"/>
-      </Position3>
-      <Position4>
-        <Filename Value="src\ueditorlspsettings.pas"/>
-        <Caret Line="1132" TopLine="1111"/>
-      </Position4>
-      <Position5>
-        <Filename Value="src\ueditorlspsettings.pas"/>
-        <Caret Line="1128" Column="6" TopLine="1111"/>
-      </Position5>
-      <Position6>
-        <Filename Value="src\ueditorlspsettings.pas"/>
-        <Caret Line="349" Column="21" TopLine="332"/>
-      </Position6>
-      <Position7>
-        <Filename Value="src\ueditorlspsettings.pas"/>
-        <Caret Line="989" Column="23" TopLine="956"/>
-      </Position7>
-      <Position8>
-        <Filename Value="src\lcsynedit.pas"/>
-        <Caret Line="60" Column="43" TopLine="33"/>
-      </Position8>
-      <Position9>
-        <Filename Value="src\ueditorlspsettings.pas"/>
-        <Caret Line="982" Column="27" TopLine="970"/>
-      </Position9>
-      <Position10>
-        <Filename Value="src\ufsettingseditor.pas"/>
-        <Caret Line="17"/>
-      </Position10>
-      <Position11>
-        <Filename Value="src\ueditorlspsettings.pas"/>
-        <Caret Line="987" Column="38" TopLine="969"/>
-      </Position11>
-      <Position12>
-        <Filename Value="src\ueditorlspsettings.pas"/>
-        <Caret Line="991" TopLine="972"/>
-      </Position12>
-      <Position13>
-        <Filename Value="src\ueditorlspsettings.pas"/>
-        <Caret Line="987" Column="22" TopLine="970"/>
-      </Position13>
-      <Position14>
-        <Filename Value="src\lcsynedit.pas"/>
-        <Caret Line="16" Column="37"/>
-      </Position14>
-      <Position15>
-        <Filename Value="src\ueditorlspsettings.pas"/>
-        <Caret Line="980" Column="27" TopLine="970"/>
-      </Position15>
-      <Position16>
-        <Filename Value="src\ueditorlspsettings.pas"/>
-        <Caret Line="22"/>
-      </Position16>
-      <Position17>
-        <Filename Value="src\ueditorlspsettings.pas"/>
-        <Caret Line="978" Column="29" TopLine="969"/>
-      </Position17>
-      <Position18>
-        <Filename Value="src\ueditorlspsettings.pas"/>
-        <Caret Line="21" Column="67"/>
-      </Position18>
-      <Position19>
-        <Filename Value="src\ueditorlspsettings.pas"/>
-        <Caret Line="23" Column="18" TopLine="6"/>
-      </Position19>
-      <Position20>
-        <Filename Value="src\ueditorlspsettings.pas"/>
-        <Caret Line="987" Column="37" TopLine="959"/>
-      </Position20>
-      <Position21>
-        <Filename Value="src\ueditorlspsettings.pas"/>
-        <Caret Line="1134" Column="43" TopLine="1105"/>
-      </Position21>
-      <Position22>
-        <Filename Value="src\ueditorlspsettings.pas"/>
-        <Caret Line="23" Column="18" TopLine="5"/>
-      </Position22>
-      <Position23>
-        <Filename Value="src\ueditorlspsettings.pas"/>
-        <Caret Line="987" TopLine="959"/>
-      </Position23>
-      <Position24>
-        <Filename Value="src\ueditorlspsettings.pas"/>
-        <Caret Line="24" Column="22" TopLine="5"/>
-      </Position24>
-      <Position25>
-        <Filename Value="src\ueditorlspsettings.pas"/>
-        <Caret Line="1134" Column="38" TopLine="1110"/>
-      </Position25>
-      <Position26>
-        <Filename Value="src\ueditorlspsettings.pas"/>
-        <Caret Line="23" Column="18"/>
-      </Position26>
-      <Position27>
-        <Filename Value="src\ueditorlspsettings.pas"/>
-        <Caret Line="987" Column="37" TopLine="959"/>
-      </Position27>
-      <Position28>
-        <Filename Value="src\ueditorlspsettings.pas"/>
-        <Caret Line="1135" Column="56" TopLine="1105"/>
-      </Position28>
-      <Position29>
         <Filename Value="src\ufmain.pas"/>
-        <Caret Line="2117" Column="42" TopLine="2096"/>
-      </Position29>
-      <Position30>
-        <Filename Value="src\ufsettingseditor.pas"/>
-        <Caret Line="152" TopLine="139"/>
-      </Position30>
+        <Caret Line="466" Column="33" TopLine="446"/>
+      </Position3>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

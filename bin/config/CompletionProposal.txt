@@ -537,3 +537,6 @@
 00001TrocaCadastro
 00002"Numero nCadNov", "Numero nCadAnt", "Numero nTipCol"
 00003Esta função tem a funcionalidade de efetuar a troca de cadastro de colaboradores.
+00001SegEntExistePorNome
+00002"Alfa aNome"
+00003Essa função verifica pelo nome se o usuário/grupo existe.

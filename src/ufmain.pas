@@ -5,11 +5,11 @@ unit ufmain;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, SynCompletion, Forms, Controls, Graphics,
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics,
   Dialogs, ComCtrls, Menus, ActnList, StdActns, ECTabCtrl,
   LCLTranslator, LCLIntf, LCLType, ExtCtrls, StdCtrls, EditBtn, Buttons, LConvEncoding,
   uEditorLspSettings, LCSynEdit, syneditmarkupfoldcoloring, SynEditMiscClasses,
-  SynLCHighlighter, uCompilador, SynEditHighlighter,
+  SynLCHighlighter, SynLCCompletion, uCompilador, SynEditHighlighter,
   SynEdit, SynEditTypes, ECTypes, ECAccordion, VirtualTrees;
 
 resourcestring
@@ -378,8 +378,6 @@ type
     Splitter3: TSplitter;
     Splitter4 : TSplitter;
     StatusBar1: TStatusBar;
-    SynAutoComplete1: TSynAutoComplete;
-    SynCompletion1: TSynCompletion;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     ToolButton10: TToolButton;
@@ -465,7 +463,7 @@ type
     procedure actProximaTabExecute(Sender: TObject);
     procedure actSalvarComoExecute(Sender: TObject);
     procedure actSalvarExecute(Sender: TObject);
-    procedure ActionList1Update(AAction: TBasicAction; var Handled: Boolean);
+    procedure ActionList1Update({%H-}AAction: TBasicAction; var {%H-}Handled: Boolean);
     procedure actNovoExecute(Sender: TObject);
     procedure actSalvarTodosExecute(Sender: TObject);
     procedure actSalvarTodosUpdate(Sender: TObject);
@@ -480,7 +478,7 @@ type
     procedure ECTabCtrl1CloseQuery(Sender: TObject; AIndex: Integer;
       var CanClose: Boolean);
     procedure ECTabCtrl1MouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
+      {%H-}Shift: TShiftState; X, Y: Integer);
     procedure FindDialog1Find(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
@@ -488,7 +486,7 @@ type
     procedure FormDropFiles(Sender: TObject; const FileNames: array of String);
     procedure IdleTimer1Timer(Sender : TObject);
     procedure lbxFuncoesDblClick(Sender : TObject);
-    procedure lbxFuncoesSelectionChange(Sender : TObject; User : boolean);
+    procedure lbxFuncoesSelectionChange(Sender : TObject; {%H-}User : boolean);
     procedure MenuItem29Click(Sender: TObject);
     procedure MenuItemMRUClick(Sender: TObject);
     procedure ReplaceDialog1Find(Sender: TObject);
@@ -499,34 +497,36 @@ type
       const Rect: TRect);
     procedure StatusBar1Hint(Sender: TObject);
     procedure vstExplorerCompareNodes(Sender: TBaseVirtualTree; Node1,
-      Node2: PVirtualNode; Column: TColumnIndex; var Result: Integer);
+      Node2: PVirtualNode; {%H-}Column: TColumnIndex; var Result: Integer);
     procedure vstExplorerFreeNode(Sender: TBaseVirtualTree; Node: PVirtualNode);
     procedure vstExplorerGetHint(Sender: TBaseVirtualTree; Node: PVirtualNode;
-      Column: TColumnIndex; var LineBreakStyle: TVTTooltipLineBreakStyle;
+      {%H-}Column: TColumnIndex; var {%H-}LineBreakStyle: TVTTooltipLineBreakStyle;
       var HintText: String);
     procedure vstExplorerGetImageIndex(Sender: TBaseVirtualTree;
-      Node: PVirtualNode; Kind: TVTImageKind; Column: TColumnIndex;
-      var Ghosted: Boolean; var ImageIndex: Integer);
+      Node: PVirtualNode; {%H-}Kind: TVTImageKind; {%H-}Column: TColumnIndex;
+      var {%H-}Ghosted: Boolean; var ImageIndex: Integer);
     procedure vstExplorerGetText(Sender: TBaseVirtualTree; Node: PVirtualNode;
-      Column: TColumnIndex; TextType: TVSTTextType; var CellText: String);
+      {%H-}Column: TColumnIndex; {%H-}TextType: TVSTTextType; var CellText: String);
     procedure vstExplorerInitChildren(Sender: TBaseVirtualTree;
       Node: PVirtualNode; var ChildCount: Cardinal);
-    procedure vstExplorerInitNode(Sender: TBaseVirtualTree; ParentNode,
+    procedure vstExplorerInitNode(Sender: TBaseVirtualTree; {%H-}ParentNode,
       Node: PVirtualNode; var InitialStates: TVirtualNodeInitStates);
     procedure vstExplorerNodeDblClick(Sender: TBaseVirtualTree;
-      const HitInfo: THitInfo);
+      const {%H-}HitInfo: THitInfo);
     procedure vstMessagesFreeNode(Sender : TBaseVirtualTree; Node : PVirtualNode);
-    procedure vstMessagesGetImageIndex(Sender : TBaseVirtualTree; Node : PVirtualNode; Kind : TVTImageKind;
-      Column : TColumnIndex; var Ghosted : Boolean; var ImageIndex : Integer);
-    procedure vstMessagesGetText(Sender : TBaseVirtualTree; Node : PVirtualNode; Column : TColumnIndex;
+    procedure vstMessagesGetImageIndex(Sender : TBaseVirtualTree; Node : PVirtualNode; {%H-}Kind : TVTImageKind;
+      {%H-}Column : TColumnIndex; var {%H-}Ghosted : Boolean; var ImageIndex : Integer);
+    procedure vstMessagesGetText(Sender : TBaseVirtualTree; Node : PVirtualNode; {%H-}Column : TColumnIndex;
       TextType : TVSTTextType; var CellText : String);
     procedure vstMessagesNodeClick(Sender : TBaseVirtualTree; const HitInfo : THitInfo);
-    procedure vstMessagesPaintText(Sender : TBaseVirtualTree; const TargetCanvas : TCanvas; Node : PVirtualNode;
-      Column : TColumnIndex; TextType : TVSTTextType);
+    procedure vstMessagesPaintText(Sender : TBaseVirtualTree; const TargetCanvas : TCanvas; {%H-}Node : PVirtualNode;
+      {%H-}Column : TColumnIndex; TextType : TVSTTextType);
 
   private
     fSettings: TEditorLspSettings;
+    fSynCmp: TSynLCCompletion;
     FSynLsp: TSynLCHighlighter;
+    fSynAuC: TSynLCAutoComplete;
     FCompilador: TLCCompilador;
     configFileName:String;
 
@@ -1135,7 +1135,7 @@ begin
     begin
       if FileExistsUTF8(aFileName) then
       begin
-        SynAutoComplete1.AutoCompleteList.LoadFromFile(aFileName);
+        fSynAuC.AutoCompleteList.LoadFromFile(aFileName);
       end;
     end;
   Finally
@@ -2103,6 +2103,9 @@ begin
     end;
   end;
 
+  FSynCmp:= TSynLCCompletion.Create(Self);
+  fSynAuC:= TSynLCAutoComplete.Create(Self);
+
   FSynLsp := TSynLCHighlighter.Create(Self);
   FSynLsp.LoadSettingsFromFile(fSettings.PathConfig + 'SynLCLsp.json');
 
@@ -2116,7 +2119,7 @@ begin
 
   if FileExistsUTF8(fSettings.PathConfig + FILEAUTOCOMPLETELIST) then
   begin
-    SynAutoComplete1.AutoCompleteList.LoadFromFile(fSettings.PathConfig + FILEAUTOCOMPLETELIST);
+    fSynAuC.AutoCompleteList.LoadFromFile(fSettings.PathConfig + FILEAUTOCOMPLETELIST);
   end;
 
   CarregarCompletionProposal;
@@ -3029,7 +3032,8 @@ procedure TFrmMain.DoSearchPosition(var APosition: integer);
 begin
   DoAddCompletion;
 
-  if SynCompletion1.ItemListCount > 0 then
+  //if SynCompletion1.ItemListCount > 0 then
+  if fSynCmp.ItemList.Count > 0 then
   begin
     APosition := 0;
   end
@@ -3040,14 +3044,6 @@ begin
 end;
 
 procedure TFrmMain.DoAddCompletion;
-  procedure Add(s: String; s1:String = '');
-  begin
-    if (pos(lowercase(SynCompletion1.CurrentString), lowercase(s)) = 1)
-    or (Trim(SynCompletion1.CurrentString) = '') then
-    begin
-      SynCompletion1.AddItem(s, s1);
-    end;
-  end;
   function GetPreviousToken(FEditor: TCustomSynEdit): string;
   var
     s: Ansistring;
@@ -3065,13 +3061,13 @@ procedure TFrmMain.DoAddCompletion;
       begin
         // Clear the spaces after the token
         while (i > 0)
-        and   ((s[i] = ' ') or (pos(s[i], SynCompletion1.EndOfTokenChr) <> 0)) do
+        and   ((s[i] = ' ') or (pos(s[i], fSynCmp.EndOfTokenChr) <> 0)) do
         begin
           dec(i);
         end;
 
         while (i > 0) and (s[i] > ' ')
-        and   (pos(s[i], SynCompletion1.EndOfTokenChr) = 0) do
+        and   (pos(s[i], fSynCmp.EndOfTokenChr) = 0) do
         Begin
           dec(i);
         end;
@@ -3091,61 +3087,61 @@ var
   aParams2,
   aLastToken:String;
 begin
-  SynCompletion1.ClearItens;
+  fSynCmp.Clear;
 
   aLastToken := lowerCase(Trim(GetPreviousToken(GetEditorAtivo)));
 
   if (aLastToken = 'definir') then
   begin
-    SynCompletion1.tag := 1;
+    fSynCmp.tag := 1;
     for i := 0 to Pred(FSynLsp.Settings.SettingsToDataType.Words.Count) do
     begin
-      Add(FSynLsp.Settings.SettingsToDataType.Words[i]);
+      fSynCmp.AddItem(FSynLsp.Settings.SettingsToDataType.Words[i],'' , clBlack);
     end;
   end
   else
   if (Copy(aLastToken, 1, 4) = 'cur_') then
   begin
-    SynCompletion1.tag := 2;
-    Add('AbrirCursor', 'AbrirCursor();');
-    Add('Achou', 'Achou');
-    Add('FecharCursor', 'FecharCursor();');
-    Add('NaoAchou', 'NaoAchou');
-    Add('Proximo', 'Proximo();');
-    Add('SQL', 'SQL "";');
-    Add('UsaAbrangencia', 'UsaAbrangencia(1);');
+    fSynCmp.tag := 2;
+    fSynCmp.AddItem('AbrirCursor', '' , clBlack, 'AbrirCursor();');
+    fSynCmp.AddItem('Achou', '' , clBlack, 'Achou');
+    fSynCmp.AddItem('FecharCursor', '' , clBlack, 'FecharCursor();');
+    fSynCmp.AddItem('NaoAchou', '' , clBlack, 'NaoAchou');
+    fSynCmp.AddItem('Proximo', '' , clBlack, 'Proximo();');
+    fSynCmp.AddItem('SQL', '' , clBlack, 'SQL "";');
+    fSynCmp.AddItem('UsaAbrangencia', '' , clBlack, 'UsaAbrangencia(1);');
   end
   else
   if (Copy(aLastToken, 1, 4) = 'lst_') then
   begin
-    SynCompletion1.tag := 3;
-    Add('Adicionar', 'Adicionar();');
-    Add('AdicionarCampo', 'AdicionarCampo(');
-    Add('Anterior', 'Anterior();');
-    Add('Cancelar', 'Cancelar();');
-    Add('Chave', 'Chave("");');
-    Add('DefinirCampos', 'DefinirCampos();');
-    Add('Editar', 'Editar();');
-    Add('EditarChave', 'EditarChave();');
-    Add('EfetivarCampos', 'EfetivarCampos();');
-    Add('Excluir', 'Excluir();');
-    Add('FDA', 'FDA');
-    Add('Gravar', 'Gravar();');
-    Add('IDA', 'IDA');
-    Add('Inserir', 'Inserir();');
-    Add('Limpar', 'Limpar();');
-    Add('NumReg', 'NumReg();');
-    Add('Primeiro', 'Primeiro();');
-    Add('Proximo', 'Proximo();');
-    Add('QtdRegistros', 'QtdRegistros');
-    Add('SetaNumReg', 'SetaNumReg();');
-    Add('SetarChave', 'SetarChave();');
-    Add('Ultimo',  'Ultimo();');
-    Add('VaiParaChave', 'VaiParaChave()');
+    fSynCmp.tag := 3;
+    fSynCmp.AddItem('Adicionar', '' , clBlack, 'Adicionar();');
+    fSynCmp.AddItem('AdicionarCampo', '' , clBlack, 'AdicionarCampo(');
+    fSynCmp.AddItem('Anterior', '' , clBlack, 'Anterior();');
+    fSynCmp.AddItem('Cancelar', '' , clBlack, 'Cancelar();');
+    fSynCmp.AddItem('Chave', '' , clBlack, 'Chave("");');
+    fSynCmp.AddItem('DefinirCampos', '' , clBlack, 'DefinirCampos();');
+    fSynCmp.AddItem('Editar', '' , clBlack, 'Editar();');
+    fSynCmp.AddItem('EditarChave', '' , clBlack, 'EditarChave();');
+    fSynCmp.AddItem('EfetivarCampos', '' , clBlack, 'EfetivarCampos();');
+    fSynCmp.AddItem('Excluir', '' , clBlack, 'Excluir();');
+    fSynCmp.AddItem('FDA', '' , clBlack, 'FDA');
+    fSynCmp.AddItem('Gravar', '' , clBlack, 'Gravar();');
+    fSynCmp.AddItem('IDA', '' , clBlack, 'IDA');
+    fSynCmp.AddItem('Inserir', '' , clBlack, 'Inserir();');
+    fSynCmp.AddItem('Limpar', '' , clBlack, 'Limpar();');
+    fSynCmp.AddItem('NumReg', '' , clBlack, 'NumReg();');
+    fSynCmp.AddItem('Primeiro', '' , clBlack, 'Primeiro();');
+    fSynCmp.AddItem('Proximo', '' , clBlack, 'Proximo();');
+    fSynCmp.AddItem('QtdRegistros', '' , clBlack, 'QtdRegistros;');
+    fSynCmp.AddItem('SetaNumReg', '' , clBlack, 'SetaNumReg();');
+    fSynCmp.AddItem('SetarChave', '' , clBlack, 'SetarChave();');
+    fSynCmp.AddItem('Ultimo', '' , clBlack,  'Ultimo();');
+    fSynCmp.AddItem('VaiParaChave', '' , clBlack, 'VaiParaChave()');
   end
   else
   begin
-    SynCompletion1.tag := 0;
+    fSynCmp.tag := 0;
     for i := 0 to Pred(FSynLsp.Settings.SettingsToReservedWord.Words.Count) do
     begin
       aParams2 := '';
@@ -3153,13 +3149,14 @@ begin
       nPos := LookupList.IndexOf(FSynLsp.Settings.SettingsToReservedWord.Words[i]);
       if (nPos >= 0) then
       begin
-        aParams := TCompletionProposal(LookupList.Items[nPos]).Sintaxe;
+        aParams2 := TCompletionProposal(LookupList.Items[nPos]).Sintaxe;
       end;
-      Add(aParams, aParams2);
+      fSynCmp.AddItem(aParams, '' , clBlack, aParams2);
     end;
   end;
 
-  SynCompletion1.LinesInWindow := Min(CompletionLinesInWindow, SynCompletion1.ItemListCount);
+  fSynCmp.Width := fSynCmp.TheForm.Canvas.TextWidth(fSynCmp.Items.BiggestDescKind + fSynCmp.Items.BiggestCaption) + 50;
+  fSynCmp.LinesInWindow := Min(CompletionLinesInWindow, fSynCmp.ItemList.Count);
 end;
 
 procedure TFrmMain.GetTip(Sender : TObject; aWord : string; const aRow : Integer; var aTip : string);
@@ -3810,8 +3807,8 @@ begin
 
     fSettings.UpdateSettingsByEditor(editor);
 
-    SynAutoComplete1.RemoveEditor(editor);
-    SynCompletion1.RemoveEditor(editor);
+    fSynAuC.RemoveEditor(editor);
+    fSynCmp.RemoveEditor(editor);
 
     FreeAndNil(editor);
 
@@ -4076,10 +4073,10 @@ begin
       M := TSynEditMarkupFoldColors.Create(editor);
       editor.MarkupManager.AddMarkUp(M);
 
-      SynAutoComplete1.AddEditor(editor);
-      SynCompletion1.AddEditor(editor);
-      SynCompletion1.OnExecute := @DoExecuteCompletion;
-      SynCompletion1.OnSearchPosition:= @DoSearchPosition;
+      fSynAuC.AddEditor(editor);
+      FSynCmp.AddEditor(editor);
+      FSynCmp.OnExecute := @DoExecuteCompletion;
+      FSynCmp.OnSearchPosition:= @DoSearchPosition;
 
       editor.Parent := pnlEditor;
     end;

@@ -252,10 +252,10 @@ type
     procedure bbInsertClick(Sender: TObject);
     procedure FormCloseQuery(Sender : TObject; var CanClose : boolean);
     procedure FormCreate(Sender: TObject);
-    procedure StringGrid1KeyDown(Sender: TObject; var Key: Word;
+    procedure StringGrid1KeyDown(Sender: TObject; var {%H-}Key: Word;
       Shift: TShiftState);
-    procedure StringGrid1KeyUp(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
+    procedure StringGrid1KeyUp(Sender: TObject; var {%H-}{%H-}Key: Word;
+      {%H-}{%H-}Shift: TShiftState);
     procedure StringGrid1SelectCell(Sender: TObject; aCol, aRow: Integer;
       var CanSelect: Boolean);
   private
