@@ -1,6 +1,0 @@
-{"version":1,"strings":[
-{"hash":204490414,"name":"tfrmirparalinha.caption","sourcebytes":[73,114,32,112,97,114,97,32,76,105,110,104,97,32,46,46,46],"value":"Ir para Linha ..."},
-{"hash":95170602,"name":"tfrmirparalinha.label1.caption","sourcebytes":[73,114,32,112,97,114,97,32,76,105,110,104,97,32,58],"value":"Ir para Linha :"},
-{"hash":21043562,"name":"tfrmirparalinha.label2.caption","sourcebytes":[80,114,105,109,101,105,114,97,32,76,105,110,104,97,32,58],"value":"Primeira Linha :"},
-{"hash":22289754,"name":"tfrmirparalinha.label3.caption","sourcebytes":[195,154,108,116,105,109,97,32,76,105,110,104,97,32,58],"value":"\u00DAltima Linha :"}
-]}
