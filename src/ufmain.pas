@@ -5,7 +5,7 @@ unit ufmain;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics,
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Fgl,
   Dialogs, ComCtrls, Menus, ActnList, StdActns, ECTabCtrl,
   LCLTranslator, LCLIntf, LCLType, ExtCtrls, StdCtrls, EditBtn, Buttons, LConvEncoding,
   uEditorLspSettings, LCSynEdit, syneditmarkupfoldcoloring, SynEditMiscClasses,
@@ -80,6 +80,29 @@ type
     OpenIndex,
     CloseIndex: Integer;
   end;
+
+  { TLCPalavra }
+
+  TLCPalavra = class
+  private
+    fDescricao : String;
+    FParametros : String;
+    fTexto : String;
+    fTipo : TLCTokenKind;
+  protected
+  public
+    constructor Create;
+    //destructor Destroy; virtual;
+    function GetSintaxe: String;
+  published
+    property Texto:String read fTexto write fTexto;
+    property Descricao:String read fDescricao write fDescricao;
+    Property Parametros:String read FParametros write FParametros;
+    Property Sintaxe:String read GetSintaxe;
+    property Tipo:TLCTokenKind read fTipo write fTipo;
+end;
+
+  TLCListOfPalavras = specialize TFPGObjectList<TLCPalavra>;
 
   { TCompletionProposal }
 
@@ -529,6 +552,7 @@ type
     fSynAuC: TSynLCAutoComplete;
     FCompilador: TLCCompilador;
     configFileName:String;
+    fPalavras: TLCListOfPalavras;
 
     Modulos: array[TLCSiglaModuloVetorh] of TLCModuloVetorh;
 
@@ -572,6 +596,8 @@ type
     procedure CarregarCompletionProposal;
     procedure CarregarListaComandos;
 
+    procedure CarregarPalavras;
+
     function FecharDocumento(editor:TLCSynEdit):Boolean;
     procedure NovoDocumento(NomeArquivo:String; Ativar:Boolean = true);
 
@@ -591,6 +617,8 @@ type
     property EditorSettings:TEditorLspSettings read fSettings;
     { public declarations }
   end;
+
+  function OrdenarPalavras(const Item1, Item2 : TLCPalavra) : Integer;
 
   procedure EncloseTextSelection(const Template: string; Source: TStrings;
                                SelectionStart, SelectionEnd: TPoint;
@@ -617,6 +645,20 @@ uses SynEditKeyCmds
   , ufParametrosFuncoes, uFAutoCompletar, uFSettingsEditor;
 
 {$R *.lfm}
+
+function OrdenarPalavras(const Item1, Item2 : TLCPalavra) : Integer;
+begin
+  result := 0;
+  if lowerCase(Item1.Texto) > lowerCase(Item2.Texto) then
+  begin
+    result := 1;
+  end
+  else
+  if lowerCase(Item1.Texto) < lowerCase(Item2.Texto) then
+  begin
+    result := -1;
+  end;
+end;
 
 procedure EncloseTextSelection(const Template: string; Source: TStrings;
   SelectionStart, SelectionEnd: TPoint; out NewSelection: string; out
@@ -861,6 +903,29 @@ begin
   end;
 end;
 
+{ TLCPalavra }
+
+constructor TLCPalavra.Create;
+begin
+  fDescricao := '';
+  FParametros := '';
+  fTexto := '';
+  fTipo := tLCUnknown;
+end;
+
+function TLCPalavra.GetSintaxe : String;
+begin
+  if FParametros = '' then
+  begin
+    Result := '';
+    Exit;
+  end;
+
+  Result := StringReplace(FParametros, '",',',', [rfReplaceAll]);
+  Result := StringReplace(Result, '"','', [rfReplaceAll]);
+  Result := fTexto + '(' + Result + ')';
+end;
+
 
 { TCompletionProposalList }
 
@@ -888,7 +953,7 @@ function TCompletionProposal.GetSintaxe: String;
 Var
   aSintaxe : String;
 begin
-  aSintaxe := StringReplace(FParametros, '",','', [rfReplaceAll]);
+  aSintaxe := StringReplace(FParametros, '",',',', [rfReplaceAll]);
   aSintaxe := StringReplace(aSintaxe, '"','', [rfReplaceAll]);
   Result := FNome + '(' + aSintaxe + ')';
 end;
@@ -1026,8 +1091,7 @@ begin
   end;
 end;
 
-procedure TFrmMain.DirectoryEdit1AcceptDirectory(Sender: TObject;
-  Var Value: String);
+procedure TFrmMain.DirectoryEdit1AcceptDirectory(Sender : TObject; var Value : String);
 begin
   fSettings.PathBase := Value;
   ShowExplorer(true);
@@ -2042,7 +2106,9 @@ begin
   lbxComandos.Items.Clear;
   lbxVariaveis.Items.Clear;
 
+  fPalavras.Destroy;
   fSettings.Destroy;
+
   CanClose := true; // Indicar que a aplicacao deverá ser finalizada
 end;
 
@@ -2073,6 +2139,7 @@ begin
   vstMessages.RootNodeCount := 0;
 
   FCompilador := TLCCompilador.Create();
+  fPalavras := TLCListOfPalavras.Create(True);
 
   // Iniciarlizar as variáveis
   fSettings := TEditorLspSettings.Create;
@@ -2124,6 +2191,8 @@ begin
 
   CarregarCompletionProposal;
   CarregarListaComandos;
+
+  CarregarPalavras;
 
   ShowMsgAviso(false);
   ShowListOfCommands(fSettings.ShowListOfCommands);
@@ -3081,15 +3150,24 @@ procedure TFrmMain.DoAddCompletion;
   end;
 
 var
-  nPos,
+  //nPos,
   i:Integer;
-  aParams,
-  aParams2,
+  //aParams,
+  //aParams2,
   aLastToken:String;
+  Palavra: TLCPalavra;
 begin
   fSynCmp.Clear;
+  aLastToken := lowerCase(Trim(fSynCmp.CurrentString));
+  if aLastToken.IsEmpty then
+  begin
+    aLastToken := lowerCase(Trim(GetPreviousToken(GetEditorAtivo)));
+  end;
 
-  aLastToken := lowerCase(Trim(GetPreviousToken(GetEditorAtivo)));
+  if aLastToken.IsEmpty then
+  begin
+    exit;
+  end;
 
   if (aLastToken = 'definir') then
   begin
@@ -3142,20 +3220,19 @@ begin
   else
   begin
     fSynCmp.tag := 0;
-    for i := 0 to Pred(FSynLsp.Settings.SettingsToReservedWord.Words.Count) do
+    for palavra in fPalavras do
     begin
-      aParams2 := '';
-      aParams := FSynLsp.Settings.SettingsToReservedWord.Words[i];
-      nPos := LookupList.IndexOf(FSynLsp.Settings.SettingsToReservedWord.Words[i]);
-      if (nPos >= 0) then
+      if palavra.Texto.StartsWith(aLastToken, true) = true then
       begin
-        aParams2 := TCompletionProposal(LookupList.Items[nPos]).Sintaxe;
+        fSynCmp.AddItem(palavra.Texto,
+                        DescricaoTiposToken[palavra.Tipo],
+                        FSynLsp.Settings.GetSettingsByTokenKind(palavra.Tipo).Foreground,
+                        '');//palavra.Sintaxe);
       end;
-      fSynCmp.AddItem(aParams, '' , clBlack, aParams2);
     end;
   end;
 
-  fSynCmp.Width := fSynCmp.TheForm.Canvas.TextWidth(fSynCmp.Items.BiggestDescKind + fSynCmp.Items.BiggestCaption) + 50;
+  fSynCmp.Width := fSynCmp.TheForm.Canvas.TextWidth(fSynCmp.Items.BiggestDescKind + fSynCmp.Items.BiggestCaption) + 60;
   fSynCmp.LinesInWindow := Min(CompletionLinesInWindow, fSynCmp.ItemList.Count);
 end;
 
@@ -3772,6 +3849,71 @@ begin
   Finally
     lbxVariaveis.Items.EndUpdate;
   End;
+end;
+
+procedure TFrmMain.CarregarPalavras;
+var
+  p,
+  i: integer;
+  Palavra: TLCPalavra;
+begin
+  fPalavras.Clear;
+
+  for i:= 0 to FSynLsp.Settings.SettingsToKey.Words.Count - 1 do
+  begin
+    Palavra:= TLCPalavra.Create;
+    Palavra.Texto := Trim(FSynLsp.Settings.SettingsToKey.Words[i]);
+    Palavra.Tipo := tLCKey;
+    p := LookupList.IndexOf(Palavra.Texto);
+    if P >= 0 then
+    begin
+      Palavra.Descricao := TCompletionProposal(LookupList.Items[p]).Descricao;
+      Palavra.Parametros := TCompletionProposal(LookupList.Items[p]).Parametros;
+    end;
+
+    fPalavras.Add(Palavra);
+  end;
+
+  for i:= 0 to FSynLsp.Settings.SettingsToReservedWord.Words.Count - 1 do
+  begin
+    Palavra:= TLCPalavra.Create;
+    Palavra.Texto := Trim(FSynLsp.Settings.SettingsToReservedWord.Words[i]);
+    Palavra.Tipo := tLCReservedWord;
+    p := LookupList.IndexOf(Palavra.Texto);
+    if P >= 0 then
+    begin
+      Palavra.Descricao := TCompletionProposal(LookupList.Items[p]).Descricao;
+      Palavra.Parametros := TCompletionProposal(LookupList.Items[p]).Parametros;
+    end;
+
+    fPalavras.Add(Palavra);
+  end;
+
+  for i:= 0 to FSynLsp.Settings.SettingsToAttributeName.Words.Count - 1 do
+  begin
+    Palavra:= TLCPalavra.Create;
+    Palavra.Texto := Trim(FSynLsp.Settings.SettingsToAttributeName.Words[i]);
+    Palavra.Tipo := tLCAttributeName;
+    fPalavras.Add(Palavra);
+  end;
+
+  for i:= 0 to FSynLsp.Settings.SettingsToDataType.Words.Count - 1 do
+  begin
+    Palavra:= TLCPalavra.Create;
+    Palavra.Texto := Trim(FSynLsp.Settings.SettingsToDataType.Words[i]);
+    Palavra.Tipo := tLCDataType;
+    fPalavras.Add(Palavra);
+  end;
+
+  for i:= 0 to FSynLsp.Settings.SettingsToVariable.Words.Count - 1 do
+  begin
+    Palavra:= TLCPalavra.Create;
+    Palavra.Texto := Trim(FSynLsp.Settings.SettingsToVariable.Words[i]);
+    Palavra.Tipo := tLCVariable;
+    fPalavras.Add(Palavra);
+  end;
+
+  fPalavras.Sort(@OrdenarPalavras);
 end;
 
 function TFrmMain.FecharDocumento(editor: TLCSynEdit): Boolean;

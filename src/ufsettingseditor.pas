@@ -58,9 +58,9 @@ type
     procedure dePastaRootModuloChange(Sender : TObject);
     procedure FormCreate(Sender: TObject);
     procedure lbArqExcClick(Sender : TObject);
-    procedure lbElementosSintaxeSelectionChange(Sender : TObject; User : boolean);
-    procedure lbModulosSelectionChange(Sender : TObject; User : boolean);
-    procedure lbNiveisIdentacaoSelectionChange(Sender : TObject; User : boolean);
+    procedure lbElementosSintaxeSelectionChange(Sender : TObject; {%H-}User : boolean);
+    procedure lbModulosSelectionChange(Sender : TObject; {%H-}User : boolean);
+    procedure lbNiveisIdentacaoSelectionChange(Sender : TObject; {%H-}User : boolean);
     procedure OKButtonClick(Sender: TObject);
   private
     procedure UpdateDisplayElemento(pValue:TLCElementoSintaxe);

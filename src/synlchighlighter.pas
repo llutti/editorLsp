@@ -115,6 +115,8 @@ Type
     constructor Create;
     destructor Destroy; override;
 
+    function GetSettingsByTokenKind(pTokenKind: TLCTokenKind):TSynLCAttributeSettings;
+
     procedure SaveToFile(fileName:String);
     procedure LoadFromFile(fileName:String);
   published
@@ -338,6 +340,25 @@ begin
   fSettingsToCustomFunction.Destroy;
 
   inherited Destroy;
+end;
+
+function TSynLCHighlighterSettings.GetSettingsByTokenKind(pTokenKind : TLCTokenKind) : TSynLCAttributeSettings;
+begin
+  case pTokenKind of
+    tLCAttributeName: Result := fSettingsToAttributeName;
+    tLCComment:       Result := fSettingsToComment;
+    tLCDataType:      Result := fSettingsToDataType;
+    tLCKey:           Result := fSettingsToKey;
+    tLCNumber:        Result := fSettingsToNumber;
+    tLCReservedWord:  Result := fSettingsToReservedWord;
+    tLCSpace:         Result := fSettingsToSpace;
+    tLCString:        Result := fSettingsToString;
+    tLCSymbol:        Result := fSettingsToSymbol;
+    tLCVariable:      Result := fSettingsToVariable;
+    tLCCustomFunction:Result := fSettingsToCustomFunction;
+  else
+    Result := fSettingsToIdentifier;
+  end;
 end;
 
 procedure TSynLCHighlighterSettings.SaveToFile(fileName: String);

@@ -27,8 +27,6 @@ type
     property Description: string read FDescription write FDescription;
     property DescKind: string read FDescKind write FDescKind;
     property ColorKind: TColor read fColorKind write fColorKind;
-    function StartWith(const c: char): boolean; inline;
-    function StartWithU(const c: char): boolean; inline;
   end;
 
   TLCCompletionItems = specialize TFPGObjectList<TLCCompletionItem>;
@@ -370,17 +368,6 @@ begin
   fItems.Clear;
 end;
 
-{ TLCCompletionItem }
-
-function TLCCompletionItem.StartWith(const c : char) : boolean;
-begin
-  Result := (fCaption<>'') and (fCaption[1] = c);
-end;
-
-function TLCCompletionItem.StartWithU(const c : char) : boolean;
-begin
-  Result := (fCaption<>'') and (UpCase(fCaption[1]) = c);
-end;
 
 { TSynLCCompletion }
 
@@ -411,8 +398,8 @@ begin
   ACanvas.TextOut(X+2, Y, item.DescKind);
 
   // Listar o conteudo
-  x += ACanvas.TextWidth(fItems.BiggestDescKind);
-  ACanvas.Font.Style := [];
+  x += ACanvas.TextWidth(fItems.BiggestDescKind) + 5;
+  ACanvas.Font.Style := [fsBold];
   ACanvas.Font.Color :=  clBlack;
   ACanvas.TextOut(X+5, Y, item.Caption);
 end;
@@ -437,8 +424,8 @@ begin
   fItems:= TLCCompletionList.Create;
 
   TheForm.width := 200;
-  TheForm.Font.Quality := fqCleartype;
-  TheForm.ShowSizeDrag := True;
+  TheForm.Font.Quality := fqCleartypeNatural;
+  TheForm.ShowSizeDrag := False;
   TheForm.ClSelect := $00FFF7E6;
 
   OnPaintItem := @OnLCSynCompletionPaintItem;
@@ -456,7 +443,6 @@ procedure TSynLCCompletion.AddItem(pCaption: String; pDescKind: String; pColorKi
 begin
   ItemList.Add(pCaption + '  ' + pDescKind);
   fItems.AddItem(pCaption, pDescKind, pColorKind, pTextToReplace, pDescription);
-  //TheForm.width := TheForm.Canvas.TextWidth(pCaption + '  ' + pDescKind) + 40;
 end;
 
 procedure TSynLCCompletion.Clear;
