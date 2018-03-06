@@ -32,9 +32,11 @@ sc
 sca
 =Cur_Pesquisa.UsaAbrangencia(0);
 =Cur_Pesquisa.AbrirCursor();
-=nAchou = 0;
+=nAchou = cFalso;
 =Se (Cur_Pesquisa.Achou)
-=  nAchou = 1;
+=Inicio
+=  nAchou = cVerdadeiro;
+=Fim;
 =Cur_Pesquisa.FecharCursor();
 =|
 
@@ -79,16 +81,18 @@ df
 =@-- | --@
 
 cor
+=Definir alfa aCor;
 =Se (nCor = 0)
 =Inicio
 =  nCor = 1;
-=  AlteraControle("|", "Cor", "#F5F5F5");
+=  aCor = "#F5F5F5";
 =Fim;
 =Senao
 =Inicio
 =  nCor = 0;
-=  AlteraControle("", "Cor", "Branco");
+=  aCor ="Branco";
 =Fim;
+=AlteraControle("|", "Cor", aCor);
 
 el
 =lst_|.Primeiro();
@@ -128,19 +132,22 @@ ex
 
 ssa
 =SQL_Criar(cPesquisa);
-=SQL_UsarSQLSenior2(cPesquisa, 1);
+=SQL_UsarSQLSenior2(cPesquisa, 0);
 =SQL_UsarAbrangencia(cPesquisa, 0);
 =SQL_DefinirComando(cPesquisa, "|
 =                              ");
 =SQL_AbrirCursor(cPesquisa);
-=nAchou = 0;
+=nAchou = cFalso;
 =Se (SQL_EOF(cPesquisa) = cFalso)
-=  nAchou = 1;
+=Inicio
+=  nAchou = cVerdadeiro;
+=Fim;
+=SQL_FecharCursor(cPesquisa);
 =SQL_Destruir(cPesquisa);
 
 ss
 =SQL_Criar(cPesquisa);
-=SQL_UsarSQLSenior2(cPesquisa, 1);
+=SQL_UsarSQLSenior2(cPesquisa, 0);
 =SQL_UsarAbrangencia(cPesquisa, 0);
 =SQL_DefinirComando(cPesquisa, "|
 =                              ");
@@ -149,19 +156,22 @@ ss
 =Inicio
 =
 =Fim;
+=SQL_FecharCursor(cPesquisa);
 =SQL_Destruir(cPesquisa);
 
 es
 =SQL_Criar(cPesquisa);
-=SQL_UsarSQLSenior2(cPesquisa, 1);
+=SQL_UsarSQLSenior2(cPesquisa, 0);
 =SQL_UsarAbrangencia(cPesquisa, 0);
 =SQL_DefinirComando(cPesquisa, "|
 =                              ");
 =SQL_AbrirCursor(cPesquisa);
 =Enquanto (SQL_EOF(cPesquisa) = cFalso)
 =Inicio
+=
 =  SQL_Proximo(cPesquisa);
 =Fim;
+=SQL_FecharCursor(cPesquisa);
 =SQL_Destruir(cPesquisa);
 
 sdi
@@ -172,6 +182,9 @@ sdd
 
 sda
 =SQL_DefinirAlfa(cPesquisa, "|", );
+
+sdf
+=SQL_DefinirFlutuante(cPesquisa, "|", );
 
 sri
 =SQL_RetornarInteiro(cPesquisa, "|", );
@@ -190,3 +203,6 @@ cm
 
 te
 =TiraEspacos(|, );
+
+ad
+=AlteraControle("|", "Descrição", "");
