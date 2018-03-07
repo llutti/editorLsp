@@ -102,7 +102,24 @@ type
     property Tipo:TLCTokenKind read fTipo write fTipo;
 end;
 
-  TLCListOfPalavras = specialize TFPGObjectList<TLCPalavra>;
+  { TLCListOfPalavras }
+
+  TLCListOfPalavras = class(specialize TFPGObjectList<TLCPalavra>)
+  private
+    fIndice: array['a'..'z'] of integer;
+
+    procedure LimparIndices;
+  protected
+
+  public
+    constructor Create(pFreeObjects: Boolean = True); virtual;
+    destructor Destroy; override;
+
+    procedure AtualizarInidices;
+    function GetStartIndex(Const pValue:String):Integer;
+  published
+
+  end;
 
   { TCompletionProposal }
 
@@ -900,6 +917,70 @@ begin
       end;
     end;
     NewSelect.Free;
+  end;
+end;
+
+{ TLCListOfPalavras }
+
+procedure TLCListOfPalavras.LimparIndices;
+var
+  i:Char;
+begin
+  for I := 'a' to 'z' do
+  begin
+    fIndice[i] := -1;
+  end;
+end;
+
+constructor TLCListOfPalavras.Create(pFreeObjects : Boolean);
+begin
+  inherited Create(pFreeObjects);
+
+  LimparIndices;
+end;
+
+destructor TLCListOfPalavras.Destroy;
+begin
+  inherited Destroy;
+end;
+
+procedure TLCListOfPalavras.AtualizarInidices;
+var
+  i: integer;
+  letra:char;
+begin
+  LimparIndices;
+
+  for i:= 0 to Count - 1 do
+  begin
+    letra := lowerCase(Items[i].Texto.Chars[0]);
+
+    if letra in ['a'..'z'] then
+    begin
+      if fIndice[letra] = -1 then
+      begin
+        fIndice[letra] := i;
+      end;
+    end;
+  end;
+end;
+
+function TLCListOfPalavras.GetStartIndex(const pValue : String) : Integer;
+var
+  letra:Char;
+begin
+  Result := -1;
+
+  letra := lowerCase(pValue.Chars[0]);
+
+  if letra in ['a'..'z'] then
+  begin
+    Result := fIndice[letra];
+  end;
+
+  if Result < 0 then
+  begin
+    Result := 0;
   end;
 end;
 
@@ -3150,10 +3231,9 @@ procedure TFrmMain.DoAddCompletion;
   end;
 
 var
-  //nPos,
+  nPosIni,
   i:Integer;
-  //aParams,
-  //aParams2,
+  bAchou:Boolean;
   aLastToken:String;
   Palavra: TLCPalavra;
 begin
@@ -3220,14 +3300,27 @@ begin
   else
   begin
     fSynCmp.tag := 0;
-    for palavra in fPalavras do
+    bAchou := false;
+
+    nPosIni := fPalavras.GetStartIndex(aLastToken);
+    for i:= nPosIni to fPalavras.Count - 1 do
     begin
+      palavra := fPalavras.Items[i];
       if palavra.Texto.StartsWith(aLastToken, true) = true then
       begin
+        bAchou := true;
         fSynCmp.AddItem(palavra.Texto,
                         DescricaoTiposToken[palavra.Tipo],
                         FSynLsp.Settings.GetSettingsByTokenKind(palavra.Tipo).Foreground,
                         '');//palavra.Sintaxe);
+      end
+      else
+      begin
+        // Depois que encontrou o primeiro, no momento que não encontrou mais pode parar de procurar
+        if bAchou = true then
+        begin
+          break;
+        end;
       end;
     end;
   end;
@@ -3914,6 +4007,7 @@ begin
   end;
 
   fPalavras.Sort(@OrdenarPalavras);
+  fPalavras.AtualizarInidices;
 end;
 
 function TFrmMain.FecharDocumento(editor: TLCSynEdit): Boolean;
