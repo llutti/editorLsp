@@ -553,6 +553,8 @@ end;
       Node: PVirtualNode; var InitialStates: TVirtualNodeInitStates);
     procedure vstExplorerNodeDblClick(Sender: TBaseVirtualTree;
       const {%H-}HitInfo: THitInfo);
+    procedure vstExplorerPaintText(Sender : TBaseVirtualTree; const TargetCanvas : TCanvas; Node : PVirtualNode;
+      {%H-}Column : TColumnIndex; {%H-}TextType : TVSTTextType);
     procedure vstMessagesFreeNode(Sender : TBaseVirtualTree; Node : PVirtualNode);
     procedure vstMessagesGetImageIndex(Sender : TBaseVirtualTree; Node : PVirtualNode; {%H-}Kind : TVTImageKind;
       {%H-}Column : TColumnIndex; var {%H-}Ghosted : Boolean; var ImageIndex : Integer);
@@ -615,6 +617,9 @@ end;
 
     procedure CarregarPalavras;
 
+    procedure MostrarArquivosAbertos;
+    function DirectoryIsOpen(ADirectory : String) : Boolean;
+    function FileIsOpen(pFileName: String; pAtivar:Boolean = true): Boolean;
     function FecharDocumento(editor:TLCSynEdit):Boolean;
     procedure NovoDocumento(NomeArquivo:String; Ativar:Boolean = true);
 
@@ -1226,6 +1231,11 @@ procedure TFrmMain.FormActivate(Sender: TObject);
 begin
   if (GetEditorAtivo <> nil) then
   begin
+    if fSettings.ShowExplorer = true then
+    begin
+      MostrarArquivosAbertos;
+    end;
+
     GetEditorAtivo.BringToFront;
     GetEditorAtivo.SetFocus;
   end;
@@ -1927,6 +1937,10 @@ begin
   fSettings.ShowExplorer := not fSettings.ShowExplorer;
 
   ShowExplorer(fSettings.ShowExplorer);
+  if fSettings.ShowExplorer = true then
+  begin
+    MostrarArquivosAbertos;
+  end;
 end;
 
 procedure TFrmMain.actParametrosFuncoesExecute(Sender: TObject);
@@ -2491,6 +2505,35 @@ begin
   StatusBar1.Panels[iPnlMessage].Text := Application.Hint;
 end;
 
+procedure TFrmMain.MostrarArquivosAbertos;
+var
+  XNode: PVirtualNode;
+  Data: PFileNode;
+begin
+  XNode := nil;
+   repeat
+     if XNode = nil then
+     begin
+       XNode := vstExplorer.GetFirst
+     end
+     else
+     begin
+       XNode := vstExplorer.GetNextVisible(XNode, true);
+     end;
+
+     Data := vstExplorer.GetNodeData(XNode);
+     if Data^.isFolder = True then
+     begin
+       if  (vstExplorer.Expanded[XNode] = false)
+       and (DirectoryIsOpen(Data^.FullPath) = true)
+       and (vstExplorer.ChildCount[XNode] = 0) then
+       begin
+         vstExplorer.Expanded[XNode] := true;
+       end;
+     end;
+   until XNode = vstExplorer.GetLast();
+end;
+
 procedure TFrmMain.vstExplorerCompareNodes(Sender: TBaseVirtualTree; Node1,
   Node2: PVirtualNode; Column: TColumnIndex; var Result: Integer);
 // The node comparison routine is the heart of the tree sort. Here we have to tell the caller which node we consider
@@ -2622,6 +2665,27 @@ begin
 
     fSettings.AddMruFiles(IncludeTrailingPathDelimiter(Data^.FullPath) + Data^.Name, GetEditorAtivo);
     CriarMenuMRU;
+  end;
+end;
+
+procedure TFrmMain.vstExplorerPaintText(Sender : TBaseVirtualTree; const TargetCanvas : TCanvas; Node : PVirtualNode;
+  Column : TColumnIndex; TextType : TVSTTextType);
+var
+  Data : PFileNode;
+begin
+  Data := Sender.GetNodeData(Node);
+  if Data = nil then
+  begin
+    exit;
+  end;
+
+  TargetCanvas.Font.Style := TargetCanvas.Font.Style - [fsBold];
+  TargetCanvas.Font.Color := clDefault;
+  if  ((DirectoryIsOpen(Data^.FullPath) = true) and (Data^.isFolder = True))
+  or  (FileIsOpen(IncludeTrailingPathDelimiter(Data^.FullPath) + Data^.Name, false)) = true then
+  begin
+    TargetCanvas.Font.Style := TargetCanvas.Font.Style + [fsBold];
+    TargetCanvas.Font.Color := clBlue;
   end;
 end;
 
@@ -4010,6 +4074,52 @@ begin
   fPalavras.AtualizarInidices;
 end;
 
+function TFrmMain.DirectoryIsOpen(ADirectory : String) : Boolean;
+var
+  i: Integer;
+  editor:TLCSynEdit;
+begin
+  Result := False;
+  if (ADirectory = '') then
+  begin
+    exit;
+  end;
+  for i := 0 to ECTabCtrl1.Tabs.Count - 1 do
+  begin
+    editor := (ECTabCtrl1.Tabs[i].Control as TLCSynEdit);
+    if AnsiUpperCase(ExtractFileDir(editor.FileName)).IndexOf(AnsiUpperCase(ADirectory)) >= 0 then
+    begin
+      Result := True;
+      Exit;
+    end; // if
+  end;// for
+end;
+
+function TFrmMain.FileIsOpen(pFileName : String; pAtivar : Boolean) : Boolean;
+var
+  i: Integer;
+  editor:TLCSynEdit;
+begin
+  Result := False;
+  if (pFileName = '') then
+  begin
+    exit;
+  end;
+  for i := 0 to ECTabCtrl1.Tabs.Count - 1 do
+  begin
+    editor := (ECTabCtrl1.Tabs[i].Control as TLCSynEdit);
+    if AnsiUpperCase(editor.FileName) = AnsiUpperCase(pFileName) then
+    begin
+      if pAtivar = true then
+      begin
+        ECTabCtrl1.ActivateTab(i);
+      end;
+      Result := True;
+      Exit;
+    end; // if
+  end;// for
+end;
+
 function TFrmMain.FecharDocumento(editor: TLCSynEdit): Boolean;
 var
   nRet:integer;
@@ -4054,6 +4164,7 @@ begin
     end;
 
     result := true;
+    vstExplorer.Invalidate;
   except
     // TODO: Gerar Log
   end;
@@ -4232,27 +4343,6 @@ begin
 end;
 
 procedure TFrmMain.NovoDocumento(NomeArquivo: String; Ativar:Boolean);
-  function IsOpen(AFileName: String): Boolean;
-  var
-    i: Integer;
-    editor:TLCSynEdit;
-  begin
-    Result := False;
-    if (AFileName = '') then
-    begin
-      exit;
-    end;
-    for i := 0 to ECTabCtrl1.Tabs.Count - 1 do
-    begin
-      editor := (ECTabCtrl1.Tabs[i].Control as TLCSynEdit);
-      if AnsiUpperCase(editor.FileName) = AnsiUpperCase(AFileName) then
-      begin
-        ECTabCtrl1.ActivateTab(i);
-        Result := True;
-        Exit;
-      end; // if
-    end;// for
-  end; // function isOpen
 var
   tab : TECTab;
   editor : TLCSynEdit;
@@ -4260,10 +4350,11 @@ var
   M : TSynEditMarkupFoldColors;
 
 begin
-  if (IsOpen(NomeArquivo) = true) then
+  if (FileIsOpen(NomeArquivo) = true) then
   begin
     exit;
   end;
+
   ECTabCtrl1.BeginUpdate;
   try
     bCriar := true;
@@ -4346,6 +4437,8 @@ begin
   finally
     ECTabCtrl1.EndUpdate;
   end;
+
+  vstExplorer.Invalidate;
 
   if (Ativar = true) then
   begin

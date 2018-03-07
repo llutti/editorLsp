@@ -621,6 +621,7 @@ object FrmMain: TFrmMain
       OnCompareNodes = vstExplorerCompareNodes
       OnFreeNode = vstExplorerFreeNode
       OnGetText = vstExplorerGetText
+      OnPaintText = vstExplorerPaintText
       OnGetImageIndex = vstExplorerGetImageIndex
       OnGetHint = vstExplorerGetHint
       OnInitChildren = vstExplorerInitChildren
