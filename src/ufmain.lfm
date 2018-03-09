@@ -603,6 +603,7 @@ object FrmMain: TFrmMain
       Top = 29
       Width = 170
       Align = alClient
+      Colors.FocusedSelectionColor = clBtnFace
       DefaultNodeHeight = 20
       DefaultText = 'Node'
       EmptyListMessage = 'Nenhum Arquivo Localizado'

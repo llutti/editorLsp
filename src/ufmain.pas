@@ -1231,10 +1231,10 @@ procedure TFrmMain.FormActivate(Sender: TObject);
 begin
   if (GetEditorAtivo <> nil) then
   begin
-    if fSettings.ShowExplorer = true then
-    begin
-      MostrarArquivosAbertos;
-    end;
+    //if fSettings.ShowExplorer = true then
+    //begin
+    //  MostrarArquivosAbertos;
+    //end;
 
     GetEditorAtivo.BringToFront;
     GetEditorAtivo.SetFocus;
@@ -2143,6 +2143,7 @@ end;
 procedure TFrmMain.SpeedButton1Click(Sender : TObject);
 begin
   ShowExplorer(true);
+  MostrarArquivosAbertos;
 end;
 
 procedure TFrmMain.FormCloseQuery(Sender: TObject; var CanClose: boolean);
@@ -2326,6 +2327,11 @@ begin
       end;
     finally
       ECTabCtrl1.EndUpdate;
+    end;
+
+    if fSettings.ShowExplorer = true then
+    begin
+      MostrarArquivosAbertos;
     end;
   end;
 

@@ -27,8 +27,8 @@ type
 
   TLCArrayTokenDef = array of TLCTokenDef;
 
-  TPtrLCArrayTokenDef = ^TLCArrayTokenDef;     //puntero a tabla
-  TPtrLCTokenDef = ^TLCTokenDef;     //puntero a tabla
+  TPtrLCArrayTokenDef = ^TLCArrayTokenDef;
+  TPtrLCTokenDef = ^TLCTokenDef;
 
   TLCTipoBloco = (lcTBChave, lcTBSe, lcTBInicio, lcTBPara, lcTBEnquanto, lcTBParenteses, lcTBUnknown);
   TLCBloco = record
@@ -57,7 +57,6 @@ Type
   protected
   public
     constructor Create;
-    //destructor Destroy; virtual;
   published
     property Texto:String read fTexto write fTexto;
     property TextoEstatico:String read fTextoEstatico write fTextoEstatico;
@@ -565,6 +564,7 @@ begin
             if AnsiUpperCase(GetToken) <> 'INICIO' then
             begin
               RemoverBloco(lcTBSe);
+              AdicionarMensagem(lcTMHint, 'É recomendado incluir um Bloco INICIO/FIM para o "SE".', iPosIniToken, iLinhaErro);
             end;
             Continue;
           end;
@@ -574,6 +574,14 @@ begin
             begin
               AdicionarMensagem(lcTMWarning, 'Encontrado um "SENAO" sem um "SE" correspondente.', iPosIniToken, iLinhaErro);
             end;
+
+            SkipSpaces(True, False);
+            if  (AnsiUpperCase(GetToken) <> 'INICIO')
+            and (AnsiUpperCase(GetToken) <> 'SE') then
+            begin
+              AdicionarMensagem(lcTMHint, 'É recomendado incluir um Bloco INICIO/FIM para o "SENAO".', iPosIniToken, iLinhaErro);
+            end;
+            Continue;
           end;
         'ENQUANTO':
           begin
@@ -584,6 +592,14 @@ begin
               Result := false;
               exit;
             end;
+
+            SkipSpaces(True, False);
+            if AnsiUpperCase(GetToken) <> 'INICIO' then
+            begin
+              RemoverBloco(lcTBEnquanto);
+              AdicionarMensagem(lcTMHint, 'É recomendado incluir um Bloco INICIO/FIM para o "ENQUANTO".', iPosIniToken, iLinhaErro);
+            end;
+            Continue;
           end;
         'PARA':
           begin
@@ -594,6 +610,14 @@ begin
               Result := false;
               exit;
             end;
+
+            SkipSpaces(True, False);
+            if AnsiUpperCase(GetToken) <> 'INICIO' then
+            begin
+              RemoverBloco(lcTBPara);
+              AdicionarMensagem(lcTMHint, 'É recomendado incluir um Bloco INICIO/FIM para o "PARA".', iPosIniToken, iLinhaErro);
+            end;
+            Continue;
           end;
         'INICIO':
           begin
