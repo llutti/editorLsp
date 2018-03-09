@@ -64,13 +64,14 @@
         <ComponentName Value="FrmMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="3213"/>
-        <CursorPos X="31" Y="3230"/>
-        <UsageCount Value="66"/>
-        <Bookmarks Count="2">
-          <Item0 Y="3917" ID="1"/>
-          <Item1 X="6" Y="3222" ID="2"/>
+        <TopLine Value="2179"/>
+        <CursorPos Y="2146"/>
+        <UsageCount Value="75"/>
+        <Bookmarks Count="4">
+          <Item0 X="3" Y="4127" ID="3"/>
+          <Item1 X="2" Y="3745" ID="2"/>
+          <Item2 X="5" Y="2512"/>
+          <Item3 Y="2337" ID="1"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -82,7 +83,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="603"/>
         <CursorPos X="26" Y="615"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="75"/>
       </Unit2>
       <Unit3>
         <Filename Value="src\ueditorlspsettings.pas"/>
@@ -90,7 +91,7 @@
         <UnitName Value="uEditorLspSettings"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="49"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="75"/>
       </Unit3>
       <Unit4>
         <Filename Value="src\ufirparalinha.pas"/>
@@ -100,7 +101,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="10" Y="11"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="75"/>
       </Unit4>
       <Unit5>
         <Filename Value="src\UFSobre.pas"/>
@@ -110,7 +111,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uFSobre"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="75"/>
       </Unit5>
       <Unit6>
         <Filename Value="src\UFCaracteresEspeciais.pas"/>
@@ -122,7 +123,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="246"/>
         <CursorPos X="17" Y="258"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="75"/>
       </Unit6>
       <Unit7>
         <Filename Value="src\ufparametrosfuncoes.pas"/>
@@ -132,7 +133,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ufParametrosFuncoes"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="75"/>
       </Unit7>
       <Unit8>
         <Filename Value="src\ufautocompletar.pas"/>
@@ -144,7 +145,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="23"/>
         <CursorPos X="49" Y="58"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="75"/>
       </Unit8>
       <Unit9>
         <Filename Value="src\ufsettingseditor.pas"/>
@@ -156,24 +157,27 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="44"/>
         <CursorPos X="72" Y="61"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="75"/>
       </Unit9>
       <Unit10>
         <Filename Value="src\synlccompletion.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="SynLCCompletion"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="384"/>
         <CursorPos Y="396"/>
-        <UsageCount Value="66"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="75"/>
       </Unit10>
       <Unit11>
         <Filename Value="src\ucompilador.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uCompilador"/>
-        <EditorIndex Value="-1"/>
-        <UsageCount Value="66"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="836"/>
+        <CursorPos X="97" Y="568"/>
+        <UsageCount Value="75"/>
+        <Loaded Value="True"/>
       </Unit11>
       <Unit12>
         <Filename Value="ufmain.pas"/>
@@ -451,11 +455,10 @@
       <Unit44>
         <Filename Value="C:\lazarus\components\synedit\syncompletion.pas"/>
         <UnitName Value="SynCompletion"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="425"/>
         <CursorPos X="63" Y="443"/>
-        <UsageCount Value="10"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="11"/>
       </Unit44>
       <Unit45>
         <Filename Value="c:\lazarus\fpc\3.0.0\source\rtl\objpas\sysutils\finah.inc"/>
@@ -913,9 +916,9 @@
       <Unit104>
         <Filename Value="C:\lazarus\components\virtualtreeview\VirtualTrees.pas"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="665"/>
-        <CursorPos X="3" Y="682"/>
-        <UsageCount Value="3"/>
+        <TopLine Value="27595"/>
+        <CursorPos Y="27611"/>
+        <UsageCount Value="11"/>
       </Unit104>
       <Unit105>
         <Filename Value="C:\lazarus\lcl\lcltype.pp"/>
@@ -1144,14 +1147,13 @@
       <Unit134>
         <Filename Value="src\synlchighlighter.pas"/>
         <UnitName Value="SynLCHighlighter"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="226"/>
-        <CursorPos X="14" Y="241"/>
-        <UsageCount Value="14"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="932"/>
+        <CursorPos X="25" Y="952"/>
+        <UsageCount Value="15"/>
         <Bookmarks Count="1">
           <Item0 X="3" Y="13"/>
         </Bookmarks>
-        <Loaded Value="True"/>
       </Unit134>
       <Unit135>
         <Filename Value="..\TesteSyn\unit1.pas"/>
@@ -1215,9 +1217,9 @@
       <Unit143>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\rtl\objpas\fgl.pp"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="197"/>
-        <CursorPos X="19" Y="196"/>
-        <UsageCount Value="10"/>
+        <TopLine Value="158"/>
+        <CursorPos X="17" Y="175"/>
+        <UsageCount Value="11"/>
       </Unit143>
       <Unit144>
         <Filename Value="..\SynWrite-master\SynWrite-master\CFree\Fundamentals\Cipher\cUtils.pas"/>
@@ -1269,127 +1271,123 @@
         <UsageCount Value="10"/>
       </Unit150>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="29" HistoryIndex="27">
       <Position1>
         <Filename Value="src\ufmain.pas"/>
-        <Caret Line="3797" Column="64" TopLine="3778"/>
+        <Caret Line="3733" Column="27" TopLine="3715"/>
       </Position1>
       <Position2>
         <Filename Value="src\ufmain.pas"/>
-        <Caret Line="3882" Column="81" TopLine="3854"/>
+        <Caret Line="2502" TopLine="2500"/>
       </Position2>
       <Position3>
         <Filename Value="src\ufmain.pas"/>
-        <Caret Line="599" Column="31" TopLine="583"/>
+        <Caret Line="622" Column="38" TopLine="593"/>
       </Position3>
       <Position4>
-        <Filename Value="src\synlccompletion.pas"/>
-        <Caret Line="72" Column="26" TopLine="52"/>
+        <Filename Value="src\ufmain.pas"/>
+        <Caret Line="2501" TopLine="2501"/>
       </Position4>
       <Position5>
-        <Filename Value="src\synlccompletion.pas"/>
-        <Caret Line="444" Column="3" TopLine="420"/>
+        <Filename Value="src\ufmain.pas"/>
+        <Caret Line="621" Column="33" TopLine="600"/>
       </Position5>
       <Position6>
-        <Filename Value="src\synlccompletion.pas"/>
-        <Caret Line="61" Column="17" TopLine="54"/>
+        <Filename Value="src\ufmain.pas"/>
+        <Caret Line="613" Column="25" TopLine="604"/>
       </Position6>
       <Position7>
-        <Filename Value="src\synlccompletion.pas"/>
-        <Caret Line="384" Column="3" TopLine="379"/>
+        <Filename Value="src\ufmain.pas"/>
+        <Caret Line="3701" Column="3" TopLine="3699"/>
       </Position7>
       <Position8>
-        <Filename Value="src\synlccompletion.pas"/>
-        <Caret Line="64" Column="16" TopLine="43"/>
+        <Filename Value="src\ufmain.pas"/>
+        <Caret Line="2501" TopLine="2492"/>
       </Position8>
       <Position9>
-        <Filename Value="src\synlccompletion.pas"/>
-        <Caret Line="412" Column="3" TopLine="407"/>
+        <Filename Value="src\ufmain.pas"/>
+        <Caret Line="621" Column="36" TopLine="598"/>
       </Position9>
       <Position10>
-        <Filename Value="src\synlccompletion.pas"/>
-        <Caret Line="41" Column="18" TopLine="34"/>
+        <Filename Value="src\ufmain.pas"/>
+        <Caret Line="2505" Column="3" TopLine="2500"/>
       </Position10>
       <Position11>
-        <Filename Value="src\synlccompletion.pas"/>
-        <Caret Line="325" Column="3" TopLine="320"/>
+        <Filename Value="src\ufmain.pas"/>
+        <Caret Line="621" Column="15" TopLine="605"/>
       </Position11>
       <Position12>
         <Filename Value="src\ufmain.pas"/>
-        <Caret Line="2195" Column="3" TopLine="2187"/>
+        <Caret Line="2505" Column="3" TopLine="2500"/>
       </Position12>
       <Position13>
         <Filename Value="src\ufmain.pas"/>
-        <Caret Line="3929" TopLine="3912"/>
+        <Caret Line="621" Column="15" TopLine="605"/>
       </Position13>
       <Position14>
-        <Filename Value="src\synlccompletion.pas"/>
-        <Caret Line="61" Column="30" TopLine="38"/>
+        <Filename Value="src\ufmain.pas"/>
+        <Caret Line="8" Column="37"/>
       </Position14>
       <Position15>
-        <Filename Value="src\synlccompletion.pas"/>
-        <Caret Line="402" TopLine="379"/>
+        <Filename Value="src\ufmain.pas"/>
+        <Caret Line="3731" TopLine="3713"/>
       </Position15>
       <Position16>
-        <Filename Value="src\synlccompletion.pas"/>
-        <Caret Line="69" Column="16" TopLine="43"/>
+        <Filename Value="src\ufmain.pas"/>
+        <Caret Line="1939" Column="22" TopLine="1931"/>
       </Position16>
       <Position17>
-        <Filename Value="src\synlccompletion.pas"/>
-        <Caret Line="427" Column="45" TopLine="420"/>
+        <Filename Value="src\ufmain.pas"/>
+        <Caret Line="524" Column="15" TopLine="501"/>
       </Position17>
       <Position18>
-        <Filename Value="src\synlccompletion.pas"/>
-        <Caret Line="61" Column="19" TopLine="51"/>
+        <Filename Value="src\ufmain.pas"/>
+        <Caret Line="1237" Column="2" TopLine="1231"/>
       </Position18>
       <Position19>
-        <Filename Value="src\synlccompletion.pas"/>
-        <Caret Line="396" TopLine="364"/>
+        <Filename Value="src\ufmain.pas"/>
+        <Caret Line="1236" Column="2" TopLine="1230"/>
       </Position19>
       <Position20>
-        <Filename Value="src\synlccompletion.pas"/>
-        <Caret Line="61" Column="16" TopLine="43"/>
+        <Filename Value="src\ufmain.pas"/>
+        <Caret Line="525" Column="34" TopLine="519"/>
       </Position20>
       <Position21>
-        <Filename Value="C:\lazarus\components\synedit\syncompletion.pas"/>
-        <Caret Line="443" Column="24" TopLine="430"/>
+        <Filename Value="src\ufmain.pas"/>
+        <Caret Line="2331" Column="22" TopLine="2306"/>
       </Position21>
       <Position22>
-        <Filename Value="C:\lazarus\components\synedit\syncompletion.pas"/>
-        <Caret Line="1683" TopLine="1680"/>
+        <Filename Value="src\ufmain.pas"/>
+        <Caret Line="2510" Column="42" TopLine="2481"/>
       </Position22>
       <Position23>
-        <Filename Value="src\synlccompletion.pas"/>
-        <Caret Line="61" Column="24" TopLine="55"/>
+        <Filename Value="src\ufmain.pas"/>
+        <Caret Line="620" Column="37" TopLine="604"/>
       </Position23>
       <Position24>
-        <Filename Value="src\synlccompletion.pas"/>
-        <Caret Line="451" Column="58" TopLine="426"/>
+        <Filename Value="src\ufmain.pas"/>
+        <Caret Line="1234" TopLine="1207"/>
       </Position24>
       <Position25>
-        <Filename Value="src\synlccompletion.pas"/>
-        <Caret Line="69" Column="16" TopLine="43"/>
+        <Filename Value="src\ufmain.pas"/>
+        <Caret Line="2335" Column="3" TopLine="2316"/>
       </Position25>
       <Position26>
-        <Filename Value="src\synlccompletion.pas"/>
-        <Caret Line="476" Column="3" TopLine="469"/>
+        <Filename Value="src\ucompilador.pas"/>
+        <Caret Line="188" Column="38" TopLine="179"/>
       </Position26>
       <Position27>
-        <Filename Value="src\synlccompletion.pas"/>
-        <Caret Line="61" Column="19" TopLine="51"/>
+        <Filename Value="src\ucompilador.pas"/>
+        <Caret Line="569" TopLine="562"/>
       </Position27>
       <Position28>
-        <Filename Value="src\synlccompletion.pas"/>
-        <Caret Line="449" Column="44" TopLine="426"/>
+        <Filename Value="src\ucompilador.pas"/>
+        <Caret Line="592" TopLine="561"/>
       </Position28>
       <Position29>
-        <Filename Value="src\ufmain.pas"/>
-        <Caret Line="3233" Column="45" TopLine="3220"/>
+        <Filename Value="src\ucompilador.pas"/>
+        <Caret Line="33" Column="30" TopLine="15"/>
       </Position29>
-      <Position30>
-        <Filename Value="src\ufmain.pas"/>
-        <Caret Line="579" Column="15" TopLine="564"/>
-      </Position30>
     </JumpHistory>
   </ProjectSession>
 </CONFIG>
