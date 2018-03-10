@@ -581,10 +581,10 @@ end;
 procedure TLCSynEdit.showCallTips(aInternal: Boolean);
   procedure ProximaLetra(var pCurP:PChar; var pLen:Integer; var pLetra:String);
   begin
-    {$ifdef lcl_fullversion >= 1090000}
-      pLen := UTF8CodepointSize(pCurP);
-    {$else}
+    {$ifdef LCL_FULLVERSION < 1090000}
       pLen := UTF8CharacterLength(pCurP);
+    {$else}
+      pLen := UTF8CodepointSize(pCurP);
     {$endif}
 
     SetLength(pLetra, pLen);
@@ -614,10 +614,10 @@ procedure TLCSynEdit.showCallTips(aInternal: Boolean);
     while (CurP < EndP)
     and   (iLetras < (iPosicao - 1)) do
     begin
-      {$ifdef lcl_fullversion >= 1090000}
-        iLen := UTF8CodepointSize(CurP);
-      {$else}
+      {$ifdef LCL_FULLVERSION < 1090000}
         iLen := UTF8CharacterLength(CurP);
+      {$else}
+        iLen := UTF8CodepointSize(CurP);
       {$endif}
 
       SetLength(sLetra, iLen);
