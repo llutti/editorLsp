@@ -540,3 +540,12 @@
 00001SegEntExistePorNome
 00002"Alfa aNome"
 00003Essa função verifica pelo nome se o usuário/grupo existe.
+00001NumeroParaAlfa
+00002"Numero nOrigem", "Alfa End aDestino"
+00003Converte um número para formato alfanumérico, mantendo as casas decimais e sem arredondar.
+00001GravaFotoColaboradorEmDisco
+00002"Numero nNumEmp", "Numero nTipcol", "Numero nNumCad", "Alfa aDirArq", "Alfa aNomArq", "Numero End nRetorno", "Alfa aMsgErro"
+00003Grava a foto do colaborador em disco. Esta foto será salva no mesmo tamanho em que foi gravada no Banco de Dados, sempre no formato JPEG (*.JPG).
+00001GravaFotoCandidatoEmDisco
+00002"Numero nNumCan", "Alfa aDirArq", "Alfa aNomArq", "Numero End nRetorno", "Alfa End aMsgErro");
+00003Grava a foto do candidato em disco. Esta foto será salva no mesmo tamanho em que foi gravada no Banco de Dados,  no formato JPEG (*.JPG).
