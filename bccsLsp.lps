@@ -3,7 +3,7 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="10"/>
-    <BuildModes Count="1" Active="Release 64">
+    <BuildModes Count="1" Active="Debug">
       <Item1 Name="Debug">
         <CompilerOptions>
           <Version Value="11"/>
@@ -50,7 +50,7 @@
         </CompilerOptions>
       </Item1>
     </BuildModes>
-    <Units Count="151">
+    <Units Count="157">
       <Unit0>
         <Filename Value="bccsLsp.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -64,9 +64,8 @@
         <ComponentName Value="FrmMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="2179"/>
-        <CursorPos Y="2146"/>
-        <UsageCount Value="75"/>
+        <TopLine Value="25"/>
+        <UsageCount Value="77"/>
         <Bookmarks Count="4">
           <Item0 X="3" Y="4127" ID="3"/>
           <Item1 X="2" Y="3745" ID="2"/>
@@ -80,10 +79,12 @@
         <Filename Value="src\lcsynedit.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="LCSynEdit"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="603"/>
-        <CursorPos X="26" Y="615"/>
-        <UsageCount Value="75"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="529"/>
+        <CursorPos Y="554"/>
+        <UsageCount Value="77"/>
+        <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="src\ueditorlspsettings.pas"/>
@@ -91,7 +92,7 @@
         <UnitName Value="uEditorLspSettings"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="49"/>
-        <UsageCount Value="75"/>
+        <UsageCount Value="77"/>
       </Unit3>
       <Unit4>
         <Filename Value="src\ufirparalinha.pas"/>
@@ -101,7 +102,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="10" Y="11"/>
-        <UsageCount Value="75"/>
+        <UsageCount Value="77"/>
       </Unit4>
       <Unit5>
         <Filename Value="src\UFSobre.pas"/>
@@ -111,7 +112,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uFSobre"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="75"/>
+        <UsageCount Value="77"/>
       </Unit5>
       <Unit6>
         <Filename Value="src\UFCaracteresEspeciais.pas"/>
@@ -123,7 +124,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="246"/>
         <CursorPos X="17" Y="258"/>
-        <UsageCount Value="75"/>
+        <UsageCount Value="77"/>
       </Unit6>
       <Unit7>
         <Filename Value="src\ufparametrosfuncoes.pas"/>
@@ -133,7 +134,7 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ufParametrosFuncoes"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="75"/>
+        <UsageCount Value="77"/>
       </Unit7>
       <Unit8>
         <Filename Value="src\ufautocompletar.pas"/>
@@ -145,7 +146,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="23"/>
         <CursorPos X="49" Y="58"/>
-        <UsageCount Value="75"/>
+        <UsageCount Value="77"/>
       </Unit8>
       <Unit9>
         <Filename Value="src\ufsettingseditor.pas"/>
@@ -157,7 +158,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="44"/>
         <CursorPos X="72" Y="61"/>
-        <UsageCount Value="75"/>
+        <UsageCount Value="77"/>
       </Unit9>
       <Unit10>
         <Filename Value="src\synlccompletion.pas"/>
@@ -166,17 +167,16 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="384"/>
         <CursorPos Y="396"/>
-        <UsageCount Value="75"/>
+        <UsageCount Value="77"/>
       </Unit10>
       <Unit11>
         <Filename Value="src\ucompilador.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="uCompilador"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="836"/>
+        <TopLine Value="833"/>
         <CursorPos X="97" Y="568"/>
-        <UsageCount Value="75"/>
+        <UsageCount Value="77"/>
         <Loaded Value="True"/>
       </Unit11>
       <Unit12>
@@ -1270,124 +1270,170 @@
         <CursorPos X="3" Y="489"/>
         <UsageCount Value="10"/>
       </Unit150>
+      <Unit151>
+        <Filename Value="C:\lazarus\components\lclextensions\include\gtk2\delphicompat.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="5"/>
+        <CursorPos X="6" Y="34"/>
+        <UsageCount Value="10"/>
+      </Unit151>
+      <Unit152>
+        <Filename Value="C:\lazarus\components\onlinepackagemanager\opkman_mainfrm.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="166"/>
+        <CursorPos X="7" Y="184"/>
+        <UsageCount Value="10"/>
+      </Unit152>
+      <Unit153>
+        <Filename Value="C:\lazarus\components\onlinepackagemanager\vst\include\gtk2\opkman_delphicompat.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="5"/>
+        <CursorPos X="6" Y="34"/>
+        <UsageCount Value="10"/>
+      </Unit153>
+      <Unit154>
+        <Filename Value="C:\lazarus\components\virtualtreeview\include\intf\gtk2\vtgraphicsi.inc"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="6" Y="6"/>
+        <UsageCount Value="10"/>
+      </Unit154>
+      <Unit155>
+        <Filename Value="C:\lazarus\examples\lclversion\unit1.pas"/>
+        <UnitName Value="Unit1"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="37"/>
+        <CursorPos X="9" Y="62"/>
+        <UsageCount Value="10"/>
+      </Unit155>
+      <Unit156>
+        <Filename Value="C:\lazarus\components\synedit\synpluginmulticaret.pp"/>
+        <UnitName Value="SynPluginMultiCaret"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="365"/>
+        <CursorPos X="17" Y="382"/>
+        <UsageCount Value="10"/>
+      </Unit156>
     </Units>
-    <JumpHistory Count="29" HistoryIndex="27">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="src\ufmain.pas"/>
-        <Caret Line="3733" Column="27" TopLine="3715"/>
+        <Caret Line="4584" Column="5" TopLine="4550"/>
       </Position1>
       <Position2>
-        <Filename Value="src\ufmain.pas"/>
-        <Caret Line="2502" TopLine="2500"/>
+        <Filename Value="src\lcsynedit.pas"/>
+        <Caret Line="112" Column="40" TopLine="87"/>
       </Position2>
       <Position3>
-        <Filename Value="src\ufmain.pas"/>
-        <Caret Line="622" Column="38" TopLine="593"/>
+        <Filename Value="src\lcsynedit.pas"/>
+        <Caret Line="85" Column="26" TopLine="75"/>
       </Position3>
       <Position4>
         <Filename Value="src\ufmain.pas"/>
-        <Caret Line="2501" TopLine="2501"/>
+        <Caret Line="97" Column="20" TopLine="89"/>
       </Position4>
       <Position5>
-        <Filename Value="src\ufmain.pas"/>
-        <Caret Line="621" Column="33" TopLine="600"/>
+        <Filename Value="src\lcsynedit.pas"/>
+        <Caret Line="562" Column="3" TopLine="538"/>
       </Position5>
       <Position6>
-        <Filename Value="src\ufmain.pas"/>
-        <Caret Line="613" Column="25" TopLine="604"/>
+        <Filename Value="src\lcsynedit.pas"/>
+        <Caret Line="11" Column="28"/>
       </Position6>
       <Position7>
-        <Filename Value="src\ufmain.pas"/>
-        <Caret Line="3701" Column="3" TopLine="3699"/>
+        <Filename Value="src\lcsynedit.pas"/>
+        <Caret Line="48" Column="19" TopLine="30"/>
       </Position7>
       <Position8>
-        <Filename Value="src\ufmain.pas"/>
-        <Caret Line="2501" TopLine="2492"/>
+        <Filename Value="src\lcsynedit.pas"/>
+        <Caret Line="112" Column="67" TopLine="84"/>
       </Position8>
       <Position9>
-        <Filename Value="src\ufmain.pas"/>
-        <Caret Line="621" Column="36" TopLine="598"/>
+        <Filename Value="src\lcsynedit.pas"/>
+        <Caret Line="561" Column="16" TopLine="526"/>
       </Position9>
       <Position10>
-        <Filename Value="src\ufmain.pas"/>
-        <Caret Line="2505" Column="3" TopLine="2500"/>
+        <Filename Value="src\lcsynedit.pas"/>
+        <Caret Line="643" Column="45" TopLine="631"/>
       </Position10>
       <Position11>
-        <Filename Value="src\ufmain.pas"/>
-        <Caret Line="621" Column="15" TopLine="605"/>
+        <Filename Value="src\lcsynedit.pas"/>
+        <Caret Line="825" Column="5" TopLine="790"/>
       </Position11>
       <Position12>
-        <Filename Value="src\ufmain.pas"/>
-        <Caret Line="2505" Column="3" TopLine="2500"/>
+        <Filename Value="src\lcsynedit.pas"/>
       </Position12>
       <Position13>
-        <Filename Value="src\ufmain.pas"/>
-        <Caret Line="621" Column="15" TopLine="605"/>
+        <Filename Value="src\lcsynedit.pas"/>
+        <Caret Line="584" Column="30" TopLine="569"/>
       </Position13>
       <Position14>
-        <Filename Value="src\ufmain.pas"/>
-        <Caret Line="8" Column="37"/>
+        <Filename Value="src\lcsynedit.pas"/>
+        <Caret Line="621" Column="29" TopLine="604"/>
       </Position14>
       <Position15>
-        <Filename Value="src\ufmain.pas"/>
-        <Caret Line="3731" TopLine="3713"/>
+        <Filename Value="src\lcsynedit.pas"/>
+        <Caret Line="587" Column="30" TopLine="566"/>
       </Position15>
       <Position16>
-        <Filename Value="src\ufmain.pas"/>
-        <Caret Line="1939" Column="22" TopLine="1931"/>
+        <Filename Value="src\lcsynedit.pas"/>
+        <Caret Line="618" Column="30" TopLine="590"/>
       </Position16>
       <Position17>
-        <Filename Value="src\ufmain.pas"/>
-        <Caret Line="524" Column="15" TopLine="501"/>
+        <Filename Value="src\lcsynedit.pas"/>
+        <Caret Line="621" Column="55" TopLine="600"/>
       </Position17>
       <Position18>
-        <Filename Value="src\ufmain.pas"/>
-        <Caret Line="1237" Column="2" TopLine="1231"/>
+        <Filename Value="src\lcsynedit.pas"/>
+        <Caret Line="618" TopLine="601"/>
       </Position18>
       <Position19>
-        <Filename Value="src\ufmain.pas"/>
-        <Caret Line="1236" Column="2" TopLine="1230"/>
+        <Filename Value="src\lcsynedit.pas"/>
+        <Caret Line="619" Column="17" TopLine="602"/>
       </Position19>
       <Position20>
-        <Filename Value="src\ufmain.pas"/>
-        <Caret Line="525" Column="34" TopLine="519"/>
+        <Filename Value="src\lcsynedit.pas"/>
+        <Caret Line="584" TopLine="566"/>
       </Position20>
       <Position21>
-        <Filename Value="src\ufmain.pas"/>
-        <Caret Line="2331" Column="22" TopLine="2306"/>
+        <Filename Value="src\lcsynedit.pas"/>
+        <Caret Line="585" Column="15" TopLine="568"/>
       </Position21>
       <Position22>
-        <Filename Value="src\ufmain.pas"/>
-        <Caret Line="2510" Column="42" TopLine="2481"/>
+        <Filename Value="src\lcsynedit.pas"/>
+        <Caret Line="603" TopLine="573"/>
       </Position22>
       <Position23>
-        <Filename Value="src\ufmain.pas"/>
-        <Caret Line="620" Column="37" TopLine="604"/>
+        <Filename Value="src\lcsynedit.pas"/>
+        <Caret Line="633" Column="19" TopLine="605"/>
       </Position23>
       <Position24>
-        <Filename Value="src\ufmain.pas"/>
-        <Caret Line="1234" TopLine="1207"/>
+        <Filename Value="src\lcsynedit.pas"/>
+        <Caret Line="610" Column="19" TopLine="597"/>
       </Position24>
       <Position25>
-        <Filename Value="src\ufmain.pas"/>
-        <Caret Line="2335" Column="3" TopLine="2316"/>
+        <Filename Value="src\lcsynedit.pas"/>
+        <Caret Line="11" Column="5"/>
       </Position25>
       <Position26>
-        <Filename Value="src\ucompilador.pas"/>
-        <Caret Line="188" Column="38" TopLine="179"/>
+        <Filename Value="src\lcsynedit.pas"/>
+        <Caret Line="48" Column="18" TopLine="19"/>
       </Position26>
       <Position27>
-        <Filename Value="src\ucompilador.pas"/>
-        <Caret Line="569" TopLine="562"/>
+        <Filename Value="src\lcsynedit.pas"/>
+        <Caret Line="112" Column="65" TopLine="84"/>
       </Position27>
       <Position28>
-        <Filename Value="src\ucompilador.pas"/>
-        <Caret Line="592" TopLine="561"/>
+        <Filename Value="src\lcsynedit.pas"/>
+        <Caret Line="564" Column="16" TopLine="529"/>
       </Position28>
       <Position29>
-        <Filename Value="src\ucompilador.pas"/>
-        <Caret Line="33" Column="30" TopLine="15"/>
+        <Filename Value="src\lcsynedit.pas"/>
+        <Caret Line="48" Column="18" TopLine="30"/>
       </Position29>
+      <Position30>
+        <Filename Value="src\lcsynedit.pas"/>
+        <Caret Line="112" Column="65" TopLine="84"/>
+      </Position30>
     </JumpHistory>
   </ProjectSession>
 </CONFIG>
