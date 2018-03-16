@@ -8,6 +8,7 @@ uses
   Classes, SysUtils, Dialogs, controls, graphics
   , Forms // Unit necessária devido ao MessageBox
   , LCLType, SynEdit
+  , SynPluginMultiCaret
   , SynEditKeyCmds, SynEditMouseCmds;
 
 resourcestring
@@ -44,6 +45,7 @@ type
     private
       FLastTimeSaved : TDateTime;
       fLineError : Integer;
+      FMultiCaret : TSynPluginMultiCaret;
       fUniqueIndex:Integer;
       fIsNew: Boolean;
       fSaved: Boolean;
@@ -106,6 +108,8 @@ type
       property PosicaoRegra:Integer read fPosicaoRegra write fPosicaoRegra;
 
       property OnGetTipOf: TLCGetTipOfEvent read fOnGetTipOfEvent write fOnGetTipOfEvent;
+
+      property MultiCaret: TSynPluginMultiCaret read FMultiCaret;
   end;
 
 Const
@@ -542,6 +546,13 @@ begin
 
   Create(aOwner);
 
+  FMultiCaret := TSynPluginMultiCaret.Create(Self);
+  with fMultiCaret do
+  begin
+    Editor := self;
+    KeyStrokes.Clear;
+  end;
+
   // Definir algumas teclas de atalho
   AddKey(ecShowCallTips, VK_SPACE, [ssCTRL, ssSHIFT], 0, []);
   AddKey(ecMoveLinesSelectionUp, VK_UP, [ssALT], 0, []);
@@ -581,11 +592,8 @@ end;
 procedure TLCSynEdit.showCallTips(aInternal: Boolean);
   procedure ProximaLetra(var pCurP:PChar; var pLen:Integer; var pLetra:String);
   begin
-    {$ifdef LCL_FULLVERSION < 1090000}
-      pLen := UTF8CharacterLength(pCurP);
-    {$else}
-      pLen := UTF8CodepointSize(pCurP);
-    {$endif}
+    pLen := UTF8CharacterLength(pCurP); // Funciona antes da versão 1.9 do lazarus
+    //pLen := UTF8CodepointSize(pCurP); // Funciona a partir da versão 1.9 do lazarus
 
     SetLength(pLetra, pLen);
     Move(pCurP^, pLetra[1], pLen);
@@ -614,11 +622,8 @@ procedure TLCSynEdit.showCallTips(aInternal: Boolean);
     while (CurP < EndP)
     and   (iLetras < (iPosicao - 1)) do
     begin
-      {$ifdef LCL_FULLVERSION < 1090000}
-        iLen := UTF8CharacterLength(CurP);
-      {$else}
-        iLen := UTF8CodepointSize(CurP);
-      {$endif}
+      iLen := UTF8CharacterLength(CurP);  // Funciona antes da versão 1.9 do lazarus
+      //iLen := UTF8CodepointSize(CurP);  // Funciona a partir da versão 1.9 do lazarus
 
       SetLength(sLetra, iLen);
       Move(CurP^, sLetra[1], iLen);

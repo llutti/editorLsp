@@ -28,7 +28,7 @@ Const
   ModifiedStrs: array[boolean] of string = (rsUnchanged, rsChanged);
   InsertModeStrs: array[boolean] of string = (rsReplace, rsInsert);
 
-  CompletionLinesInWindow = 10; // Quantidade de linhas Máxima de linhas se apresentado na lista de funções
+  CompletionLinesInWindow = 15; // Quantidade de linhas Máxima de linhas se apresentado na lista de funções
 
   FILEAUTOCOMPLETELIST = 'AutoCompleteList.txt';
   FILECOMPLETIONPROPOSAL = 'CompletionProposal.txt';
