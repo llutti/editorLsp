@@ -592,8 +592,8 @@ end;
 procedure TLCSynEdit.showCallTips(aInternal: Boolean);
   procedure ProximaLetra(var pCurP:PChar; var pLen:Integer; var pLetra:String);
   begin
-    pLen := UTF8CharacterLength(pCurP); // Funciona antes da versão 1.9 do lazarus
-    //pLen := UTF8CodepointSize(pCurP); // Funciona a partir da versão 1.9 do lazarus
+    //pLen := UTF8CharacterLength(pCurP); // Funciona antes da versão 1.9 do lazarus
+    pLen := UTF8CodepointSize(pCurP); // Funciona a partir da versão 1.9 do lazarus
 
     SetLength(pLetra, pLen);
     Move(pCurP^, pLetra[1], pLen);
@@ -622,8 +622,8 @@ procedure TLCSynEdit.showCallTips(aInternal: Boolean);
     while (CurP < EndP)
     and   (iLetras < (iPosicao - 1)) do
     begin
-      iLen := UTF8CharacterLength(CurP);  // Funciona antes da versão 1.9 do lazarus
-      //iLen := UTF8CodepointSize(CurP);  // Funciona a partir da versão 1.9 do lazarus
+      //iLen := UTF8CharacterLength(CurP);  // Funciona antes da versão 1.9 do lazarus
+      iLen := UTF8CodepointSize(CurP);  // Funciona a partir da versão 1.9 do lazarus
 
       SetLength(sLetra, iLen);
       Move(CurP^, sLetra[1], iLen);

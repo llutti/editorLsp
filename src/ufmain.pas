@@ -625,6 +625,9 @@ end;
 
     procedure EditorStatusChange(Sender: TObject; Changes: TSynStatusChanges);
 
+    procedure EditorClickLink(Sender : TObject; {%H-}Button : TMouseButton; {%H-}Shift : TShiftState; X, Y : Integer);
+    procedure EditorMouseLink(Sender : TObject; X, Y : Integer; var AllowMouseLink : Boolean);
+
     { private declarations }
   public
     LookupList : TCompletionProposalList;
@@ -662,7 +665,7 @@ uses SynEditKeyCmds
   , machoreader {needed for reading MACH-O executables}
   , Math, LazUTF8, LazFileUtils, ufirparalinha, uFSobre, ufcaracteresespeciais
   , BasicCodeTools, CodeToolManager, SourceChanger, dateutils
-  , SynEditMarkupHighAll
+  , SynEditMarkupHighAll, SynEditMouseCmds
   , LazLogger, Masks
   , ufParametrosFuncoes, uFAutoCompletar, uFSettingsEditor;
 
@@ -3457,6 +3460,10 @@ begin
               end;
             end;
           end;
+          if aTip.isEmpty = false then
+          begin
+            break;
+          end;
         end;
       end;
     end;
@@ -4306,6 +4313,77 @@ begin
 
 end;
 
+procedure TFrmMain.EditorClickLink(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+var
+  aWord: String;
+  p:TPoint;
+
+  Funcao: TLCDefinitionOfFunction;
+  Regra:TLCArquivoRegra;
+  i, j:integer;
+begin
+  p := (Sender as TSynEdit).PixelsToLogicalPos(Point(X, Y));
+  aWord := (Sender as TSynEdit).GetWordAtRowCol(p);
+
+  Funcao := nil;
+  if (Sender as TLCSynEdit).PosicaoRegra <> -1 then
+  begin
+    Regra := Modulos[(Sender as TLCSynEdit).ModuloVetorh].Regras[(Sender as TLCSynEdit).PosicaoRegra];
+    Funcao := FCompilador.SearchFunction(Regra.Funcoes, aWord);
+    if Funcao = nil then
+    begin
+      FCompilador.Lines := (Sender as TLCSynEdit).Lines;
+      FCompilador.CompilarListaFuncoes(Regra.Funcoes);
+      Funcao := FCompilador.SearchFunction(Regra.Funcoes, aWord);
+      if Funcao <> nil then
+      begin
+        CarregarCustomFunction(Modulos[(Sender as TLCSynEdit).ModuloVetorh], TSynLCHighlighter((Sender as TLCSynEdit).Highlighter));
+        (Sender as TLCSynEdit).Invalidate;
+      end;
+    end;
+  end;
+
+  if Funcao = nil then
+  begin
+    For j:=0 to High(Modulos[(Sender as TLCSynEdit).ModuloVetorh].Regras) do
+    begin
+      if (Sender as TLCSynEdit).PosicaoRegra <> j then
+      begin
+        Regra := Modulos[(Sender as TLCSynEdit).ModuloVetorh].Regras[j];
+        For i:=0 to Regra.Funcoes.Count - 1 do
+        begin
+          Funcao := FCompilador.SearchFunction(Regra.Funcoes, aWord);
+          if Funcao <> nil then
+          begin
+            break;
+          end;
+        end;
+      end;
+      if Funcao <> nil then
+      begin
+        break;
+      end;
+    end;
+  end;
+
+  if Funcao <> nil then
+  begin
+    NovoDocumento(Regra.NomeArquivo, true);
+    GetEditorAtivo.CaretY := Funcao.RowOfDefinition;
+    GetEditorAtivo.CaretX := 18;
+  end;
+end;
+
+procedure TFrmMain.EditorMouseLink(Sender: TObject; X, Y: Integer;
+  var AllowMouseLink: Boolean);
+var
+  aWord: String;
+begin
+  aWord := (Sender as TSynEdit).GetWordAtRowCol(Point(X, Y));
+  AllowMouseLink := (TSynLCHighlighter((Sender as TLCSynEdit).Highlighter).IdentKind(False, aWord) = tLCCustomFunction);
+end;
+
 function TFrmMain.VersionOfApplication: String;
 var
   FileVerInfo: TFileVersionInfo;
@@ -4403,6 +4481,13 @@ begin
       editor.SaveDialog := SaveDialog1;
       editor.BookMarkOptions.BookmarkImages := ImageListBookmark;
 
+      // Configurar links
+      editor.MouseOptions := [emUseMouseActions, emAltSetsColumnMode, emDragDropEditing, emShowCtrlMouseLinks];
+      //editor.MouseLinkColor.Style := [fsUnderline];
+      editor.ResetMouseActions;
+      editor.OnClickLink := @EditorClickLink;
+      editor.OnMouseLink := @EditorMouseLink;
+
       M := TSynEditMarkupFoldColors.Create(editor);
       editor.MarkupManager.AddMarkUp(M);
 
@@ -4426,6 +4511,13 @@ begin
       EditorStatusChange(editor, [scFocus]); // Atualizar o status bar
 
       Editor.ModuloVetorh := GetModuloByFileName(Editor.FileName);
+
+      if Modulos[Editor.ModuloVetorh].Carregado = false then
+      begin
+        CarregarModulo(Modulos[Editor.ModuloVetorh]);
+      end;
+      CarregarCustomFunction(Modulos[Editor.ModuloVetorh], TSynLCHighlighter(editor.Highlighter));
+
       Editor.PosicaoRegra := GetPosicaoRegraByFileName(Editor.ModuloVetorh, Editor.FileName);
 
       if  (Editor.PosicaoRegra = -1)
@@ -4433,12 +4525,6 @@ begin
       begin
         Editor.PosicaoRegra := AdicionarRegraAoModulo(Modulos[Editor.ModuloVetorh], Editor.FileName);
       end;
-
-      if Modulos[Editor.ModuloVetorh].Carregado = false then
-      begin
-        CarregarModulo(Modulos[Editor.ModuloVetorh]);
-      end;
-      CarregarCustomFunction(Modulos[Editor.ModuloVetorh], TSynLCHighlighter(editor.Highlighter));
     end;
   finally
     ECTabCtrl1.EndUpdate;
@@ -4494,6 +4580,9 @@ begin
 
     // Linha ativa
     editor.LineHighlightColor.Assign(FrmMain.fSettings.Editor.ActiveLine);
+
+    // Mouse Link
+    editor.MouseLinkColor.Assign(FrmMain.fSettings.Editor.MouseLinkColor);
 
     // Font
     editor.Font.Name := FrmMain.fSettings.Editor.FontName;

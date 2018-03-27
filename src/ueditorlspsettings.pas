@@ -268,6 +268,7 @@ type
       fLineErrorColor : TSynSelectedColor;
       fMarkupHighlightAllCaret : TMarkupHighlightAllCaretSettings;
       fMaxUndo: Integer;
+      fMouseLinkColor: TSynSelectedColor;
       fNiveisIdentacao: TCollection;
       FOptions: TSynEditorOptions;
       FOptions2: TSynEditorOptions2;
@@ -290,6 +291,7 @@ type
       property Gutter:TGutterSettings read fGutter write fGutter;
       property LineErrorColor:TSynSelectedColor read fLineErrorColor write fLineErrorColor;
       property MaxUndo:Integer read fMaxUndo write fMaxUndo;
+      property MouseLinkColor: TSynSelectedColor read fMouseLinkColor write fMouseLinkColor;
       property WantTabs:Boolean read fWantTabs write fWantTabs;
       property RightEdge:Integer read fRightEdge write fRightEdge;
       property RightEdgeColor:TColor read fRightEdgeColor write fRightEdgeColor;
@@ -648,6 +650,7 @@ begin
 
   fGutter:= TGutterSettings.create;
   fActiveLine := TSynSelectedColor.Create;
+  fMouseLinkColor := TSynSelectedColor.Create;
   fMarkupHighlightAllCaret := TMarkupHighlightAllCaretSettings.Create;
   fElementosSintaxe := TCollection.Create(TLCElementoSintaxe);
   fLineErrorColor := TSynSelectedColor.Create;
@@ -683,6 +686,11 @@ begin
   fActiveLine.FrameStyle := slsDashed;
   fActiveLine.FrameEdges := sfeAround;
 
+  // Mouse Link
+  fActiveLine.Background := clNone;
+  fActiveLine.Foreground := clNone;
+  fMouseLinkColor.Style := [fsUnderline];
+
   // Linha com Erro
   fLineErrorColor.Background := $00E5E5E5;
   fLineErrorColor.Foreground := clNone;
@@ -705,6 +713,7 @@ end;
 destructor TEditorSettings.Destroy;
 begin
   FreeAndNil(fActiveLine);
+  FreeAndNil(fMouseLinkColor);
   FreeAndNil(fBracketMatchColor);
   FreeAndNil(fGutter);
   FreeAndNil(fMarkupHighlightAllCaret);
