@@ -625,8 +625,9 @@ end;
 
     procedure EditorStatusChange(Sender: TObject; Changes: TSynStatusChanges);
 
-    procedure EditorClickLink(Sender : TObject; {%H-}Button : TMouseButton; {%H-}Shift : TShiftState; X, Y : Integer);
-    procedure EditorMouseLink(Sender : TObject; X, Y : Integer; var AllowMouseLink : Boolean);
+    procedure EditorKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure EditorClickLink(Sender: TObject; {%H-}Button: TMouseButton; {%H-}Shift: TShiftState; X, Y: Integer);
+    procedure EditorMouseLink(Sender: TObject; X, Y: Integer; var AllowMouseLink: Boolean);
 
     { private declarations }
   public
@@ -2519,28 +2520,21 @@ var
   XNode: PVirtualNode;
   Data: PFileNode;
 begin
-  XNode := nil;
-   repeat
-     if XNode = nil then
-     begin
-       XNode := vstExplorer.GetFirst
-     end
-     else
-     begin
-       XNode := vstExplorer.GetNextVisible(XNode, true);
-     end;
-
-     Data := vstExplorer.GetNodeData(XNode);
-     if Data^.isFolder = True then
-     begin
-       if  (vstExplorer.Expanded[XNode] = false)
-       and (DirectoryIsOpen(Data^.FullPath) = true)
-       and (vstExplorer.ChildCount[XNode] = 0) then
-       begin
-         vstExplorer.Expanded[XNode] := true;
-       end;
-     end;
-   until XNode = vstExplorer.GetLast();
+  XNode := vstExplorer.GetFirst;
+  repeat
+    Data := vstExplorer.GetNodeData(XNode);
+    if Data <> nil then
+    if Data^.isFolder = True then
+    begin
+      if  (vstExplorer.Expanded[XNode] = false)
+      and (DirectoryIsOpen(Data^.FullPath) = true)
+      and (vstExplorer.ChildCount[XNode] = 0) then
+      begin
+        vstExplorer.Expanded[XNode] := true;
+      end;
+    end;
+    XNode := vstExplorer.GetNextVisible(XNode, true);
+  until XNode = nil;
 end;
 
 procedure TFrmMain.vstExplorerCompareNodes(Sender: TBaseVirtualTree; Node1,
@@ -4313,6 +4307,46 @@ begin
 
 end;
 
+procedure TFrmMain.EditorKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+var
+  sFuncao: String;
+  Regra:TLCArquivoRegra;
+  Funcao: TLCDefinitionOfFunction;
+begin
+  if ((ssShift in Shift)
+  and (ssCtrl in Shift)
+  and (key in [VK_DOWN, VK_UP])) then
+  begin
+    sFuncao := (Sender as TSynEdit).GetWordAtRowCol((Sender as TSynEdit).CaretXY);
+    if (Sender as TLCSynEdit).PosicaoRegra <> -1 then
+    begin
+      Regra := Modulos[(Sender as TLCSynEdit).ModuloVetorh].Regras[(Sender as TLCSynEdit).PosicaoRegra];
+      Funcao := FCompilador.SearchFunction(Regra.Funcoes, sFuncao);
+      if Funcao <> nil then
+      begin
+        if key = VK_DOWN then
+        begin
+          if Funcao.RowOfImplementation <> -1 then
+          begin
+            GetEditorAtivo.CaretY := Funcao.RowOfImplementation;
+            GetEditorAtivo.CaretX := 10;
+          end;
+        end
+        else
+        if key = VK_UP then
+        begin
+          if Funcao.RowOfDefinition <> -1 then
+          begin
+            GetEditorAtivo.CaretY := Funcao.RowOfDefinition;
+            GetEditorAtivo.CaretX := 18;
+          end;
+        end;
+      end;
+    end;
+  end;
+end;
+
 procedure TFrmMain.EditorClickLink(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 var
@@ -4370,8 +4404,8 @@ begin
   if Funcao <> nil then
   begin
     NovoDocumento(Regra.NomeArquivo, true);
-    GetEditorAtivo.CaretY := Funcao.RowOfDefinition;
-    GetEditorAtivo.CaretX := 18;
+    GetEditorAtivo.CaretY := Funcao.RowOfImplementation;
+    GetEditorAtivo.CaretX := 10;
   end;
 end;
 
@@ -4473,6 +4507,7 @@ begin
       editor.Align := alClient;
       editor.BorderStyle := bsNone;
       editor.Highlighter := FSynLsp;
+      editor.OnKeyUp := @EditorKeyUp;
       editor.OnStatusChange := @EditorStatusChange;
       editor.OnGetTipOf := @GetTip;
       //TSynLCHighlighter(editor.Highlighter).OnGetCustomIdentKind := @GetCustomFunction;
