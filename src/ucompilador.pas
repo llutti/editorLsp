@@ -75,6 +75,7 @@ end;
       FName : String;
       FParameters : TLCListOfParametros;
       FRowOfDefinition : Integer;
+      FRowOfImplementation: Integer;
     protected
     public
       constructor Create;
@@ -87,6 +88,7 @@ end;
       property Description:String read FDescription write FDescription;
       property Parameters:TLCListOfParametros read FParameters write FParameters;
       property RowOfDefinition:Integer read FRowOfDefinition write FRowOfDefinition;
+      property RowOfImplementation:Integer read FRowOfImplementation write FRowOfImplementation;
   end;
 
   TLCListOfFunction = specialize TFPGObjectList<TLCDefinitionOfFunction>;   //lista de bloques
@@ -217,7 +219,8 @@ begin
   FDescription := '';
   FName := '';
   FRowOfDefinition := -1;
-  setlength(FParameters, 0);
+  FRowOfImplementation := -1;
+  SetLength(FParameters, 0);
 end;
 
 procedure TLCDefinitionOfFunction.AddParam(aName : String; aIsEnd : Boolean);
@@ -1231,6 +1234,17 @@ begin
               end;
             end;
           end;
+        end;
+      end
+      else
+      if AnsiUpperCase(Token) = 'FUNCAO' then
+      begin
+        SkipSpaces(True, True);
+        NomeFuncao := GetToken;
+        Funcao := SearchFunction(aList, NomeFuncao);
+        if Funcao <> nil then
+        begin
+          Funcao.RowOfImplementation := fIndexCurLine + 1; // fIndexCurLine é base ZERO
         end;
       end;
       SkipSpaces(True, True);
